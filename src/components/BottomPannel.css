@@ -1,0 +1,342 @@
+
+.bottom-panel {
+    background: linear-gradient(to bottom, 
+        var(--secondary-black) 50%,
+        var(--dark-silver) 90%,
+        var(--silver) 100%
+    );
+    border-top: 4px solid var(--accent-red);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 0.5rem;
+    padding:  1.5rem 1rem;
+    z-index: 20;
+    box-shadow: 
+        0 -8px 25px rgba(220, 20, 60, 0.4),
+        inset 0 3px 0 rgba(255, 255, 255, 0.03),
+        inset 0 -1px 5px rgba(0, 0, 0, 0.8);
+    position: relative;
+}
+
+/* Mechanic bolts on bottom panel */
+.bottom-panel::before {
+    content: '';
+    position: absolute;
+    top: 0.8rem;
+    left: 2rem;
+    right: 2rem;
+    height: 0.25rem;
+    background: repeating-linear-gradient(
+        to right,
+        transparent,
+        transparent 5rem,
+        var(--pure-white) 5rem,
+        var(--light-silver) 5.3rem
+    );
+    border-radius: 50%;
+    opacity: 0.4;
+}
+
+/* Basic buttons - black with border */
+.menu, .sound {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: 0;
+    padding: 0.25rem;
+    line-height: 1;
+    border: 5px solid var(--pure-white);
+    border-radius: 50%;
+    background-color: var(--primary-black);
+    color: var(--pure-white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.menu::before, .sound::before {
+    content: '';
+    position: absolute;
+    top: 53%;
+    left: 51%;
+    transform: translate(-50%, -50%);
+    width: 4.5rem;  /* 150% from 3rem  - FIX */
+    height: 4.5rem;
+    border-radius: 50%;
+    background-image: url(../img/button1.webp);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 4px 0.5rem var(--box-shadow-color),
+            inset 0 -2px 4px var(--inset-shadow-color),
+            0 0 0 1px rgba(255, 255, 255, 0.2),
+            0.25rem 0.25rem 0.15rem var(--primary-black);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Button press effect */
+.menu:active, .sound:active {
+    top: 2px; 
+    box-shadow: 0 2px 4px var(--box-shadow-color),
+        inset 0 -1px 2px var(--inset-shadow-color);
+}
+
+.menu:active::before, .sound:active::before {
+    /* transform: translate(-50%, calc(-50% + 2px)); */
+    z-index: -1;
+}
+
+/* Bet, Win, Credit panels - black with border */
+.bet, .win, .credit {
+    content: '';
+    position: relative;
+    line-height: 1.2;
+    text-align: left;
+    min-width: 8rem;
+    height: 4.5rem;
+    padding: 0.25rem 0.25rem 0 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    color: var(--pure-white);
+    outline: 0.25rem solid var(--almost-white);
+    box-shadow: 
+        inset 0px 0px 2px var(--accent-red),
+        inset 0px 0px 2px var(--accent-red);
+        filter: drop-shadow(0.2rem 0.15rem 0.15rem var(--primary-black));
+}
+
+/* Silver underlay beneath panels */
+.bet::before, .win::before, .credit::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% + 1rem);
+    height: calc(100% + 1rem); 
+    border-radius: 0.5rem;
+    background-image: url(../img/field.webp);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 
+        0 6px 12px var(--box-shadow-color),
+        inset 0 -3px 6px var(--inset-shadow-color),;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.credit, .bet {
+    outline-color: var(--accent-red);
+    box-shadow: 0 0 10px var(--accent-red);
+}
+
+.bet {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.3rem;
+}
+
+.amount {
+    flex: 1;
+}
+
+.amount-toggle {
+    position: absolute;
+    right: 0.1rem;
+    top: 0.15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.increase, .decrease {
+    width: 1.5rem;
+    height: 1.4rem;
+    border: none;
+    background: var(--almost-white);
+    color: var(--primary-black);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    line-height: 1;
+    z-index: 2;
+}
+
+.increase:active, .decrease:active {
+    transform: translateY(1px);
+    border-color: var(--accent-red);
+}
+
+.increase, .decrease {
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.decrease {
+    border-radius: 0 0 0.25rem 0.25rem;
+}
+
+.win {
+    box-shadow: 0 0 20px var(--almost-white);
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Button spin */
+.spin-buttons {
+    position: relative;
+    width: 10rem;
+    height: 7rem;
+}
+
+.spin, .auto-spin {
+    position: absolute;
+    border: 8px solid var(--accent-red);
+    line-height: 1;
+    background: var(--primary-black);
+    color: var(--pure-white);
+    cursor: pointer;
+    transition: transform 0.8s ease;
+    box-shadow: 
+        0 6px 12px var(--box-shadow-color),
+        inset 0 -3px 6px var(--inset-shadow-color),
+        0 0 0 1px rgba(220, 20, 60, 0.3);
+}
+
+.spin {
+    right: 0;
+    bottom: 1rem;
+    font-size: 4rem;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    filter: drop-shadow(0.25rem 0.15rem 0.15rem var(--primary-black));
+    z-index: 0;
+}
+
+.spin::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 49%;
+    transform: translate(-50%, -50%);
+    width: 10.5rem;  /* 150% from 7rem */
+    height: 10.5rem;
+    border-radius: 50%;
+    background-image: url(../img/button2.webp); 
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 3px 6px var(--box-shadow-color);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.auto-spin {
+    right: 6.5rem;
+    bottom: 1rem;
+    font-size: 2rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.auto-spin::after {
+   content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5.5rem;  /* 150% from 4rem */
+    height: 5.5rem;
+    border-radius: 50%;
+    background-image: url(../img/button2.webp);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 3px 6px var(--box-shadow-color);
+    filter: drop-shadow(0.15rem 0.15rem 0.15rem var(--primary-black));
+    pointer-events: none;
+    z-index: 1;
+}
+
+.spin-overlay, .auto-spin-overlay {
+    position: absolute;
+    mix-blend-mode: color-dodge;
+    background: radial-gradient(
+        ellipse at 30% 30%,
+        rgba(255, 255, 255, 0.5) 0%,
+        transparent 30%,
+        rgba(0, 0, 0, 0.6) 60%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.auto-spin-overlay {
+    right: 6.5rem;
+    bottom: 1rem;
+    width: 5.5rem;
+    height: 5.5rem;
+    margin-right: -0.75rem;  /* (5.5 - 4) / 2 */
+    margin-bottom: -0.75rem; /* (5.5 - 4) / 2 */
+    z-index: 10;
+}
+
+/* Overlay pro spin */
+.spin-overlay {
+    left: calc(10rem - 3.5rem - 5.25rem);  /* kontejner width - spin střed - polovina overlay */
+    top: calc(7rem - 4.5rem - 5.25rem); 
+    width: 10.5rem;
+    height: 10.5rem;
+    margin-right: -1.75rem;  /* (10.5 - 7) / 2 */
+    margin-bottom: -0.75rem; /* (10.5 - 7) / 2 */
+    z-index: 1;
+}
+
+/* Button press effect */
+.spin:active, .auto-spin:active {
+    transform: rotate(360deg);
+    box-shadow: 
+        0 3px 6px var(--box-shadow-color),
+        inset 0 -2px 4px var(--inset-shadow-color),;
+}
+
+.spin:active::after {
+    bottom: -5px;
+}
+
+.auto-spin:active::after {
+    bottom: -3px;
+}
+
+@media (max-width: 768px) {
+    .bottom-panel {
+        padding: 0.8rem 0.5rem;
+        gap: 0.3rem;
+    }
+    
+    .bet, .win, .credit {
+        min-width: 5rem;
+        font-size: 1rem;
+    }
+}
