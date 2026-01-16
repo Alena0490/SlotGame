@@ -161,12 +161,12 @@
 }
 
 .increase, .decrease {
-    width: 1.5rem;
-    height: 1.4rem;
+    width: 2rem;
+    height: 2rem;
     border: none;
     background: var(--almost-white);
     color: var(--primary-black);
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     cursor: pointer;
     transition: all 0.2s ease;
     line-height: 1;
@@ -179,11 +179,11 @@
 }
 
 .increase, .decrease {
-    border-radius: 0.25rem 0.25rem 0 0;
+    border-radius: 0.5rem 0.5rem 0.125rem 0.125rem;
 }
 
 .decrease {
-    border-radius: 0 0 0.25rem 0.25rem;
+    border-radius: 0.125rem 0.125rem 0.5rem 0.5rem;
 }
 
 .win {
