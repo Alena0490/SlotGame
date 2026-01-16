@@ -1,10 +1,33 @@
 import "./GameField.css"
-import { useState } from "react";
+import { useState} from "react";
 import BottomPannel from "./BottomPannel";
-import { REELS_COUNT, ROWS_COUNT, getSymbolById } from '../data/data';
+import Reels from "./Reels";
+import { BET_OPTIONS, SYMBOLS } from "../data/data";
+
+// Import symbol data
+const generateRandomSymbols = (): string[][] => {
+  const result: string[][] = [];
+  
+  for (let i = 0; i < 5; i++) {
+    const reel: string[] = [];
+    for (let j = 0; j < 3; j++) { 
+      // Zatím úplně náhodně (později přidáš weights)
+      const randomIndex = Math.floor(Math.random() * SYMBOLS.length);
+      reel.push(SYMBOLS[randomIndex].id);
+    }
+    result.push(reel);
+  }
+  
+  return result;
+}
 
 const GameField = () => {
     const [isSoundOn, setIsSoundOn] = useState(true);
+    const [credit, setCredit] = useState(1000);
+    const [bet, setBet] = useState(20);
+    const [win, setWin] = useState(0);
+    const [isSpinning, setIsSpinning] = useState(false);
+    const [stopStep, setStopStep] = useState<0|1|2|3|4|5>(0);
 
     const [reels, setReels] = useState<string[][]>([
         ['spades', 'hearts', 'clubs'],     // reel 1
@@ -13,27 +36,68 @@ const GameField = () => {
         ['clubs', 'diamond', 'hearts'],         // reel 4
         ['hyena', 'diamonds', 'spades']         // reel 5
     ]);
+   
+    /*** === BET AMOUNT BUTTONS === */
+    const increaseBet = () => {
+        const currentIndex = BET_OPTIONS.indexOf(bet);
+        if (currentIndex < BET_OPTIONS.length - 1) {
+            setBet(BET_OPTIONS[currentIndex + 1]);
+        }
+    };
+
+    const decreaseBet = () => {
+        const currentIndex = BET_OPTIONS.indexOf(bet);
+        if (currentIndex > 0) {
+            setBet(BET_OPTIONS[currentIndex - 1]);
+        }
+    };
+
+    /*** === SPIN BUTTON === */
+    const handleSpin = () => {
+        if (credit < bet) {
+            alert("Nedostatek kreditu!");
+            return;
+        }
+
+        setCredit(credit - bet);
+        setIsSpinning(true);
+
+        // Generate final reels immediately
+        const finalReels = generateRandomSymbols();
+
+        // Affter 2s, start spinning
+        setTimeout(() => setStopStep(1), 1500);   // 1. váleček
+        setTimeout(() => setStopStep(2), 1800);   // 2. váleček
+        setTimeout(() => setStopStep(3), 2100);   // 3. váleček
+        setTimeout(() => setStopStep(4), 2400);   // 4. váleček
+        setTimeout(() => {
+            setStopStep(5);                         // 5. váleček
+            setReels(finalReels);
+            setIsSpinning(false);
+            setWin(0);
+        }, 2700);
+    };
 
     return (
         <main className="game-field">
             <div className="main-game">
                 <span className="harlequin"></span>
-                <div className="reels">
-                    {reels.map((reel, reelIndex) => (
-                        <div key={reelIndex} className={`reel reel-${reelIndex + 1}`}>
-                        {reel.map((symbolId, symbolIndex) => {
-                            const symbol = getSymbolById(symbolId);
-                            return (
-                            <div key={symbolIndex} className={`symbol symbol-${symbolIndex + 1}`}>
-                                {symbol && <img src={symbol.image} alt={symbol.name} className={symbol.className} />}
-                            </div>
-                            );
-                        })}
-                        </div>
-                    ))}
-                    </div>
+                <Reels 
+                    reels={reels} 
+                    isSpinning={isSpinning} 
+                    stopStep={stopStep}
+                />
             </div>
-            <BottomPannel isSoundOn={isSoundOn} setIsSoundOn={setIsSoundOn} />
+            <BottomPannel 
+                isSoundOn={isSoundOn} 
+                setIsSoundOn={setIsSoundOn} 
+                onSpin={handleSpin}
+                bet={bet} 
+                credit={credit}
+                win={win}
+                increaseBet={increaseBet} 
+                decreaseBet={decreaseBet} 
+            />
         </main>
     )
 }

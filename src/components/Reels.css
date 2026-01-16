@@ -1,0 +1,229 @@
+.reels {
+    position: relative;
+    width: 97%;
+    height: 70vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    margin: 0 0.25rem;
+    padding: 3rem 1.5rem 1.5rem;
+    /* Darker mechanical frame with contrast */
+    background: linear-gradient(to bottom, 
+        var(--box-shadow-color) 0%,
+        rgba(6, 6, 14, 0.2) 10%,
+        transparent 20%,
+        transparent 80%,
+        rgba(6, 6, 14, 0.2) 90%,
+        var(--box-shadow-color) 100%
+    );
+    background-color: var(--dark-grey);
+    border-radius: 15px;
+}
+
+/* Top mechanical bar */
+.reels::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2rem;
+    background: linear-gradient(to bottom,
+        var(--primary-black) 0%,
+        var(--dark-silver) 40%,
+        var(--secondary-black) 100%
+    );
+    border-radius: 15px 15px 0 0;
+    box-shadow: 
+        0 3px 10px var(--box-shadow-color),
+        inset 0 1px 0 var(--inset-shadow-color);
+    z-index: 5;
+}
+
+/* Bottom mechanical bar */
+.reels::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2rem;
+    background: linear-gradient(to bottom,
+        var(--secondary-black) 0%,
+        var(--dark-silver) 60%,
+        var(--primary-black) 100%
+    );
+    border-radius: 0 0 15px 15px;
+    box-shadow: 
+        0 -3px 10px var(--box-shadow-color),
+        inset 0 -1px 0 var(--inset-shadow-color);
+    z-index: 5;
+}
+
+.reel-window{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  padding: 0.5rem 0;  
+  z-index: 2;  
+}
+
+/* Track of symbols */
+.reel-track{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem; 
+  will-change: transform, filter;
+}
+
+.reels.spinning .reel-window { filter: blur(0.6px); }
+.reels.spinning .reel { filter: none; }
+
+/* Track spinning animation */
+.reels.spinning .reel-track {
+  animation: continuous-spin 0.3s linear infinite;
+}
+
+.reel-track.settling{
+  animation: reel-settle 320ms cubic-bezier(.18,.9,.2,1) 1 both;
+  filter: none;
+}
+
+/* Gradual stopping of reels */
+.reels.spinning .reel:nth-child(1) .reel-track {
+  animation: continuous-spin 0.15s linear infinite;  /* fastest */
+}
+.reels.spinning .reel:nth-child(2) .reel-track {
+  animation: continuous-spin 0.18s linear infinite;
+}
+.reels.spinning .reel:nth-child(3) .reel-track {
+  animation: continuous-spin 0.21s linear infinite;
+}
+.reels.spinning .reel:nth-child(4) .reel-track {
+  animation: continuous-spin 0.24s linear infinite;
+}
+.reels.spinning .reel:nth-child(5) .reel-track {
+  animation: continuous-spin 0.27s linear infinite;  /* slowest */
+}
+
+/* Gradual stopping of reels */
+.reels.stopping-1 .reel:nth-child(1) .reel-track { animation-play-state: paused; }
+.reels.stopping-2 .reel:nth-child(1) .reel-track,
+.reels.stopping-2 .reel:nth-child(2) .reel-track { animation-play-state: paused; }
+.reels.stopping-3 .reel:nth-child(1) .reel-track,
+.reels.stopping-3 .reel:nth-child(2) .reel-track,
+.reels.stopping-3 .reel:nth-child(3) .reel-track { animation-play-state: paused; }
+.reels.stopping-4 .reel:nth-child(1) .reel-track,
+.reels.stopping-4 .reel:nth-child(2) .reel-track,
+.reels.stopping-4 .reel:nth-child(3) .reel-track,
+.reels.stopping-4 .reel:nth-child(4) .reel-track { animation-play-state: paused; }
+.reels.stopping-5 .reel .reel-track { animation-play-state: paused; }
+
+.reel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 20%;
+    height: 62vh;
+    margin: 0 0.2rem 1.25rem;
+    
+    /* Realistic mechanical reel */
+    background: linear-gradient(to bottom, 
+        #4f4f5e 0%,
+        #8e8e9e 5%,
+        #fafaff 35%,
+        #fafaff 55%,     
+        #8e8e9e 95%,
+        #4f4f5e 100%  
+    );
+    border: 3px solid var(--primary-black);
+    border-radius: 0.5rem;
+    box-shadow: 
+        /* Inner shadows for 3D effect of real reel */
+        inset 0 30px 40px -20px var(--box-shadow-color),
+        inset 0 -30px 40px -20px var(--box-shadow-color),
+        /* Outer shadow */
+        0 8px 20px var(--box-shadow-color),
+        0 0 0 1px var(--silver);
+        filter: drop-shadow(0.25rem -0.25rem 0.5rem var(--primary-black));
+    overflow: hidden;
+    position: relative;
+}
+
+/* Top reel shadow */
+.reel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 25%;
+    background: linear-gradient(
+        to bottom,
+        rgba(6, 6, 14, 0.60) 0%,
+        rgba(6, 6, 14, 0.35) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Bottom reel shadow */
+.reel::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25%;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.60) 0%,
+        rgba(0, 0, 0, 0.35) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 10;
+}
+
+.symbol {
+    width: 80%;
+    height: calc(100% / 3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.symbol-harlequin {
+    transform: scale(1.2);
+    margin-top: 0.25rem;
+}
+
+.symbol img {
+    width: 100%; 
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    filter: drop-shadow(0.125rem 0.125rem 0.125rem var(--dark-grey));
+}
+
+/*** === MEDIA QUERIES === ***/
+@media (max-width: 768px) {
+    .reel {
+        height: 60vh;
+    }
+}
+
+/*** === KEYFRAMES === ***/
+@keyframes continuous-spin {
+  from { transform: translateY(-33.33%); }
+  to { transform: translateY(0); }
+}
