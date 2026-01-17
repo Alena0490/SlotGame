@@ -211,6 +211,10 @@
     margin-top: 0.25rem;
 }
 
+.symbol-harlequin.wild-animate {
+  animation: wild-appear 1.2s ease-in-out forwards;
+}
+
 .symbol img {
     width: 100%; 
     height: 100%;
@@ -230,4 +234,19 @@
 @keyframes continuous-spin {
   from { transform: translateY(-33.33%); }
   to { transform: translateY(0); }
+}
+
+@keyframes wild-appear {
+  0%, 100% { 
+    filter: brightness(1);
+    transform: scale(1.1);
+  }
+  25%, 75% { 
+    filter: brightness(1.4) drop-shadow(0 0 10px rgba(220, 20, 60, 0.8));
+    transform: scale(1.15);
+  }
+  50% {
+    filter: brightness(1.6) drop-shadow(0 0 15px rgba(220, 20, 60, 1));
+    transform: scale(1.2);
+  }
 }
