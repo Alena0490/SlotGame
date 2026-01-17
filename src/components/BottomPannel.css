@@ -39,6 +39,12 @@
     opacity: 0.4;
 }
 
+button:disabled {
+  pointer-events: none;
+  filter: grayscale(0.5) brightness(0.6);
+  cursor: not-allowed;
+}
+
 /* Basic buttons - black with border */
 .menu, .sound {
     display: inline-flex;

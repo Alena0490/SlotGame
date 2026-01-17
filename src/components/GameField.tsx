@@ -174,6 +174,7 @@ const GameField = () => {
             </div>
             <BottomPannel 
                 isSoundOn={isSoundOn} 
+                isSpinning={isSpinning}
                 setIsSoundOn={setIsSoundOn} 
                 onSpin={handleSpin}
                 bet={bet} 
