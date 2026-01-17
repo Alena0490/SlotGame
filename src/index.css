@@ -21,8 +21,8 @@
     --chrome: #dadaee;
 
     /* Shadows */
-  --box-shadow-color: rgba(6, 6, 14, 0.5);
-  --inset-shadow-color: rgba(255, 255, 255, 0.1);
+    --box-shadow-color: rgba(6, 6, 14, 0.5);
+    --inset-shadow-color: rgba(255, 255, 255, 0.1);
 }
 
 * {

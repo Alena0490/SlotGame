@@ -2,6 +2,7 @@ import "./GameField.css"
 import { useState} from "react";
 import BottomPannel from "./BottomPannel";
 import Reels from "./Reels";
+import MenuModal from "./MenuModal";
 import { BET_OPTIONS, getWeightedRandomSymbol, PAYLINES, getSymbolById } from "../data/data";
 
 // Import symbol data
@@ -162,6 +163,7 @@ const GameField = () => {
     return (
         <main className="game-field">
             <div className="main-game">
+                <MenuModal/>
                 <span className="harlequin"></span>
                 <Reels 
                     reels={reels} 
