@@ -7,6 +7,8 @@ import {FaArrowsRotate, FaArrowRotateRight, FaBars } from "react-icons/fa6";
 type BottomPannelProps = {
     isSoundOn: boolean;
     isSpinning: boolean;
+    isAutoSpinning: boolean;
+    toggleAutoSpin: () => void;
     setIsSoundOn: (value: boolean) => void;
     bet: number;
     credit: number;
@@ -16,7 +18,7 @@ type BottomPannelProps = {
     onSpin: () => void;
 }
 
-const BottomPannel = ({isSoundOn, setIsSoundOn, bet, increaseBet, decreaseBet, credit, win, onSpin, isSpinning}:BottomPannelProps) => {
+const BottomPannel = ({isSoundOn, setIsSoundOn, bet, increaseBet, decreaseBet, credit, win, onSpin, isSpinning, isAutoSpinning, toggleAutoSpin}:BottomPannelProps) => {
 
     return (
             <div className="bottom-panel">
@@ -33,10 +35,10 @@ const BottomPannel = ({isSoundOn, setIsSoundOn, bet, increaseBet, decreaseBet, c
                 <div className="win">Win:<br />{win}</div>
                 <div className="spin-buttons">
                     <div className="auto-spin-overlay"></div>
-                    <button className="auto-spin" disabled={isSpinning}><FaArrowsRotate /></button>
+                    <button className="auto-spin" disabled={isSpinning && !isAutoSpinning}  onClick={toggleAutoSpin}><FaArrowsRotate /></button>
                     
                     <div className="spin-overlay"></div>
-                    <button className="spin" disabled={isSpinning} onClick={onSpin}><FaArrowRotateRight /></button>
+                    <button className="spin" disabled={isSpinning || isAutoSpinning} onClick={onSpin}><FaArrowRotateRight /></button>
                 </div>
             </div>
         )

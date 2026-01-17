@@ -1,5 +1,5 @@
 import "./GameField.css"
-import { useState} from "react";
+import { useState, useRef} from "react";
 import BottomPannel from "./BottomPannel";
 import Reels from "./Reels";
 import MenuModal from "./MenuModal";
@@ -28,6 +28,8 @@ const GameField = () => {
     const [spinCount, setSpinCount] = useState(0);
     const [isSpinning, setIsSpinning] = useState(false);
     const [stopStep, setStopStep] = useState<0|1|2|3|4|5>(0);
+    const [isAutoSpinning, setIsAutoSpinning] = useState(false);
+    const autoSpinIntervalRef = useRef<number | null>(null); 
 
     const [reels, setReels] = useState<string[][]>([
         ['spades', 'hearts', 'clubs'],     // reel 1
@@ -52,14 +54,18 @@ const GameField = () => {
         }
     };
 
-    /*** === SPIN BUTTON === */
+    /*** === SPIN BUTTONS === */
+    /*** Single spin */
     const handleSpin = () => {
-        if (credit < bet) {
+        const newCredit = credit - bet;
+  
+        if (newCredit < 0) {
             alert("Nedostatek kreditu!");
+            if (isAutoSpinning) toggleAutoSpin();
             return;
         }
 
-        setCredit(credit - bet);
+        setCredit(newCredit);
         setIsSpinning(true);
         setSpinCount(spinCount + 1);
 
@@ -82,7 +88,34 @@ const GameField = () => {
             const winAmount = checkWin(finalReels, bet);
             setWin(winAmount);
             setCredit(prev => prev + winAmount);
+
+            if (isAutoSpinningRef.current) {
+                autoSpinIntervalRef.current = window.setTimeout(handleSpin, 500);
+            }
         }, 2650); 
+    };
+
+    /*** Autospin */
+    const isAutoSpinningRef = useRef(false);
+    const toggleAutoSpin = () => {
+        if (isAutoSpinning) {
+            setIsAutoSpinning(false);
+            isAutoSpinningRef.current = false;  // ref actuaization
+
+            // clearTimeout:
+            if (autoSpinIntervalRef.current) {
+            clearTimeout(autoSpinIntervalRef.current);
+            autoSpinIntervalRef.current = null;
+            }
+        } else {
+            setIsAutoSpinning(true);
+            isAutoSpinningRef.current = true;  // ref actuaization
+            startAutoSpin();
+        }
+    };
+
+    const startAutoSpin = () => {
+        handleSpin();
     };
 
     //*** === CHECK WIN === */
@@ -175,6 +208,7 @@ const GameField = () => {
             <BottomPannel 
                 isSoundOn={isSoundOn} 
                 isSpinning={isSpinning}
+                isAutoSpinning={isAutoSpinning}
                 setIsSoundOn={setIsSoundOn} 
                 onSpin={handleSpin}
                 bet={bet} 
@@ -182,6 +216,7 @@ const GameField = () => {
                 win={win}
                 increaseBet={increaseBet} 
                 decreaseBet={decreaseBet} 
+                toggleAutoSpin={toggleAutoSpin}
             />
         </main>
     )
