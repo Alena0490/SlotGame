@@ -12,7 +12,7 @@ const Reels = ({ reels, isSpinning, stopStep }: ReelsProps) => {
     <div className={`reels ${isSpinning ? 'spinning' : ''} ${stopStep ? `stopping-${stopStep}` : ''}`}>
       {reels.map((reel, reelIndex) => (
         <div key={reelIndex} className="reel">
-          <div className="reel-track">  {/* ✅ PŘIDEJ */}
+          <div className="reel-track">
             {[...reel, ...reel, ...reel].map((symbolId, i) => {
               const symbol = getSymbolById(symbolId);
               return (
@@ -21,7 +21,7 @@ const Reels = ({ reels, isSpinning, stopStep }: ReelsProps) => {
                 </div>
               );
             })}
-          </div>  {/* ✅ ZAVŘI */}
+          </div> 
         </div>
       ))}
     </div>

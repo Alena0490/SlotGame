@@ -64,18 +64,22 @@ const GameField = () => {
 
         // Generate final reels immediately
         const finalReels = generateRandomSymbols();
+        setReels(finalReels); 
 
         // Affter 2s, start spinning
-        setTimeout(() => setStopStep(1), 1500);   // 1. váleček
-        setTimeout(() => setStopStep(2), 1800);   // 2. váleček
-        setTimeout(() => setStopStep(3), 2100);   // 3. váleček
-        setTimeout(() => setStopStep(4), 2400);   // 4. váleček
+        setTimeout(() => setStopStep(1), 1500);   // 1. reel
+        setTimeout(() => setStopStep(2), 1800);   // 2. reel
+        setTimeout(() => setStopStep(3), 2100);   // 3. reel
+        setTimeout(() => setStopStep(4), 2400);   // 4. reel
         setTimeout(() => {
-            setStopStep(5);                         // 5. váleček
-            setReels(finalReels);
-            setIsSpinning(false);
-            setWin(0);
+            setStopStep(5);
         }, 2700);
+        
+        setTimeout(() => {
+            setIsSpinning(false);
+            setStopStep(0);
+            setWin(0);
+        }, 2650); 
     };
 
     return (
