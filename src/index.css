@@ -29,16 +29,21 @@
     --radius-lg: 1rem;
     --radius-md: 0.5rem;
     --radius-xs: 0.125rem;
+
+    /* Spacing */
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
 }
 
 body, html, #root {
     height: 100%;
     background-color: var(--background-color);
+    font-family: 'Arial', sans-serif;
 }

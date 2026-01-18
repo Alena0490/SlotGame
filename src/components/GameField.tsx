@@ -28,6 +28,8 @@ const GameField = () => {
     const [spinCount, setSpinCount] = useState(0);
     const [isSpinning, setIsSpinning] = useState(false);
     const [stopStep, setStopStep] = useState<0|1|2|3|4|5>(0);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isMenuClosing, setIsMenuClosing] = useState(false);
     const [isAutoSpinning, setIsAutoSpinning] = useState(false);
     const autoSpinIntervalRef = useRef<number | null>(null); 
 
@@ -38,6 +40,21 @@ const GameField = () => {
         ['clubs', 'diamond', 'hearts'],         // reel 4
         ['hyena', 'diamonds', 'spades']         // reel 5
     ]);
+
+    /*** === MENU BUTTON === */
+    const closeMenu = () => {
+        setIsMenuClosing(true);
+        
+        // Force browser reflow
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+            setTimeout(() => {
+                setIsMenuOpen(false);
+                setIsMenuClosing(false);
+            }, 300);
+            });
+        });
+    };
    
     /*** === BET AMOUNT BUTTONS === */
     const increaseBet = () => {
@@ -196,7 +213,11 @@ const GameField = () => {
     return (
         <main className="game-field">
             <div className="main-game">
-                <MenuModal/>
+                <MenuModal   
+                    isOpen={isMenuOpen} 
+                    isClosing={isMenuClosing}
+                    onClose={closeMenu} 
+                />
                 <span className="harlequin"></span>
                 <Reels 
                     reels={reels} 
@@ -217,6 +238,7 @@ const GameField = () => {
                 increaseBet={increaseBet} 
                 decreaseBet={decreaseBet} 
                 toggleAutoSpin={toggleAutoSpin}
+                openMenu={() => setIsMenuOpen(true)}
             />
         </main>
     )

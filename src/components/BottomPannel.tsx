@@ -16,20 +16,45 @@ type BottomPannelProps = {
     increaseBet: () => void;
     decreaseBet: () => void;
     onSpin: () => void;
+    openMenu: () => void;
 }
 
-const BottomPannel = ({isSoundOn, setIsSoundOn, bet, increaseBet, decreaseBet, credit, win, onSpin, isSpinning, isAutoSpinning, toggleAutoSpin}:BottomPannelProps) => {
+const BottomPannel = ({isSoundOn, setIsSoundOn, bet, increaseBet, decreaseBet, credit, win, onSpin, isSpinning, isAutoSpinning, toggleAutoSpin, openMenu}:BottomPannelProps) => {
 
     return (
             <div className="bottom-panel">
-                <button className="menu" disabled={isSpinning}><FaBars /></button>
-                <button className="sound" disabled={isSpinning} onClick={() => setIsSoundOn(!isSoundOn)}>{isSoundOn ? <FaVolumeMute /> : <FaVolumeUp />}</button>
+                <button 
+                    className="menu" 
+                    disabled={isSpinning}
+                    onClick={openMenu}
+                >
+                    <FaBars />
+                </button>
+                <button 
+                    className="sound" 
+                    disabled={isSpinning} 
+                    onClick={() => setIsSoundOn(!isSoundOn)}
+                >{isSoundOn ? 
+                    <FaVolumeMute /> : <FaVolumeUp />}
+                </button>
                 <div className="credit">Credit:<br />{credit}</div>
                 <div className="bet">
                     <span className="amount">Bet:<br />{bet}</span>
                     <div className="amount-toggle">
-                        <button className="increase" disabled={isSpinning} onClick={increaseBet}><FaCaretUp /></button>
-                        <button className="decrease" disabled={isSpinning} onClick={decreaseBet}><FaCaretDown /></button>
+                        <button 
+                            className="increase" 
+                            disabled={isSpinning} 
+                            onClick={increaseBet}
+                        >
+                            <FaCaretUp />
+                        </button>
+                        <button 
+                            className="decrease" 
+                            disabled={isSpinning} 
+                            onClick={decreaseBet}
+                        >
+                            <FaCaretDown />
+                        </button>
                     </div>
                 </div>
                 <div className="win">Win:<br />{win}</div>

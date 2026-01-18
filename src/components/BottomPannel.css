@@ -12,6 +12,9 @@
     justify-content: space-around;
     gap: 0.5rem;
     padding:  1.5rem 1rem;
+    font-family: "Rajdhani", system-ui, sans-serif;
+    letter-spacing: 0.01em;
+    font-variant-numeric: tabular-nums;
     z-index: 20;
     box-shadow: 
         0 -8px 25px rgba(220, 20, 60, 0.4),
@@ -108,7 +111,9 @@ button:disabled {
     height: 4.5rem;
     padding: 0.25rem 0.25rem 0 0.75rem;
     border-radius: var(--radius-md);
-    font-size: 1.2rem;
+    font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+    line-height: 1.12;
+    font-weight: 700;
     color: var(--pure-white);
     outline: 0.25rem solid var(--almost-white);
     box-shadow: 
