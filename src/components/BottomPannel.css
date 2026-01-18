@@ -35,7 +35,7 @@
         var(--pure-white) 5rem,
         var(--light-silver) 5.3rem
     );
-    border-radius: 50%;
+    border-radius: var(--radiuss-pill);
     opacity: 0.4;
 }
 
@@ -57,7 +57,7 @@ button:disabled {
     padding: 0.25rem;
     line-height: 1;
     border: 5px solid var(--pure-white);
-    border-radius: 50%;
+    border-radius: var(--radiuss-pill);
     background-color: var(--primary-black);
     color: var(--pure-white);
     font-size: 1.5rem;
@@ -73,7 +73,7 @@ button:disabled {
     transform: translate(-50%, -50%);
     width: 4.5rem;  /* 150% from 3rem  - FIX */
     height: 4.5rem;
-    border-radius: 50%;
+    border-radius: var(--radiuss-pill);
     background-image: url(../img/button1.webp);
     background-size: contain;
     background-position: center;
@@ -107,7 +107,7 @@ button:disabled {
     min-width: 8rem;
     height: 4.5rem;
     padding: 0.25rem 0.25rem 0 0.75rem;
-    border-radius: 0.5rem;
+    border-radius: var(--radius-md);
     font-size: 1.2rem;
     color: var(--pure-white);
     outline: 0.25rem solid var(--almost-white);
@@ -126,7 +126,7 @@ button:disabled {
     transform: translate(-50%, -50%);
     width: calc(100% + 1rem);
     height: calc(100% + 1rem); 
-    border-radius: 0.5rem;
+    border-radius: var(--radius-md);
     background-image: url(../img/field.webp);
     background-size: 100% 100%;
     background-position: center;
@@ -185,11 +185,11 @@ button:disabled {
 }
 
 .increase, .decrease {
-    border-radius: 0.5rem 0.5rem 0.125rem 0.125rem;
+    border-radius: var(--radius-md) var(--radius-md) var(--radius-xs) var(--radius-xs);
 }
 
 .decrease {
-    border-radius: 0.125rem 0.125rem 0.5rem 0.5rem;
+    border-radius: var(--radius-xs) var(--radius-xs) var(--radius-md) var(--radius-md);
 }
 
 .win {
@@ -233,7 +233,7 @@ button:disabled {
     font-size: 4rem;
     width: 7rem;
     height: 7rem;
-    border-radius: 50%;
+    border-radius: var(--radiuss-pill);
     filter: drop-shadow(0.25rem 0.15rem 0.15rem var(--primary-black));
     z-index: 0;
 }
@@ -246,7 +246,7 @@ button:disabled {
     transform: translate(-50%, -50%);
     width: 10.5rem;  /* 150% from 7rem */
     height: 10.5rem;
-    border-radius: 50%;
+    border-radius: var(--radiuss-pill);
     background-image: url(../img/button2.webp); 
     background-size: contain;
     background-position: center;
@@ -262,7 +262,7 @@ button:disabled {
     font-size: 2rem;
     width: 4rem;
     height: 4rem;
-    border-radius: 50%;
+    border-radius: var(--radiuss-pill);
     z-index: 2;
 }
 
@@ -274,7 +274,7 @@ button:disabled {
     transform: translate(-50%, -50%);
     width: 5.5rem;  /* 150% from 4rem */
     height: 5.5rem;
-    border-radius: 50%;
+    border-radius: var(--radiuss-pill);
     background-image: url(../img/button2.webp);
     background-size: contain;
     background-position: center;
@@ -294,7 +294,7 @@ button:disabled {
         transparent 30%,
         rgba(0, 0, 0, 0.6) 60%
     );
-    border-radius: 50%;
+    border-radius: var(--radiuss-pill);
     pointer-events: none;
 }
 

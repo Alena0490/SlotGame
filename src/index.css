@@ -23,6 +23,12 @@
     /* Shadows */
     --box-shadow-color: rgba(6, 6, 14, 0.5);
     --inset-shadow-color: rgba(255, 255, 255, 0.1);
+
+    /* Radius */
+    --radiuss-pill: 50%;
+    --radius-lg: 1rem;
+    --radius-md: 0.5rem;
+    --radius-xs: 0.125rem;
 }
 
 * {
