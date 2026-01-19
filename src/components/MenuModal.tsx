@@ -11,8 +11,6 @@ interface MenuModalProps {
 
 const MenuModal = ({ isOpen, isClosing, onClose }: MenuModalProps) => {
    if (!isOpen && !isClosing) return null;
-   console.log('isClosing:', isClosing);
-console.log('className:', `modal-overlay ${isClosing ? 'closing' : ''}`);
 
 const cardSymbols: Symbol[] = SYMBOLS.filter(s => 
   ['spades', 'clubs', 'diamonds', 'hearts'].includes(s.id)

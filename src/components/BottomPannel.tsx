@@ -9,7 +9,7 @@ type BottomPannelProps = {
     isSpinning: boolean;
     isAutoSpinning: boolean;
     toggleAutoSpin: () => void;
-    setIsSoundOn: (value: boolean) => void;
+    setIsSoundOn: () => void;
     bet: number;
     credit: number;
     win?: number;
@@ -17,9 +17,10 @@ type BottomPannelProps = {
     decreaseBet: () => void;
     onSpin: () => void;
     openMenu: () => void;
+    playSound: (sound: string) => void;
 }
 
-const BottomPannel = ({isSoundOn, setIsSoundOn, bet, increaseBet, decreaseBet, credit, win, onSpin, isSpinning, isAutoSpinning, toggleAutoSpin, openMenu}:BottomPannelProps) => {
+const BottomPannel = ({isSoundOn, setIsSoundOn, playSound, bet, increaseBet, decreaseBet, credit, win, onSpin, isSpinning, isAutoSpinning, toggleAutoSpin, openMenu}:BottomPannelProps) => {
 
     return (
             <div className="bottom-panel">
@@ -33,9 +34,12 @@ const BottomPannel = ({isSoundOn, setIsSoundOn, bet, increaseBet, decreaseBet, c
                 <button 
                     className="sound" 
                     disabled={isSpinning} 
-                    onClick={() => setIsSoundOn(!isSoundOn)}
+                       onClick={() => {
+                            playSound('/sounds/button.mp3');
+                            setIsSoundOn();
+                        }}
                 >{isSoundOn ? 
-                    <FaVolumeMute /> : <FaVolumeUp />}
+                    <FaVolumeUp /> : <FaVolumeMute />}
                 </button>
                 <div className="credit">Credit:<br />{credit}</div>
                 <div className="bet">

@@ -1,9 +1,10 @@
 import "./GameField.css"
-import { useState, useRef} from "react";
+import { useState,useEffect, useRef} from "react";
 import BottomPannel from "./BottomPannel";
 import Reels from "./Reels";
 import MenuModal from "./MenuModal";
 import { BET_OPTIONS, getWeightedRandomSymbol, PAYLINES, getSymbolById } from "../data/data";
+import { useSound } from "../hooks/useSound";
 
 // Import symbol data
 const generateRandomSymbols = (): string[][] => {
@@ -53,9 +54,63 @@ const GameField = () => {
         ['hyena', 'diamonds', 'spades']         // reel 5
     ]);
 
+        /*** === SOUND PRELOAD === */
+    useEffect(() => {
+        // Předem načti zvuky
+        const sounds = [
+            '/sounds/button.mp3',
+            '/sounds/whoosh.mp3',
+        ];
+        
+        sounds.forEach(sound => {
+            const audio = new Audio(sound);
+            audio.load();
+        });
+    }, []);
+    
+    /*** === SOUNDS === */
+    const { playSound } = useSound({ isSoundOn });
+    useEffect(() => {
+        if (!isSoundOn) {
+            // Zastavit všechny audio prvky
+            const audios = document.querySelectorAll('audio');
+            audios.forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+        }
+    }, [isSoundOn]);
+
+    
+     /*** === SOUND BUTTON === */
+   const handleSoundToggle = () => {
+        setIsSoundOn(!isSoundOn);
+        
+        if (!isSoundOn) {  // Zvuk BYL vypnutý, teď se zapíná
+            const audio = new Audio('/sounds/button.mp3');
+            audio.play();
+        }
+    };
+
     /*** === MENU BUTTON === */
+    const openMenu = () => {
+        if (isSoundOn) {
+            playSound('/sounds/button.mp3');
+        }
+        setIsMenuOpen(true);
+    };
+
     const closeMenu = () => {
+        if (isSoundOn) {
+            playSound('/sounds/button.mp3');
+        }
         setIsMenuClosing(true);
+        setTimeout (() => {
+            if (isSoundOn) {
+                playSound('/sounds/whoosh.mp3');
+            }
+        }, 100)
+ 
         
         // Force browser reflow
         requestAnimationFrame(() => {
@@ -67,9 +122,12 @@ const GameField = () => {
             });
         });
     };
-   
+
     /*** === BET AMOUNT BUTTONS === */
     const increaseBet = () => {
+        if (isSoundOn) {
+            playSound('/sounds/button.mp3');
+        }
         const currentIndex = BET_OPTIONS.indexOf(bet);
         if (currentIndex < BET_OPTIONS.length - 1) {
             setBet(BET_OPTIONS[currentIndex + 1]);
@@ -77,6 +135,9 @@ const GameField = () => {
     };
 
     const decreaseBet = () => {
+        if (isSoundOn) {
+            playSound('/sounds/button.mp3');
+        }
         const currentIndex = BET_OPTIONS.indexOf(bet);
         if (currentIndex > 0) {
             setBet(BET_OPTIONS[currentIndex - 1]);
@@ -86,6 +147,9 @@ const GameField = () => {
     /*** === SPIN BUTTONS === */
     /*** Single spin */
     const handleSpin = () => {
+        if (isSoundOn) {
+            playSound('/sounds/wheel-spin.mp3');
+        }
         const newCredit = credit - bet;
   
         if (newCredit < 0) {
@@ -100,7 +164,6 @@ const GameField = () => {
 
         // Generate final reels immediately
         const finalReels = generateRandomSymbols();
-        console.log('finalReels:', finalReels); 
         setReels(finalReels); 
 
         // Affter 2s, start spinning
@@ -116,10 +179,13 @@ const GameField = () => {
             setIsSpinning(false);
             setStopStep(0);
             const winAmount = checkWin(finalReels, bet);
-            console.log('checkWin result:', winAmount);  
             setWin(winAmount.amount);
             setWinningPositions(winAmount.winningPositions);  
             setCredit(prev => prev + winAmount.amount);
+
+                if (winAmount.amount > 0 && isSoundOn) {  // ← Pokud je výhra
+                    playSound('/sounds/win.mp3');
+                }
 
             if (isAutoSpinningRef.current) {
                 autoSpinIntervalRef.current = window.setTimeout(handleSpin, 500);
@@ -261,7 +327,8 @@ const GameField = () => {
                 isSoundOn={isSoundOn} 
                 isSpinning={isSpinning}
                 isAutoSpinning={isAutoSpinning}
-                setIsSoundOn={setIsSoundOn} 
+                setIsSoundOn={handleSoundToggle} 
+                playSound={playSound}  
                 onSpin={handleSpin}
                 bet={bet} 
                 credit={credit}
@@ -269,7 +336,7 @@ const GameField = () => {
                 increaseBet={increaseBet} 
                 decreaseBet={decreaseBet} 
                 toggleAutoSpin={toggleAutoSpin}
-                openMenu={() => setIsMenuOpen(true)}
+                openMenu={openMenu}
             />
         </main>
     )
