@@ -22,6 +22,19 @@ type BottomPannelProps = {
 
 const BottomPannel = ({isSoundOn, setIsSoundOn, playSound, bet, increaseBet, decreaseBet, credit, win, onSpin, isSpinning, isAutoSpinning, toggleAutoSpin, openMenu}:BottomPannelProps) => {
 
+    const handleSpinClick = () => {
+        const spinButton = document.querySelector('.spin') as HTMLButtonElement;
+        if (spinButton) {
+            spinButton.classList.add('rotating');
+            
+            setTimeout(() => {
+                spinButton.classList.remove('rotating');
+            }, 600);
+        }
+        
+        onSpin();
+    };
+
     return (
             <div className="bottom-panel">
                 <button 
@@ -67,7 +80,9 @@ const BottomPannel = ({isSoundOn, setIsSoundOn, playSound, bet, increaseBet, dec
                     <button className="auto-spin" disabled={isSpinning && !isAutoSpinning}  onClick={toggleAutoSpin}><FaArrowsRotate /></button>
                     
                     <div className="spin-overlay"></div>
-                    <button className="spin" disabled={isSpinning || isAutoSpinning} onClick={onSpin}><FaArrowRotateRight /></button>
+                    <button 
+                        className="spin" disabled={isSpinning || isAutoSpinning} 
+                        onClick={handleSpinClick}><FaArrowRotateRight /></button>
                 </div>
             </div>
         )

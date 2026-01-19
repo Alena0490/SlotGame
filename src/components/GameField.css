@@ -64,6 +64,20 @@
     filter: drop-shadow(5px 5px 10px rgba(6, 6, 14, 0.5));
 }
 
+/* Mrk overlay */
+.harlequin::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url(../img/harlequin-wink.webp);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: -3rem bottom;
+  opacity: 0;
+  pointer-events: none;
+  animation: wink 10.8s infinite;
+}
+
 .main-game {
     width: 75%;
     margin-left: auto;
@@ -88,4 +102,17 @@
     .main-game {
         width: 70%;
     }
+}
+
+@keyframes wink{
+  0%, 94%, 100% { opacity: 0; }
+  95% { opacity: 1; }
+  97% { opacity: 1; }
+  98% { opacity: 0; }
+}
+
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce){
+  .harlequin::after{ animation: none; }
 }

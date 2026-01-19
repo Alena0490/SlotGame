@@ -218,6 +218,19 @@
   transform-origin: center;
 }
 
+.reels:has(.symbol.winning) .symbol:not(.winning) {
+  opacity: 0.55;
+  transition: opacity 180ms ease;
+}
+
+.reels:has(.symbol.winning) .symbol:not(.winning) img{
+  filter:
+    drop-shadow(0.125rem 0.125rem 0.125rem var(--dark-grey))
+    brightness(0.78)
+    contrast(0.88);
+  transition: filter 180ms ease;
+}
+
 .symbol img {
     width: 100%; 
     height: 100%;
@@ -276,5 +289,4 @@
       drop-shadow(0 0 1.75rem var(--win-color));
   }
 }
-
 
