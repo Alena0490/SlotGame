@@ -3,6 +3,7 @@ import { useState,useEffect, useRef} from "react";
 import BottomPannel from "./BottomPannel";
 import Reels from "./Reels";
 import MenuModal from "./MenuModal";
+import NoCreditModal from "./NoCreditModal";
 import { BET_OPTIONS, getWeightedRandomSymbol, PAYLINES, getSymbolById } from "../data/data";
 import { useSound } from "../hooks/useSound";
 
@@ -53,10 +54,16 @@ const GameField = () => {
         ['clubs', 'diamond', 'hearts'],         // reel 4
         ['hyena', 'diamonds', 'spades']         // reel 5
     ]);
+    const [isOutOfCredits, setIsOutOfCredits] = useState(false);
+    const backgroundAudioRef = useRef<HTMLAudioElement>(null);
 
-        /*** === SOUND PRELOAD === */
+    const handleRefillCredits = () => {
+        setCredit(1000);
+        setIsOutOfCredits(false);
+    };
+
+    /*** === SOUND PRELOAD === */
     useEffect(() => {
-        // Předem načti zvuky
         const sounds = [
             '/sounds/button.mp3',
             '/sounds/whoosh.mp3',
@@ -72,7 +79,6 @@ const GameField = () => {
     const { playSound } = useSound({ isSoundOn });
     useEffect(() => {
         if (!isSoundOn) {
-            // Zastavit všechny audio prvky
             const audios = document.querySelectorAll('audio');
             audios.forEach(audio => {
                 audio.pause();
@@ -81,12 +87,23 @@ const GameField = () => {
         }
     }, [isSoundOn]);
 
+        useEffect(() => {
+            if (backgroundAudioRef.current) {
+                backgroundAudioRef.current.volume = 0.3;  // 30% volume
+                if (isSoundOn) {
+                    backgroundAudioRef.current.play();
+                } else {
+                    backgroundAudioRef.current.pause();
+                }
+            }
+        }, [isSoundOn]);
+
     
      /*** === SOUND BUTTON === */
    const handleSoundToggle = () => {
         setIsSoundOn(!isSoundOn);
         
-        if (!isSoundOn) {  // Zvuk BYL vypnutý, teď se zapíná
+        if (!isSoundOn) { 
             const audio = new Audio('/sounds/button.mp3');
             audio.play();
         }
@@ -147,15 +164,19 @@ const GameField = () => {
     /*** === SPIN BUTTONS === */
     /*** Single spin */
     const handleSpin = () => {
-        if (isSoundOn) {
-            playSound('/sounds/wheel-spin.mp3');
-        }
         const newCredit = credit - bet;
   
         if (newCredit < 0) {
-            alert("Nedostatek kreditu!");
+              if (isSoundOn) {
+                    playSound('/sounds/error.mp3');
+                }
+            setIsOutOfCredits(true);
             if (isAutoSpinning) toggleAutoSpin();
             return;
+        }
+
+        if (isSoundOn) {
+            playSound('/sounds/spin2.mp3');
         }
 
         setCredit(newCredit);
@@ -167,10 +188,10 @@ const GameField = () => {
         setReels(finalReels); 
 
         // Affter 2s, start spinning
-        setTimeout(() => setStopStep(1), 1500);   // 1. reel
-        setTimeout(() => setStopStep(2), 1800);   // 2. reel
-        setTimeout(() => setStopStep(3), 2100);   // 3. reel
-        setTimeout(() => setStopStep(4), 2400);   // 4. reel
+        setTimeout(() => setStopStep(1), 1550);   // 1. reel
+        setTimeout(() => setStopStep(2), 1900);   // 2. reel
+        setTimeout(() => setStopStep(3), 2250);   // 3. reel
+        setTimeout(() => setStopStep(4), 2600);   // 4. reel
         setTimeout(() => {
             setStopStep(5);
         }, 2700);
@@ -183,7 +204,7 @@ const GameField = () => {
             setWinningPositions(winAmount.winningPositions);  
             setCredit(prev => prev + winAmount.amount);
 
-                if (winAmount.amount > 0 && isSoundOn) {  // ← Pokud je výhra
+                if (winAmount.amount > 0 && isSoundOn) {
                     playSound('/sounds/win.mp3');
                 }
 
@@ -238,7 +259,7 @@ const GameField = () => {
         totalWin += scatterWin.win;
 
         scatterWin.positions.forEach(pos => {
-            winningPositions.push({col: pos.col, row: pos.row, lineIndex: -1});  // -1 znamená scatter
+            winningPositions.push({col: pos.col, row: pos.row, lineIndex: -1});  // -1 = scatter
         });
         
         return { amount: totalWin, winningPositions };  
@@ -308,11 +329,23 @@ const GameField = () => {
 
     return (
         <main className="game-field">
+             <audio 
+                ref={backgroundAudioRef}
+                src="/sounds/waltz.mp3"
+                loop
+            />
             <div className="main-game">
                 <MenuModal   
                     isOpen={isMenuOpen} 
                     isClosing={isMenuClosing}
                     onClose={closeMenu} 
+                />
+                 <NoCreditModal
+                    isOpen={isOutOfCredits}
+                    onClose={() => setIsOutOfCredits(false)}
+                    onRefill={handleRefillCredits}
+                    isSoundOn={isSoundOn} 
+                    playSound={playSound}  
                 />
                 <span className="harlequin"></span>
                 <Reels 
