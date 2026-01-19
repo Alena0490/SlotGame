@@ -6,10 +6,10 @@ interface ReelsProps {
   isSpinning: boolean;
   stopStep?: 0 | 1 | 2 | 3 | 4 | 5;
   spinCount: number;
+  winningPositions: {col: number, row: number, lineIndex: number}[]
 }
 
-const Reels = ({ reels, isSpinning, stopStep, spinCount }: ReelsProps) => {
-    console.log('spinCount:', spinCount);
+const Reels = ({ reels, isSpinning, stopStep, spinCount,winningPositions }: ReelsProps) => {
 
   return (
     <div className={`reels ${isSpinning ? 'spinning' : ''} ${stopStep ? `stopping-${stopStep}` : ''}`}>
@@ -17,10 +17,16 @@ const Reels = ({ reels, isSpinning, stopStep, spinCount }: ReelsProps) => {
         <div key={reelIndex} className="reel">
           <div className="reel-track">
             {[...reel, ...reel, ...reel].map((symbolId, i) => {
-              const symbol = getSymbolById(symbolId);
-              const isVisible = i >= 3 && i < 6;
+                const symbol = getSymbolById(symbolId);
+                const isVisible = i >= 3 && i < 6;
+                const isWinning = winningPositions.some(pos => 
+                    pos.col === reelIndex && pos.row === (i - 3)
+                );
               return (
-                <div key={`${reelIndex}-${i}-${spinCount}`} className="symbol" >
+                <div 
+                    key={`${reelIndex}-${i}-${spinCount}`} 
+                    className={`symbol ${isWinning && !isSpinning ? 'winning' : ''}`} 
+                >
                   {symbol && <img 
                     src={symbol.image} 
                     alt={symbol.name} 

@@ -20,9 +20,15 @@
     --light-silver: #d4d4e8; 
     --chrome: #dadaee;
 
+    --win-color: #dc143c;
+
     /* Shadows */
     --box-shadow-color: rgba(6, 6, 14, 0.5);
     --inset-shadow-color: rgba(255, 255, 255, 0.1);
+
+    /* Glow */
+    --win-glow-white: rgba(255, 255, 255, 0.52);
+    --win-glow-red: rgba(220, 20, 60, 0.70);
 
     /* Radius */
     --radiuss-pill: 50%;

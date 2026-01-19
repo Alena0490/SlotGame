@@ -96,7 +96,7 @@ export const SYMBOLS: Symbol[] = [
     name: 'Diamond Diamonds',
     image: DiamondDiamonds,
     type: 'normal',
-    payouts: {two: 2, three: 15, four: 40, five: 100 },
+    payouts: {two: 2, three: 10, four: 25, five: 75 },
      weight: 50
   },
   {
@@ -104,7 +104,7 @@ export const SYMBOLS: Symbol[] = [
     name: 'Diamond Hearts',
     image: DiamondHearts,
     type: 'normal',
-    payouts: {two: 2, three: 15, four: 40, five: 100 },
+    payouts: {two: 2, three: 10, four: 25, five: 75 },
     weight: 50
   },
   
@@ -115,7 +115,7 @@ export const SYMBOLS: Symbol[] = [
     image: Hyena,
     className: 'symbol-hyena',
     type: 'normal',
-    payouts: {two:10, three: 25, four: 75, five: 250 },
+    payouts: {two: 10, three: 25, four: 75, five: 250 },
     weight: 30
   },
   

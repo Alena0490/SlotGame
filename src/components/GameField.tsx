@@ -20,11 +20,23 @@ const generateRandomSymbols = (): string[][] => {
   return result;
 }
 
+interface WinResult {
+  amount: number;
+  winningPositions: Array<{col: number, row: number, lineIndex: number}>;
+}
+
+interface LineWinResult {
+  win: number;
+  positions: number[];  // indexes of win columns
+  lineIndex: number;
+}
+
 const GameField = () => {
     const [isSoundOn, setIsSoundOn] = useState(true);
     const [credit, setCredit] = useState(1000);
     const [bet, setBet] = useState(20);
     const [win, setWin] = useState(0);
+    const [winningPositions, setWinningPositions] = useState<Array<{col: number, row: number, lineIndex: number}>>([]);
     const [spinCount, setSpinCount] = useState(0);
     const [isSpinning, setIsSpinning] = useState(false);
     const [stopStep, setStopStep] = useState<0|1|2|3|4|5>(0);
@@ -88,6 +100,7 @@ const GameField = () => {
 
         // Generate final reels immediately
         const finalReels = generateRandomSymbols();
+        console.log('finalReels:', finalReels); 
         setReels(finalReels); 
 
         // Affter 2s, start spinning
@@ -103,8 +116,10 @@ const GameField = () => {
             setIsSpinning(false);
             setStopStep(0);
             const winAmount = checkWin(finalReels, bet);
-            setWin(winAmount);
-            setCredit(prev => prev + winAmount);
+            console.log('checkWin result:', winAmount);  
+            setWin(winAmount.amount);
+            setWinningPositions(winAmount.winningPositions);  
+            setCredit(prev => prev + winAmount.amount);
 
             if (isAutoSpinningRef.current) {
                 autoSpinIntervalRef.current = window.setTimeout(handleSpin, 500);
@@ -136,23 +151,34 @@ const GameField = () => {
     };
 
     //*** === CHECK WIN === */
-    const checkWin = (reels: string[][], bet: number): number => {
-    let totalWin = 0;
-    
-    PAYLINES.forEach(payline => {
-        const line = payline.map((row, colIndex) => reels[colIndex][row]);
-        const win = checkLineForWin(line, bet);  
-        totalWin += win;
-    });
+    const checkWin = (reels: string[][], bet: number): WinResult => {
+        let totalWin = 0;
+        const winningPositions: Array<{col: number, row: number, lineIndex: number}> = [];
+        
+        PAYLINES.forEach((payline, lineIndex) => {
+            const line = payline.map((row, colIndex) => reels[colIndex][row]);
+            const result = checkLineForWin(line, bet, lineIndex);  
+            if (result.win > 0) { 
+                totalWin += result.win;
 
-    // Scatter win
-    const scatterWin = checkScatterWin(reels, bet);
-    totalWin += scatterWin;
-    
-    return totalWin;
+                result.positions.forEach(col => {
+                winningPositions.push({col, row: payline[col], lineIndex});
+                })
+            }
+        });
+
+        // Scatter win
+        const scatterWin = checkScatterWin(reels, bet);
+        totalWin += scatterWin.win;
+
+        scatterWin.positions.forEach(pos => {
+            winningPositions.push({col: pos.col, row: pos.row, lineIndex: -1});  // -1 znamená scatter
+        });
+        
+        return { amount: totalWin, winningPositions };  
     }
 
-    const checkLineForWin = (line: string[], bet: number): number => {
+    const checkLineForWin = (line: string[], bet: number, lineIndex: number): LineWinResult => {
 
         const firstSymbol = line[0];
         let count = 1; 
@@ -168,46 +194,50 @@ const GameField = () => {
         
         if (count >= 2) {  // needs 2 same symbols in a row
             const symbol = getSymbolById(firstSymbol);
-            if (!symbol) return 0;
+            console.log('symbol:', symbol); 
+            if (!symbol) return { win: 0, positions: [], lineIndex }; 
             
-            // Vyber správný payout podle počtu
+            // Payout
             let payout = 0;
             if (count === 2) payout = symbol.payouts.two;
             if (count === 3) payout = symbol.payouts.three;
             else if (count === 4) payout = symbol.payouts.four;
             else if (count === 5) payout = symbol.payouts.five;
             
-            return bet * payout;  // win
+            const positions = Array.from({length: count}, (_, i) => i); // win
+            return { win: bet * payout, positions, lineIndex }; 
         }
     
-    return 0;  // if there is less than 3 same symbols in a row - no win
+     return { win: 0, positions: [], lineIndex };  // if there is less than 2 same symbols in a row - no win
     }
 
     /** Scatter win */
-    const checkScatterWin = (reels: string[][], bet: number): number => {
+    const checkScatterWin = (reels: string[][], bet: number): {win: number, positions: Array<{col: number, row: number}>} => {
         let scatterCount = 0;
+        const scatterPositions: Array<{col: number, row: number}> = [];
         
         for (let col = 0; col < 5; col++) {
             for (let row = 0; row < 3; row++) {
-            if (reels[col][row] === 'diamond') {  // scatter ID
-                scatterCount++;
-            }
+                if (reels[col][row] === 'diamond') {
+                    scatterCount++;
+                    scatterPositions.push({col, row});
+                }
             }
         }
         
         if (scatterCount >= 3) {
             const scatter = getSymbolById('diamond');
-            if (!scatter) return 0;
+            if (!scatter) return { win: 0, positions: [] };
             
             let payout = 0;
             if (scatterCount === 3) payout = scatter.payouts.three;
             else if (scatterCount === 4) payout = scatter.payouts.four;
             else if (scatterCount >= 5) payout = scatter.payouts.five;
             
-            return bet * payout;
+            return { win: bet * payout, positions: scatterPositions };
         }
         
-        return 0;
+        return { win: 0, positions: [] };
     }
 
     return (
@@ -224,6 +254,7 @@ const GameField = () => {
                     isSpinning={isSpinning} 
                     stopStep={stopStep}
                     spinCount={spinCount} 
+                    winningPositions={winningPositions}
                 />
             </div>
             <BottomPannel 
