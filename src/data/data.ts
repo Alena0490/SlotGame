@@ -31,7 +31,6 @@ export interface Symbol {
     className?: string;
   type: 'normal' | 'wild' | 'scatter';
   payouts: {
-    two: number;     // 2 same symbols payout
     three: number;   // 3 same symbols payout
     four: number;    // 4 same symbols payout
     five: number;    // 5 same symbols payout
@@ -46,32 +45,32 @@ export const SYMBOLS: Symbol[] = [
     name: 'Spades',
     image: Spades,
     type: 'normal',
-    payouts: { two: 1.5, three: 5, four: 10, five: 20 },
-    weight: 80,
+    payouts: { three: 4, four: 8, five: 16 },
+    weight: 90,
   },
   {
     id: 'clubs',
     name: 'Clubs',
     image: Clubs,
     type: 'normal',
-    payouts: { two: 1.5, three: 5, four: 10, five: 20 },
-    weight: 80,
+    payouts: { three: 4, four: 8, five: 16 },
+    weight: 90,
   },
   {
     id: 'diamonds',
     name: 'Diamonds',
     image: Diamonds,
     type: 'normal',
-    payouts: { two: 1.5, three: 5, four: 10, five: 20 },
-    weight: 80,
+    payouts: { three: 4, four: 8, five: 16 },
+    weight: 90,
   },
   {
     id: 'hearts',
     name: 'Hearts',
     image: Hearts,
     type: 'normal',
-    payouts: { two: 1.5, three: 5, four: 10, five: 20 },
-    weight: 80,
+    payouts: { three: 4, four: 8, five: 16 },
+    weight: 90,
   },
   
   // MEDIUM VALUE - diamond symbols
@@ -80,32 +79,32 @@ export const SYMBOLS: Symbol[] = [
     name: 'Diamond Spades',
     image: DiamondSpades,
     type: 'normal',
-    payouts: { two: 2, three: 10, four: 25, five: 75 },
-     weight: 50
+    payouts: { three: 6, four: 14, five: 35 },
+    weight: 65
   },
   {
     id: 'diamond-clubs',
     name: 'Diamond Clubs',
     image: DiamondClubs,
     type: 'normal',
-    payouts: {two: 2, three: 10, four: 25, five: 75 },
-     weight: 50
+    payouts: { three: 6, four: 14, five: 35 },
+    weight: 65
   },
   {
     id: 'diamond-diamonds',
     name: 'Diamond Diamonds',
     image: DiamondDiamonds,
     type: 'normal',
-    payouts: {two: 2, three: 10, four: 25, five: 75 },
-     weight: 50
+    payouts: { three: 6, four: 14, five: 35 },
+    weight: 65
   },
   {
     id: 'diamond-hearts',
     name: 'Diamond Hearts',
     image: DiamondHearts,
     type: 'normal',
-    payouts: {two: 2, three: 10, four: 25, five: 75 },
-    weight: 50
+    payouts: { three: 6, four: 14, five: 35 },
+    weight: 65
   },
   
   // HIGH VALUE
@@ -115,8 +114,8 @@ export const SYMBOLS: Symbol[] = [
     image: Hyena,
     className: 'symbol-hyena',
     type: 'normal',
-    payouts: {two: 10, three: 25, four: 75, five: 250 },
-    weight: 30
+    payouts: { three: 12, four: 30, five: 90 },
+    weight: 40
   },
   
   // SPECIAL SYMBOLS
@@ -126,8 +125,8 @@ export const SYMBOLS: Symbol[] = [
     image: Diamond,
     className: 'symbol-diamond',
     type: 'scatter',
-    payouts: {two:10, three: 50, four: 100, five: 500 },
-    weight: 20,
+    payouts: { three: 3, four: 8, five: 25 },
+    weight: 15,
   },
   {
     id: 'harlequin',
@@ -135,7 +134,7 @@ export const SYMBOLS: Symbol[] = [
     image: Harlequin,
     className: 'symbol-harlequin',
     type: 'wild',
-    payouts: {two: 10, three: 50, four: 150, five: 1000 }, // Wild has the highest payout
+    payouts: { three: 20, four: 60, five: 300 }, // Wild has the highest payout
     weight: 10,
 }
 ];
@@ -154,9 +153,16 @@ export const ROWS_COUNT = 3;
 
 // Define paylines 
 export const PAYLINES = [
-  [1, 1, 1, 1, 1],  // Middle row (index 1)
-  [0, 0, 0, 0, 0],  // Top row (index 0)
-  [2, 2, 2, 2, 2],  // Bottom row  (index 2)
+    [1, 1, 1, 1, 1],  // Middle row (index 1)
+    [0, 0, 0, 0, 0],  // Top row (index 0)
+    [2, 2, 2, 2, 2],  // Bottom row  (index 2)
+    [0, 1, 2, 1, 0],  // 4. V-shape
+    [2, 1, 0, 1, 2],  // 5. Λ-shape
+    [1, 0, 0, 0, 1],  // 6. Top zigzag
+    [1, 2, 2, 2, 1],  // 7. Bottom zigzag
+    [0, 0, 1, 2, 2],  // 8. Increasing
+    [2, 2, 1, 0, 0],  // 9. Decreasing
+    [1, 2, 1, 0, 1],  // 10. W-shape
 ];
 
 // Helper function to get symbol by ID

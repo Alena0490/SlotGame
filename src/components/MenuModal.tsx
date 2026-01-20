@@ -65,7 +65,7 @@ const diamondCardSymbols = SYMBOLS.filter(s =>
                             ))}
                             </div>
                             <span className="payouts">
-                            2× {cardSymbols[0].payouts.two} | 3× {cardSymbols[0].payouts.three} | 4×{" "}
+                             3× {cardSymbols[0].payouts.three} | 4×{" "}
                             {cardSymbols[0].payouts.four} | 5× {cardSymbols[0].payouts.five}
                             </span>
                         </div>
@@ -78,7 +78,7 @@ const diamondCardSymbols = SYMBOLS.filter(s =>
                             ))}
                             </div>
                             <span className="payouts">
-                            2× {diamondCardSymbols[0]?.payouts.two} | 3× {diamondCardSymbols[0]?.payouts.three} | 4×{" "}
+                             3× {diamondCardSymbols[0]?.payouts.three} | 4×{" "}
                             {diamondCardSymbols[0]?.payouts.four} | 5× {diamondCardSymbols[0]?.payouts.five}
                             </span>
                         </div>
@@ -88,7 +88,7 @@ const diamondCardSymbols = SYMBOLS.filter(s =>
                             <div className="symbol-row">
                                 <img src={hyena?.image} alt="Hyena" />
                                 <span>
-                                    High value: 2× {hyena?.payouts.two} | 3× {hyena?.payouts.three} | 
+                                    High value:  3× {hyena?.payouts.three} | 
                                     4× {hyena?.payouts.four} | 5× {hyena?.payouts.five}
                                 </span>
                                 </div>
@@ -96,7 +96,7 @@ const diamondCardSymbols = SYMBOLS.filter(s =>
                                 <div className="symbol-row">
                                 <img src={wild?.image} alt="Wild" />
                                 <span>
-                                    Wild (substitutes all): 2× {wild?.payouts.two} | 3× {wild?.payouts.three} | 
+                                    Wild (substitutes all):  3× {wild?.payouts.three} | 
                                     4× {wild?.payouts.four} | 5× {wild?.payouts.five}
                                 </span>
                                 </div>
@@ -116,10 +116,10 @@ const diamondCardSymbols = SYMBOLS.filter(s =>
                         <h2>Game Rules</h2>
 
                         <ul>
-                            <li>Match 2+ symbols from left to right to win</li>
+                            <li>Match 3+ symbols from left to right to win</li>
                             <li>Wild symbol substitutes all symbols except Scatter</li>
                             <li>Scatter pays anywhere on the reels (3+ symbols)</li>
-                            <li>{paylineCount} paylines: Top, Middle, Bottom</li>
+                            <li>{paylineCount} active paylines</li>
                             <li>Bet range: {minBet} - {maxBet} credits</li>
                             <li>Starting credit: {INITIAL_CREDIT}</li>
                             <li>All wins are multiplied by bet amount</li>

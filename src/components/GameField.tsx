@@ -46,7 +46,15 @@ const GameField = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isMenuClosing, setIsMenuClosing] = useState(false);
     const [isAutoSpinning, setIsAutoSpinning] = useState(false);
-    const autoSpinIntervalRef = useRef<number | null>(null); 
+    const autoSpinIntervalRef = useRef<number | null>(null);
+    
+    // Credit ref for tracking current credit in closures
+    const creditRef = useRef(credit);
+    
+    // Update credit ref when credit changes
+    useEffect(() => {
+        creditRef.current = credit;
+    }, [credit]);
 
     const [reels, setReels] = useState<string[][]>([
         ['spades', 'hearts', 'clubs'],     // reel 1
@@ -60,6 +68,7 @@ const GameField = () => {
     
     const handleRefillCredits = () => {
         setCredit(1000);
+        creditRef.current = 1000;
         setIsOutOfCredits(false);
     };
 
@@ -177,30 +186,45 @@ const GameField = () => {
     /*** === SPIN BUTTONS === */
     /*** Single spin */
     const handleSpin = () => {
-        const newCredit = credit - bet;
-  
-        if (newCredit < 0) {
-              if (isSoundOn) {
-                    playSound('/sounds/error.mp3');
-                }
+        // Check credit with ref (has current value!)
+        if (creditRef.current < bet) {
+            if (isSoundOn) {
+                playSound('/sounds/error.mp3');
+            }
             setIsOutOfCredits(true);
-            if (isAutoSpinning) toggleAutoSpin();
+            
+            // Stop autospin
+            if (isAutoSpinningRef.current) {
+                setIsAutoSpinning(false);
+                isAutoSpinningRef.current = false;
+                
+                if (autoSpinIntervalRef.current) {
+                    clearTimeout(autoSpinIntervalRef.current);
+                    autoSpinIntervalRef.current = null;
+                }
+            }
             return;
         }
+
+        // Deduct credit
+        setCredit(prev => {
+            const newCredit = prev - bet;
+            creditRef.current = newCredit;  // Update ref immediately!
+            return newCredit;
+        });
 
         if (isSoundOn) {
             playSound('/sounds/spin2.mp3');
         }
 
-        setCredit(newCredit);
         setIsSpinning(true);
-        setSpinCount(spinCount + 1);
+        setSpinCount(prev => prev + 1);
 
         // Generate final reels immediately
         const finalReels = generateRandomSymbols();
         setReels(finalReels); 
 
-        // Affter 2s, start spinning
+        // After 2s, start spinning
         setTimeout(() => setStopStep(1), 1550);   // 1. reel
         setTimeout(() => setStopStep(2), 1900);   // 2. reel
         setTimeout(() => setStopStep(3), 2250);   // 3. reel
@@ -215,14 +239,28 @@ const GameField = () => {
             const winAmount = checkWin(finalReels, bet);
             setWin(winAmount.amount);
             setWinningPositions(winAmount.winningPositions);  
-            setCredit(prev => prev + winAmount.amount);
+            
+            setCredit(prev => {
+                const newCredit = prev + winAmount.amount;
+                creditRef.current = newCredit;  // Update ref!
+                return newCredit;
+            });
 
-                if (winAmount.amount > 0 && isSoundOn) {
-                    playSound('/sounds/win.mp3');
-                }
+            if (winAmount.amount > 0 && isSoundOn) {
+                playSound('/sounds/win.mp3');
+            }
 
-            if (isAutoSpinningRef.current) {
+            // Check credit BEFORE next autospin with ref!
+            if (isAutoSpinningRef.current && creditRef.current >= bet) {
                 autoSpinIntervalRef.current = window.setTimeout(handleSpin, 500);
+            } else if (isAutoSpinningRef.current && creditRef.current < bet) {
+                // Stop autospin
+                setIsAutoSpinning(false);
+                isAutoSpinningRef.current = false;
+                setIsOutOfCredits(true);
+                if (isSoundOn) {
+                    playSound('/sounds/error.mp3');
+                }
             }
         }, 2650); 
     };
@@ -292,14 +330,13 @@ const GameField = () => {
             }
         }
         
-        if (count >= 2) {  // needs 2 same symbols in a row
+        if (count >= 3) {  // needs 3 same symbols in a row
             const symbol = getSymbolById(firstSymbol);
             console.log('symbol:', symbol); 
             if (!symbol) return { win: 0, positions: [], lineIndex }; 
             
             // Payout
             let payout = 0;
-            if (count === 2) payout = symbol.payouts.two;
             if (count === 3) payout = symbol.payouts.three;
             else if (count === 4) payout = symbol.payouts.four;
             else if (count === 5) payout = symbol.payouts.five;
@@ -308,7 +345,7 @@ const GameField = () => {
             return { win: bet * payout, positions, lineIndex }; 
         }
     
-     return { win: 0, positions: [], lineIndex };  // if there is less than 2 same symbols in a row - no win
+     return { win: 0, positions: [], lineIndex };  // if there is less than 3 same symbols in a row - no win
     }
 
     /** Scatter win */
