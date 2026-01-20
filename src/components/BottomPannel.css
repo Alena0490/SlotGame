@@ -59,7 +59,7 @@ button:disabled {
     margin: 0;
     padding: 0.25rem;
     line-height: 1;
-    border: 5px solid var(--pure-white);
+    border: 0.2rem solid var(--almost-white);
     border-radius: var(--radiuss-pill);
     background-color: var(--primary-black);
     color: var(--pure-white);
@@ -162,7 +162,7 @@ button:disabled {
 
 .amount-toggle {
     position: absolute;
-    right: 0.1rem;
+    right: 0.15rem;
     top: 0.15rem;
     display: flex;
     flex-direction: column;
@@ -175,9 +175,9 @@ button:disabled {
     width: 2rem;
     height: 2rem;
     border: none;
-    background: var(--almost-white);
+    background-image: linear-gradient(147deg, var(--pure-white), var(--silver));
     color: var(--primary-black);
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     cursor: pointer;
     transition: all 0.2s ease;
     line-height: 1;
@@ -189,7 +189,7 @@ button:disabled {
     border-color: var(--accent-red);
 }
 
-.increase, .decrease {
+.increase {
     border-radius: var(--radius-md) var(--radius-md) var(--radius-xs) var(--radius-xs);
 }
 

@@ -6,6 +6,7 @@ import MenuModal from "./MenuModal";
 import NoCreditModal from "./NoCreditModal";
 import { BET_OPTIONS, getWeightedRandomSymbol, PAYLINES, getSymbolById } from "../data/data";
 import { useSound } from "../hooks/useSound";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 // Import symbol data
 const generateRandomSymbols = (): string[][] => {
@@ -34,9 +35,9 @@ interface LineWinResult {
 }
 
 const GameField = () => {
-    const [isSoundOn, setIsSoundOn] = useState(true);
-    const [credit, setCredit] = useState(1000);
-    const [bet, setBet] = useState(20);
+    const [isSoundOn, setIsSoundOn] = useLocalStorage('isSoundOn', true);
+    const [credit, setCredit] = useLocalStorage('credit', 1000);
+    const [bet, setBet] = useLocalStorage('bet', 20);
     const [win, setWin] = useState(0);
     const [winningPositions, setWinningPositions] = useState<Array<{col: number, row: number, lineIndex: number}>>([]);
     const [spinCount, setSpinCount] = useState(0);
