@@ -1,26 +1,27 @@
+import { useRef, useCallback } from "react";
+
 interface UseSoundProps {
   isSoundOn: boolean;
 }
 
 export const useSound = ({ isSoundOn }: UseSoundProps) => {
-    const playSound = (soundFile: string) => {
-        console.log('playSound called, isSoundOn:', isSoundOn);  // ← Log tady
-        if (!isSoundOn) {
-            console.log('Sound is OFF, returning');  // ← Log tady
-            return;
-        }
+    const audioRef = useRef<HTMLAudioElement[]>([]);
+    
+    const playSound = useCallback((soundFile: string) => {
+        if (!isSoundOn) return;
         
         const audio = new Audio(soundFile);
+        audioRef.current.push(audio);
         audio.play().catch(err => console.log('Sound play failed:', err));
-    };
+    }, [isSoundOn]);
 
-  const stopSound = () => {
-    const audios = document.querySelectorAll('audio');
-    audios.forEach(audio => {
-      audio.pause();
-      audio.currentTime = 0;
-    });
-  };
+    const stopAllSounds = useCallback(() => {
+        audioRef.current.forEach(audio => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+        audioRef.current = [];
+    }, []);
 
-  return { playSound, stopSound };
+    return { playSound, stopAllSounds };
 };

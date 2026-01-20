@@ -56,7 +56,7 @@ const GameField = () => {
     ]);
     const [isOutOfCredits, setIsOutOfCredits] = useState(false);
     const backgroundAudioRef = useRef<HTMLAudioElement>(null);
-
+    
     const handleRefillCredits = () => {
         setCredit(1000);
         setIsOutOfCredits(false);
@@ -76,7 +76,7 @@ const GameField = () => {
     }, []);
     
     /*** === SOUNDS === */
-    const { playSound } = useSound({ isSoundOn });
+    const { playSound, stopAllSounds } = useSound({ isSoundOn });
     useEffect(() => {
         if (!isSoundOn) {
             const audios = document.querySelectorAll('audio');
@@ -87,27 +87,39 @@ const GameField = () => {
         }
     }, [isSoundOn]);
 
-        useEffect(() => {
-            if (backgroundAudioRef.current) {
-                backgroundAudioRef.current.volume = 0.3;  // 30% volume
-                if (isSoundOn) {
-                    backgroundAudioRef.current.play();
-                } else {
-                    backgroundAudioRef.current.pause();
-                }
+    useEffect(() => {
+        if (backgroundAudioRef.current) {
+            backgroundAudioRef.current.volume = 0.3;  // 30% volume
+            if (isSoundOn) {
+                backgroundAudioRef.current.play();
+            } else {
+                backgroundAudioRef.current.pause();
             }
-        }, [isSoundOn]);
+        }
+    }, [isSoundOn]);
 
     
-     /*** === SOUND BUTTON === */
-   const handleSoundToggle = () => {
-        setIsSoundOn(!isSoundOn);
+    /*** === SOUND BUTTON === */
+    const handleSoundToggle = () => {
+        const newSoundState = !isSoundOn;
+        console.log('isSoundOn:', isSoundOn, 'newSoundState:', newSoundState);
         
-        if (!isSoundOn) { 
+        if (newSoundState) {
             const audio = new Audio('/sounds/button.mp3');
             audio.play();
+            console.log('Zvuk se HRAJE');
+        } else {
+            console.log('Zvuk se NEHRAJE');
         }
+        
+        setIsSoundOn(newSoundState);
     };
+
+    useEffect(() => {
+        if (!isSoundOn) {
+            stopAllSounds();
+        }
+    }, [isSoundOn, stopAllSounds]);
 
     /*** === MENU BUTTON === */
     const openMenu = () => {

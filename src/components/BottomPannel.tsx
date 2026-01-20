@@ -20,7 +20,7 @@ type BottomPannelProps = {
     playSound: (sound: string) => void;
 }
 
-const BottomPannel = ({isSoundOn, setIsSoundOn, playSound, bet, increaseBet, decreaseBet, credit, win, onSpin, isSpinning, isAutoSpinning, toggleAutoSpin, openMenu}:BottomPannelProps) => {
+const BottomPannel = ({isSoundOn, playSound, setIsSoundOn, bet, increaseBet, decreaseBet, credit, win, onSpin, isSpinning, isAutoSpinning, toggleAutoSpin, openMenu}:BottomPannelProps) => {
 
     const handleSpinClick = () => {
         const spinButton = document.querySelector('.spin') as HTMLButtonElement;
@@ -48,7 +48,6 @@ const BottomPannel = ({isSoundOn, setIsSoundOn, playSound, bet, increaseBet, dec
                     className="sound" 
                     disabled={isSpinning} 
                        onClick={() => {
-                            playSound('/sounds/button.mp3');
                             setIsSoundOn();
                         }}
                 >{isSoundOn ? 
@@ -77,12 +76,26 @@ const BottomPannel = ({isSoundOn, setIsSoundOn, playSound, bet, increaseBet, dec
                 <div className="win">Win:<br />{win}</div>
                 <div className="spin-buttons">
                     <div className="auto-spin-overlay"></div>
-                    <button className="auto-spin" disabled={isSpinning && !isAutoSpinning}  onClick={toggleAutoSpin}><FaArrowsRotate /></button>
+                    <button 
+                        className="auto-spin" 
+                        disabled={isSpinning && !isAutoSpinning}  
+                        onClick={() => {
+                            if (isSoundOn) {
+                                playSound('/sounds/button.mp3');
+                            }
+                            toggleAutoSpin()
+                        }}
+                    ><FaArrowsRotate /></button>
                     
                     <div className="spin-overlay"></div>
                     <button 
                         className="spin" disabled={isSpinning || isAutoSpinning} 
-                        onClick={handleSpinClick}><FaArrowRotateRight /></button>
+                            onClick={() => {
+                                if (isSoundOn) {
+                                    playSound('/sounds/button.mp3');
+                                }
+                                handleSpinClick();
+                            }}><FaArrowRotateRight /></button>
                 </div>
             </div>
         )
