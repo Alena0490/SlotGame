@@ -48,12 +48,17 @@
     padding: 0;
 }
 
-body, html, #root {
+body, html {
     height: 100%;
     background-color: var(--secondary-black);
-    /* background-image: url(./img/straight-lines-striped-umbrella-contrasted-with-curved-droplets-rain-falling-from.jpg); */
-    background-size: cover;
-    background-position: center;
     font-family: 'Arial', sans-serif;
+    overflow: hidden;
+}
+
+#root {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
 }

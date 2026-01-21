@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: space-around;
     gap: 0.5rem;
-    padding:  1.5rem 1rem;
+    padding:  1.25rem 1rem 0.75rem;
     font-family: "Rajdhani", system-ui, sans-serif;
     letter-spacing: 0.01em;
     font-variant-numeric: tabular-nums;
@@ -92,7 +92,7 @@ button:disabled {
     text-align: left;
     min-width: 8rem;
     height: 4.5rem;
-    padding: 0.25rem 0.25rem 0 0.75rem;
+    padding: 0.25rem 0.25rem 0 0.5rem;
     border-radius: var(--radius-md);
     font-size: clamp(1.1rem, 1.6vw, 1.35rem);
     line-height: 1.12;
@@ -198,19 +198,23 @@ button:disabled {
     background: var(--primary-black);
     color: var(--pure-white);
     cursor: pointer;
-    transition: transform 0.8s ease;
+    transition: transform 0.8s ease, filter 0.8s ease;
     box-shadow: 
         0 6px 12px var(--box-shadow-color),
         inset 0 -3px 6px var(--inset-shadow-color),
         0 0 0 1px rgba(220, 20, 60, 0.3);
 }
 
+.spin:hover, .auto-spin:hover {
+    filter: brightness(1.2);
+}
+
 .spin {
     right: 0;
-    bottom: 1rem;
+    bottom: 0.75rem;
     font-size: 4rem;
-    width: 7rem;
-    height: 7rem;
+    width: 6.5rem;
+    height: 6.5rem;
     border-radius: var(--radiuss-pill);
     filter: drop-shadow(0.25rem 0.15rem 0.15rem var(--primary-black));
     animation: spin-wiggle 12s ease-in-out infinite;
@@ -228,8 +232,8 @@ button:disabled {
     top: 50%;
     left: 49%;
     transform: translate(-50%, -50%);
-    width: 10.5rem;  /* 150% from 7rem */
-    height: 10.5rem;
+    width: 9.75rem;  /* 150% from 6.5rem */
+    height: 9.75rem;
     border-radius: var(--radiuss-pill);
     background-image: url(../img/button2.webp); 
     background-size: contain;
@@ -242,7 +246,7 @@ button:disabled {
 
 .auto-spin {
     right: 6.5rem;
-    bottom: 1rem;
+    bottom: 0rem;
     font-size: 2rem;
     width: 4rem;
     height: 4rem;
@@ -284,7 +288,7 @@ button:disabled {
 
 .auto-spin-overlay {
     right: 6.5rem;
-    bottom: 1rem;
+    bottom: 0;
     width: 5.5rem;
     height: 5.5rem;
     margin-right: -0.75rem;  /* (5.5 - 4) / 2 */
@@ -294,12 +298,12 @@ button:disabled {
 
 /* Overlay pro spin */
 .spin-overlay {
-    left: calc(10rem - 3.5rem - 5.25rem);
-    top: calc(7rem - 4.5rem - 5.25rem); 
-    width: 10.5rem;
-    height: 10.5rem;
-    margin-right: -1.75rem;  /* (10.5 - 7) / 2 */
-    margin-bottom: -0.75rem; /* (10.5 - 7) / 2 */
+    left: calc(9.75rem - 3.5rem - 4.625rem);
+    top: calc(6.5rem - 3.25rem - 5rem); 
+    width: 9.75rem;
+    height: 9.75rem;
+    margin-right: -1.625rem;  /* (9.75 - 6.5) / 2 */
+    margin-bottom: -1.125rem; /* (9.75 - 6.5) / 2 */
     z-index: 1;
 }
 
