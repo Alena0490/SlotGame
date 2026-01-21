@@ -50,6 +50,10 @@
 
 body, html, #root {
     height: 100%;
-    background-color: var(--background-color);
+    background-color: var(--secondary-black);
+    /* background-image: url(./img/straight-lines-striped-umbrella-contrasted-with-curved-droplets-rain-falling-from.jpg); */
+    background-size: cover;
+    background-position: center;
     font-family: 'Arial', sans-serif;
+    overflow: hidden;
 }

@@ -9,11 +9,11 @@
     justify-content: flex-end;
     /* Metalic gradient */
     background: linear-gradient(135deg, 
-        var(--medium-grey) 0%, 
-        var(--light-grey) 25%,
+        var(--light-grey) 0%, 
+        var(--silver) 25%,
         var(--almost-white) 50%,
-        var(--light-grey) 75%,
-        var(--medium-grey) 100%
+        var(--silver) 75%,
+        var(--light-grey) 100%
     );
     margin: 0 auto;
     overflow: hidden;
@@ -27,22 +27,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image:        
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 2px,
-            rgba(255, 255, 255, 0.03) 2px,
-            rgba(255, 255, 255, 0.03) 4px
-        ),
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 2px,
-            rgba(0, 0, 40, 0.02) 2px,
-            rgba(0, 0, 40, 0.02) 4px
-        ),
-        url(../img/background.webp);
+    background-image: url(../img/circus.webp);
     background-size: contain;
     background-position:  left top;
     pointer-events: none;
@@ -58,7 +43,7 @@
     background-repeat: no-repeat;
     background-position: -3rem bottom;
     width: 40%;
-    height: 80vh;
+    height: 80%;
     margin-bottom: 20px;
     z-index: 10;
     filter: drop-shadow(5px 5px 10px rgba(6, 6, 14, 0.5));
@@ -80,7 +65,7 @@
 
 .main-game {
     width: 75%;
-    margin-left: auto;
+    margin:  0 0 1rem auto;
     display: flex;
     flex-direction: column;
     align-items: center;
