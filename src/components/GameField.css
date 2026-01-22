@@ -1,8 +1,9 @@
 .game-field {
     position: relative;
     width: 100%;
-    height: 100vh;
     max-width: 950px;
+    max-height: var(--app-h);
+    aspect-ratio: 950 / 660;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,6 +18,7 @@
     );
     margin: 0 auto;
     overflow: hidden;
+    transform-origin: center center;
 }
 
 /* Metalic texture */
@@ -29,24 +31,43 @@
     bottom: 0;
     background-image: url(../img/circus.webp);
     background-size: contain;
-    background-position:  left top;
+    background-position: left top;
     pointer-events: none;
     z-index: 1;
 }
 
 .harlequin {
     position: absolute;
-    bottom: 6.8rem;
-    left: 0;
+    bottom: 16%;
+    left: -1rem;
     background-image: url(../img/harlequin.webp);
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: -3rem bottom;
+    background-position: left  bottom;
     width: 40%;
     height: 80%;
-    margin-bottom: 20px;
+    margin-bottom: 3.01%;
     z-index: 10;
     filter: drop-shadow(5px 5px 10px rgba(6, 6, 14, 0.5));
+}
+
+.rotate-overlay{
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,.85);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+}
+
+.rotate-card{
+  text-align: center;
+  color: white;
+  padding: 1.25rem 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255,255,255,.2);
 }
 
 /* Mrk overlay */
@@ -57,7 +78,7 @@
   background-image: url(../img/harlequin-wink.webp);
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: -3rem bottom;
+  background-position: left bottom;
   opacity: 0;
   pointer-events: none;
   animation: wink 10.8s infinite;
@@ -65,28 +86,37 @@
 
 .main-game {
     width: 75%;
-    margin:  0 0 0.75rem auto;
+    margin:  0 0 1.80% auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     z-index: 2;
 }
 
-/* Media queries for responsive design */
-@media (max-width: 768px) {
+/* ========================================
+   GAME SCALE
+   ======================================== */
+
+@media (max-width: 949px) {
     .game-field {
-        max-width: 100%;
+        transform: scale(calc(100vw / 950px));
     }
-    
-    .harlequin {
-        width: 30%;
-        bottom: 6rem;
+}
+
+/* Landscape  */
+@media (orientation: landscape) and (max-height: 799px) {
+    .game-field {
+        transform: scale(0.85);
+        transform-origin: top center;
     }
-    
-    .main-game {
-        width: 70%;
-    }
+}
+
+/* Portrait  */
+@media (orientation: portrait) and (max-width: 420px) {
+  .rotate-overlay {
+    display: flex;
+  }
 }
 
 @keyframes wink{
@@ -95,7 +125,6 @@
   97% { opacity: 1; }
   98% { opacity: 0; }
 }
-
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce){

@@ -75,7 +75,6 @@ const BottomPannel = ({isSoundOn, playSound, setIsSoundOn, bet, increaseBet, dec
                 </div>
                 <div className="win">Win:<br />{win}</div>
                 <div className="spin-buttons">
-                    <div className="auto-spin-overlay"></div>
                     <button 
                         className="auto-spin" 
                         disabled={isSpinning && !isAutoSpinning}  
@@ -87,7 +86,6 @@ const BottomPannel = ({isSoundOn, playSound, setIsSoundOn, bet, increaseBet, dec
                         }}
                     ><FaArrowsRotate /></button>
                     
-                    <div className="spin-overlay"></div>
                     <button 
                         className="spin" disabled={isSpinning || isAutoSpinning} 
                             onClick={() => {

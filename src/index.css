@@ -34,12 +34,21 @@
     --radiuss-pill: 50%;
     --radius-lg: 1rem;
     --radius-md: 0.5rem;
+    --radius-sm: 0.25rem;
     --radius-xs: 0.125rem;
 
     /* Spacing */
+    --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
     --spacing-lg: 2rem;
+
+    --game-scale: 1;
+    --app-h: 100svh; 
+    --menu-button: 3.5rem;
+    --menu-button-before: 4.5rem;
+    --menu-button-sm: 2.3rem;
+    --menu-button-before-sm: 3.3rem;
 }
 
 * {
@@ -49,16 +58,50 @@
 }
 
 body, html {
+    width: 100%;
     height: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     background-color: var(--secondary-black);
     font-family: 'Arial', sans-serif;
     overflow: hidden;
+    position: fixed;
 }
 
 #root {
+    width: 100%;
     height: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+}
+
+@media (max-width: 1025px) {
+    #root { 
+        align-items: flex-start; 
+    }
+}
+
+@media (max-width: 949px) {
+  :root { --game-scale: calc(100vw / 950); }
+}
+
+/* Landscape */
+@media (orientation: landscape) and (max-height: 799px) {
+  :root { --game-scale: calc(100vh / 800); }
+}
+
+@media (max-width: 949px) and (max-height: 799px) {
+  :root { --game-scale: calc(min(100vw / 950, 100vh / 800)); }
+}
+
+/* Mobile fix */
+@supports (zoom: 1) {
+  .game-field{
+    transform: none !important;
+    zoom: var(--game-scale);
+  }
 }

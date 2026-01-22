@@ -1,13 +1,15 @@
 .reels {
     position: relative;
     width: 97%;
-    height: 70vh;
+    aspect-ratio: 20/14;
     overflow: hidden;
+    clip-path: inset(0 round var(--radius-lg));
+    transform: translateZ(0);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.25rem;
-    margin: 0 0.25rem;
+    gap: var(--spacing-xs);
+    margin: 0 var(--spacing-xs);
     padding: 3rem 1.5rem 1.5rem;
     /* Darker mechanical frame with contrast */
     background: linear-gradient(to bottom, 
@@ -56,7 +58,7 @@
     left: 0;
     right: 0;
     height: 2rem;
-      background: linear-gradient(to bottom,
+    background: linear-gradient(to bottom,
         var(--secondary-black) 0%,
         var(--dark-grey) 5%,
         var(--dark-silver) 15%,
@@ -71,24 +73,23 @@
     z-index: 5;
 }
 
-.reel-window{
-  position: relative;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  padding: 0.5rem 0;  
-  z-index: 2;  
+.reel-window {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    padding: var(--spacing-sm) 0;  
+    z-index: 2;  
 }
 
 /* Track of symbols */
-.reel-track{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem; 
-  will-change: transform, filter;
+.reel-track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; 
+    will-change: transform, filter;
 }
-
 
 .reels.spinning .reel { 
     filter: 
@@ -96,33 +97,29 @@
         blur(0.6px);
 }
 
-.reels.spinning .reel { 
-  filter: drop-shadow(0.25rem -0.25rem 0.5rem var(--secondary-black));
-}
-
 /* Track spinning animation */
 .reels.spinning .reel-track {
-  animation: continuous-spin 0.3s linear infinite;
+    animation: continuous-spin 0.3s linear infinite;
 }
 
 /* Gradual stopping of reels */
 .reels.spinning .reel:nth-child(1) .reel-track {
-  animation: continuous-spin 0.15s linear infinite;  /* fastest */
+    animation: continuous-spin 0.15s linear infinite;
 }
 .reels.spinning .reel:nth-child(2) .reel-track {
-  animation: continuous-spin 0.18s linear infinite;
+    animation: continuous-spin 0.18s linear infinite;
 }
 .reels.spinning .reel:nth-child(3) .reel-track {
-  animation: continuous-spin 0.21s linear infinite;
+    animation: continuous-spin 0.21s linear infinite;
 }
 .reels.spinning .reel:nth-child(4) .reel-track {
-  animation: continuous-spin 0.24s linear infinite;
+    animation: continuous-spin 0.24s linear infinite;
 }
 .reels.spinning .reel:nth-child(5) .reel-track {
-  animation: continuous-spin 0.27s linear infinite;  /* slowest */
+    animation: continuous-spin 0.27s linear infinite;
 }
 
-/* Gradual stopping of reels */
+/* Gradual stopping */
 .reels.stopping-1 .reel:nth-child(1) .reel-track { animation-play-state: paused; }
 .reels.stopping-2 .reel:nth-child(1) .reel-track,
 .reels.stopping-2 .reel:nth-child(2) .reel-track { animation-play-state: paused; }
@@ -140,9 +137,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
+    gap: clamp(0.28rem, 1.5vw, 0.75rem);
     width: 20%;
-    height: 62vh;
     margin: 0 0.2rem 1.25rem;
     
     /* Realistic mechanical reel */
@@ -157,10 +153,8 @@
     border: 3px solid var(--primary-black);
     border-radius: var(--radius-md);
     box-shadow: 
-        /* Inner shadows for 3D effect of real reel */
         inset 0 30px 40px -20px var(--box-shadow-color),
         inset 0 -30px 40px -20px var(--box-shadow-color),
-        /* Outer shadow */
         0 8px 20px var(--box-shadow-color),
         0 0 0 1px var(--dark-silver);
     filter: drop-shadow(0.25rem -0.25rem 0.5rem var(--primary-black));
@@ -206,7 +200,7 @@
 
 .symbol {
     width: 84%;
-    height: calc(100% / 3 - 0.5rem); /* 3 symbols visible minus gap */
+    height: calc(100% / 3 - 0.5rem);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -215,28 +209,28 @@
 }
 
 .symbol-harlequin.wild-animate {
-  animation: pulse 0.8s ease-in-out infinite;
-  will-change: transform, filter;
-  transform-origin: center;
+    animation: pulse 0.8s ease-in-out infinite;
+    will-change: transform, filter;
+    transform-origin: center;
 }
 
 .symbol.winning {
-  animation: win-pulse 0.8s ease-in-out infinite;
-  will-change: transform, filter;
-  transform-origin: center;
+    animation: win-pulse 0.8s ease-in-out infinite;
+    will-change: transform, filter;
+    transform-origin: center;
 }
 
 .reels:has(.symbol.winning) .symbol:not(.winning) {
-  opacity: 0.55;
-  transition: opacity 180ms ease;
+    opacity: 0.55;
+    transition: opacity 180ms ease;
 }
 
-.reels:has(.symbol.winning) .symbol:not(.winning) img{
-  filter:
-    drop-shadow(0.125rem 0.125rem 0.125rem var(--dark-grey))
-    brightness(0.78)
-    contrast(0.88);
-  transition: filter 180ms ease;
+.reels:has(.symbol.winning) .symbol:not(.winning) img {
+    filter:
+        drop-shadow(0.125rem 0.125rem 0.125rem var(--dark-grey))
+        brightness(0.78)
+        contrast(0.88);
+    transition: filter 180ms ease;
 }
 
 .symbol img {
@@ -247,54 +241,113 @@
     filter: drop-shadow(0.125rem 0.125rem 0.125rem var(--dark-grey));
 }
 
-/*** === MEDIA QUERIES === ***/
-@media (max-width: 768px) {
+/* ========================================
+   RESPONSIVE - MOBILE FIRST
+   ======================================== */
+
+/* Extra Small Phones - Portrait (320px - 360px) */
+@media (max-width: 360px) and (orientation: portrait) {
+    .reels {
+        padding: 1.6rem var(--spacing-sm) var(--spacing-sm);
+        gap: 0.1rem;
+        margin: 0 0.15rem;
+    }
+    
+    .reels::before,
+    .reels::after {
+        height: 1rem;
+    }
+    
     .reel {
-        height: 60vh;
+        margin-bottom: var(--spacing-sm);
+        border-width: 1.5px;
+    }
+    
+    .reel-track {
+        gap: 0.85rem;
+    }
+    
+    .symbol {
+        width: 88%;
+        height: calc(100% / 3 - 0.35rem);
     }
 }
 
-/*** === KEYFRAMES === ***/
+/* ========================================
+   LANDSCAPE MODE
+   ======================================== */
+
+/* Extra Small - Landscape (max 568px) */
+@media (max-width: 568px) and (max-height: 320px) and (orientation: landscape) {
+    .reels {
+        padding: 1.1rem var(--spacing-sm) var(--spacing-sm);
+        gap: 0.08rem;
+        margin: 0 0.12rem;
+    }
+    
+    .reels::before,
+    .reels::after {
+        height: 0.9rem;
+    }
+    
+    .reel {
+        margin-bottom: 0.35rem;
+        border-width: 1.3px;
+    }
+    
+    .reel-track {
+        gap: 0.75rem;
+    }
+    
+    .symbol {
+        width: 85%;
+        height: calc(100% / 3 - 0.3rem);
+    }
+}
+
+/* ========================================
+   KEYFRAMES
+   ======================================== */
+
 @keyframes continuous-spin {
-  from { transform: translateY(-33.33%); }
-  to { transform: translateY(0); }
+    from { transform: translateY(-33.33%); }
+    to { transform: translateY(0); }
 }
 
 @keyframes pulse {
-  0%, 100% {
-    transform: scale(1.02);
-    filter:
-      brightness(1.1)
-      saturate(1.2)
-      drop-shadow(0 0 0.125rem var(--silver))
-  }
+    0%, 100% {
+        transform: scale(1.02);
+        filter:
+            brightness(1.1)
+            saturate(1.2)
+            drop-shadow(0 0 0.125rem var(--silver))
+    }
 
-  50% {
-    transform: scale(1.05);
-    filter:
-      brightness(1.2)
-      saturate(1.2)
-      drop-shadow(0 0 0.25rem var(--silver))
-  }
+    50% {
+        transform: scale(1.05);
+        filter:
+            brightness(1.2)
+            saturate(1.2)
+            drop-shadow(0 0 0.25rem var(--silver))
+    }
 }
 
 @keyframes win-pulse {
-  0%, 100% {
-    transform: scale(1);
-    filter:
-      brightness(1.04)
-      saturate(1.3)
-      drop-shadow(0 0 0.25rem var(--bright-red))
-      drop-shadow(0 0 1.25rem var(--win-color));
-  }
+    0%, 100% {
+        transform: scale(1);
+        filter:
+            brightness(1.04)
+            saturate(1.3)
+            drop-shadow(0 0 0.25rem var(--bright-red))
+            drop-shadow(0 0 1.25rem var(--win-color));
+    }
 
-  50% {
-    transform: scale(1.05);
-    filter:
-      brightness(1.15)
-      saturate(1.3)
-      drop-shadow(0 0 0.75rem var(--bright-red))
-      drop-shadow(0 0 1.75rem var(--win-color));
-  }
+    50% {
+        transform: scale(1.05);
+        filter:
+            brightness(1.15)
+            saturate(1.3)
+            drop-shadow(0 0 0.75rem var(--bright-red))
+            drop-shadow(0 0 1.75rem var(--win-color));
+    }
 }
-

@@ -384,6 +384,12 @@ const GameField = () => {
                 src="/sounds/waltz.mp3"
                 loop
             />
+            <div className="rotate-overlay" aria-hidden="true">
+                <div className="rotate-card">
+                    <div className="rotate-icon">↻</div>
+                    <p>Turn your device</p>
+                </div>
+            </div>
             <div className="main-game">
                 <MenuModal   
                     isOpen={isMenuOpen} 
