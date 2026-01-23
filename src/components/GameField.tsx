@@ -47,6 +47,8 @@ const GameField = () => {
     const [isMenuClosing, setIsMenuClosing] = useState(false);
     const [isAutoSpinning, setIsAutoSpinning] = useState(false);
     const autoSpinIntervalRef = useRef<number | null>(null);
+
+    const base = import.meta.env.BASE_URL;
     
     // Credit ref for tracking current credit in closures
     const creditRef = useRef(credit);
@@ -75,15 +77,15 @@ const GameField = () => {
     /*** === SOUND PRELOAD === */
     useEffect(() => {
         const sounds = [
-            '${base}sounds/button.mp3',
-            '${base}sounds/whoosh.mp3',
+            `${base}sounds/button.mp3`,
+            `${base}sounds/whoosh.mp3`,
         ];
         
         sounds.forEach(sound => {
             const audio = new Audio(sound);
             audio.load();
         });
-    }, []);
+    }, [base]);
     
     /*** === SOUNDS === */
     const { playSound, stopAllSounds } = useSound({ isSoundOn });
@@ -115,7 +117,7 @@ const GameField = () => {
         console.log('isSoundOn:', isSoundOn, 'newSoundState:', newSoundState);
         
         if (newSoundState) {
-            const audio = new Audio('${base}sounds/button.mp3');
+            const audio = new Audio(`${base}sounds/button.mp3`);
             audio.play();
             console.log('Zvuk se HRAJE');
         } else {
@@ -134,19 +136,19 @@ const GameField = () => {
     /*** === MENU BUTTON === */
     const openMenu = () => {
         if (isSoundOn) {
-            playSound('${base}sounds/button.mp3');
+            playSound(`${base}sounds/button.mp3`);
         }
         setIsMenuOpen(true);
     };
 
     const closeMenu = () => {
         if (isSoundOn) {
-            playSound('${base}sounds/button.mp3');
+            playSound(`${base}sounds/button.mp3`);
         }
         setIsMenuClosing(true);
         setTimeout (() => {
             if (isSoundOn) {
-                playSound('${base}sounds/whoosh.mp3');
+                playSound(`${base}sounds/whoosh.mp3`);
             }
         }, 100)
  
@@ -165,7 +167,7 @@ const GameField = () => {
     /*** === BET AMOUNT BUTTONS === */
     const increaseBet = () => {
         if (isSoundOn) {
-            playSound('${base}sounds/button.mp3');
+            playSound(`${base}sounds/button.mp3`);
         }
         const currentIndex = BET_OPTIONS.indexOf(bet);
         if (currentIndex < BET_OPTIONS.length - 1) {
@@ -175,7 +177,7 @@ const GameField = () => {
 
     const decreaseBet = () => {
         if (isSoundOn) {
-            playSound('${base}sounds/button.mp3');
+            playSound(`${base}sounds/button.mp3`);
         }
         const currentIndex = BET_OPTIONS.indexOf(bet);
         if (currentIndex > 0) {
@@ -189,7 +191,7 @@ const GameField = () => {
         // Check credit with ref (has current value!)
         if (creditRef.current < bet) {
             if (isSoundOn) {
-                playSound('${base}sounds/error.mp3');
+                playSound(`${base}sounds/error.mp3`);
             }
             setIsOutOfCredits(true);
             
@@ -214,7 +216,7 @@ const GameField = () => {
         });
 
         if (isSoundOn) {
-            playSound('${base}sounds/spin2.mp3');
+            playSound(`${base}sounds/spin2.mp3`);
         }
 
         setIsSpinning(true);
@@ -247,7 +249,7 @@ const GameField = () => {
             });
 
             if (winAmount.amount > 0 && isSoundOn) {
-                playSound('${base}sounds/win.mp3');
+                playSound(`${base}sounds/win.mp3`);
             }
 
             // Check credit BEFORE next autospin with ref!
@@ -259,7 +261,7 @@ const GameField = () => {
                 isAutoSpinningRef.current = false;
                 setIsOutOfCredits(true);
                 if (isSoundOn) {
-                    playSound('${base}sounds/error.mp3');
+                    playSound(`${base}sounds/error.mp3`);
                 }
             }
         }, 2650); 
@@ -385,7 +387,7 @@ const GameField = () => {
 
              <audio 
                 ref={backgroundAudioRef}
-                src="${base}sounds/waltz.mp3"
+                src={`${base}sounds/waltz.mp3`} 
                 loop
                 aria-hidden="true"
             />
