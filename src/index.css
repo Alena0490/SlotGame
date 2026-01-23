@@ -47,8 +47,8 @@
     --app-h: 100svh; 
     --menu-button: 3.5rem;
     --menu-button-before: 4.5rem;
-    --menu-button-sm: 2.3rem;
-    --menu-button-before-sm: 3.3rem;
+    --menu-button-sm: 2rem;
+    --menu-button-before-sm: 3rem;
 }
 
 * {
@@ -77,6 +77,18 @@ body, html {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 @media (max-width: 1025px) {

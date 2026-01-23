@@ -1,3 +1,4 @@
+
 .game-field {
     position: relative;
     width: 100%;
@@ -36,20 +37,6 @@
     z-index: 1;
 }
 
-.harlequin {
-    position: absolute;
-    bottom: 16%;
-    left: -1rem;
-    background-image: url(../img/harlequin.webp);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: left  bottom;
-    width: 40%;
-    height: 80%;
-    margin-bottom: 3.01%;
-    z-index: 10;
-    filter: drop-shadow(5px 5px 10px rgba(6, 6, 14, 0.5));
-}
 
 .rotate-overlay{
     display: none;
@@ -70,7 +57,22 @@
   border: 1px solid rgba(255,255,255,.2);
 }
 
-/* Mrk overlay */
+.harlequin {
+    position: absolute;
+    bottom: 16%;
+    left: -4%;
+    background-image: url(../img/harlequin.webp);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left  bottom;
+    width: 40%;
+    height: 80%;
+    margin-bottom: 3.01%;
+    z-index: 10;
+    filter: drop-shadow(5px 5px 10px rgba(6, 6, 14, 0.5));
+}
+
+/* Wink overlay */
 .harlequin::after{
   content: "";
   position: absolute;
@@ -86,7 +88,7 @@
 
 .main-game {
     width: 75%;
-    margin:  0 0 1.80% auto;
+    margin:  0 1.5% 1.8% auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -94,9 +96,14 @@
     z-index: 2;
 }
 
-/* ========================================
-   GAME SCALE
-   ======================================== */
+/* ===================
+   MEDIA QUERIES
+   =================== */
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce){
+    .harlequin::after{ animation: none; }
+}
 
 @media (max-width: 949px) {
     .game-field {
@@ -113,7 +120,7 @@
 }
 
 /* Portrait  */
-@media (orientation: portrait) and (max-width: 420px) {
+@media (orientation: portrait) and (max-width: 480px) {
   .rotate-overlay {
     display: flex;
   }
@@ -124,9 +131,4 @@
   95% { opacity: 1; }
   97% { opacity: 1; }
   98% { opacity: 0; }
-}
-
-/* Accessibility */
-@media (prefers-reduced-motion: reduce){
-  .harlequin::after{ animation: none; }
 }

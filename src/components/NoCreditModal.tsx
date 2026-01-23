@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./MenuModal.css"
 
 interface NoCreditModalProps {
@@ -11,6 +11,13 @@ interface NoCreditModalProps {
 
 const NoCreditModal = ({ isOpen, onClose, onRefill, isSoundOn, playSound }: NoCreditModalProps) => {
     const [isClosing, setIsClosing] = useState(false);
+    const refillButtonRef = useRef<HTMLButtonElement>(null);
+    // Focus first button when modal opens
+    useEffect(() => {
+        if (isOpen && refillButtonRef.current) {
+            refillButtonRef.current.focus();
+        }
+    }, [isOpen]);
     if (!isOpen) return null;
 
     const handleClose = () => {
@@ -64,8 +71,20 @@ const NoCreditModal = ({ isOpen, onClose, onRefill, isSoundOn, playSound }: NoCr
             </p>
 
             <div className="modal-buttons">
-                <button className="btn btn-primary" onClick={handleRefill}>Refill Credits</button>
-                <button className="btn btn-ghost" onClick={handleClose}>Close</button>
+                <button 
+                    className="btn btn-primary"
+                    aria-label="Refill credits to 1000" 
+                    onClick={handleRefill}
+                >
+                    Refill Credits
+                </button>
+                <button 
+                    className="btn btn-ghost" 
+                    aria-label="Close dialog"
+                    onClick={handleClose}
+                >
+                    Close
+                </button>
             </div>
             </div>
         </div>

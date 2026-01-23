@@ -33,13 +33,20 @@ const diamondCardSymbols = SYMBOLS.filter(s =>
         <div 
             className={`modal-overlay ${isOpen && !isClosing ? 'open' : ''}`}
             onClick={onClose}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="menu-title"
         >
             <div 
                 className={`modal-content ${isClosing ? 'closing' : ''}`}  
                 onClick={(e) => e.stopPropagation()}
             >
-                <button className="modal-close" onClick={onClose}>
-                    <FaXmark />
+                <button 
+                    className="modal-close" 
+                    onClick={onClose}
+                    aria-label="Close menu"
+                >
+                    <FaXmark aria-hidden="true" />
                 </button>
                 
                 <section className="menu-modal">

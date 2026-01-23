@@ -379,17 +379,29 @@ const GameField = () => {
 
     return (
         <main className="game-field">
+            <div className="visually-hidden" role="status" aria-live="assertive" aria-atomic="true">
+                {win > 0 && `You won ${win} credits!`}
+            </div>
+
              <audio 
                 ref={backgroundAudioRef}
                 src="/sounds/waltz.mp3"
                 loop
+                aria-hidden="true"
             />
-            <div className="rotate-overlay" aria-hidden="true">
+            <div 
+                className="rotate-overlay" 
+                aria-hidden="true"
+                role="alert" 
+                aria-live="assertive"
+            >
                 <div className="rotate-card">
                     <div className="rotate-icon">↻</div>
                     <p>Turn your device</p>
                 </div>
             </div>
+
+            <h1 className="visually-hidden">Slot Machine Game</h1>
             <div className="main-game">
                 <MenuModal   
                     isOpen={isMenuOpen} 
@@ -403,7 +415,7 @@ const GameField = () => {
                     isSoundOn={isSoundOn} 
                     playSound={playSound}  
                 />
-                <span className="harlequin"></span>
+                <span className="harlequin" aria-hidden="true"></span>
                 <Reels 
                     reels={reels} 
                     isSpinning={isSpinning} 

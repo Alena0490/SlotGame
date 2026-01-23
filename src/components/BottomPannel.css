@@ -1,6 +1,7 @@
 
 .bottom-panel {
     position: relative;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -14,20 +15,35 @@
         var(--dark-grey) 99%
     );
     border-top: 4px solid var(--accent-red);
-    width: 100%;
     padding: var(--spacing-xs) var(--spacing-md);
     font-family: "Rajdhani", system-ui, sans-serif;
     letter-spacing: 0.01em;
     font-variant-numeric: tabular-nums;
-    z-index: 20;
     box-shadow: 
         0 -4px 25px rgba(220, 20, 60, 0.4),
         inset 0 3px 0 rgba(255, 255, 255, 0.03),
         inset 0 -1px 5px rgba(0, 0, 0, 0.8);
+    z-index: 20;
 }
 
 .bottom-panel > *{
-  min-width: 0;
+    min-width: 0;
+}
+
+button {
+    transition: filter 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+button:hover{
+  transform: scale(1.04);
+  filter: brightness(1.2);
+}
+
+button:focus-visible{
+  transform: scale(1.04);
+  filter: brightness(1.2);
+  color: var(--bright-red);
+  box-shadow: 0  0 3px var(--bright-red);
 }
 
 button:disabled {
@@ -38,17 +54,17 @@ button:disabled {
 
 /* Basic buttons - black with border */
 .menu, .sound {
+    position: relative;
+    width: var(--menu-button);
+    height: var(--menu-button);
     flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    width: var(--menu-button);
-    height: var(--menu-button);
+    isolation: isolate;
     margin-inline: var(--spacing-sm);
     padding: var(--spacing-xs);
     line-height: 1;
-    border: 0.2rem solid var(--almost-white);
     border-radius: var(--radiuss-pill);
     background-color: var(--primary-black);
     color: var(--pure-white);
@@ -60,8 +76,8 @@ button:disabled {
 .menu::before, .sound::before {
     content: '';
     position: absolute;
-    top: 53%;
-    left: 51%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     width: var(--menu-button-before);
     height: var(--menu-button-before);
@@ -75,7 +91,7 @@ button:disabled {
             0 0 0 1px rgba(255, 255, 255, 0.2),
             0.25rem 0.25rem 0.15rem var(--primary-black);
     pointer-events: none;
-    z-index: -1;
+    z-index: 0;
 }
 
 .menu:active, .sound:active {
@@ -85,29 +101,32 @@ button:disabled {
 }
 
 .menu:active::before, .sound:active::before {
-    z-index: -1;
+    z-index: 0;
+}
+
+.menu svg, .sound svg { 
+    position: relative; 
+    z-index: 1; 
 }
 
 /* Bet, Win, Credit panels */
 .bet, .win, .credit {
     position: relative;
-    line-height: 1.2;
-    text-align: left;
-    flex: 1 1 0;
     width: auto;  
     height: var(--menu-button-before);
+    flex: 1 1 0;
     padding: var(--spacing-xs) var(--spacing-xs) 0 var(--spacing-sm);
     margin-inline: var(--spacing-sm);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
+    isolation: isolate;
     font-size: clamp(1.1rem, 1.6vw, 1.35rem);
-    line-height: 1.12;
+    line-height: 1.2;
+    text-align: left;
     font-weight: 700;
     color: var(--pure-white);
-    outline: var(--spacing-xs) solid var(--almost-white);
     box-shadow: 
         inset 0px 0px 2px var(--accent-red),
         inset 0px 0px 2px var(--accent-red);
-    filter: drop-shadow(0.2rem 0.15rem 0.15rem var(--primary-black));
 }
 
 .bet::before, .win::before, .credit::before {
@@ -118,21 +137,23 @@ button:disabled {
     transform: translate(-50%, -50%);
     width: calc(100% + 1rem);
     height: calc(100% + 1rem); 
-    border-radius: var(--radius-md);
-    background-image: url(../img/field.webp);
+    border-radius: var(--radius-lg);
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
+    outline: var(--spacing-xs) solid var(--almost-white);
+    outline-offset: -0.5rem;
+    filter: drop-shadow(0.2rem 0.15rem 0.15rem var(--primary-black));
     box-shadow: 
         0 6px 12px var(--box-shadow-color),
         inset 0 -3px 6px var(--inset-shadow-color);
     pointer-events: none;
-    z-index: -1;
+    z-index: 0;
 }
 
-.credit, .bet {
+.credit::before, .bet::before {
+    background-image: url(../img/fieldr.webp);
     outline-color: var(--accent-red);
-    box-shadow: 0 0 10px var(--accent-red);
 }
 
 .bet {
@@ -147,15 +168,21 @@ button:disabled {
     background-image: url(../img/fieldw.webp);
 }
 
+.bet *, .win *, .credit * {
+    position: relative;
+    z-index: 1;
+}
+
 .amount {
     flex: 1;
 }
 
 .amount-toggle {
     position: relative;
-    right: -0.1rem;
-    top: -0.1rem;
+    right: -0.15rem;
+    top: -0.2rem;
     display: flex;
+    filter: drop-shadow(1px 1px 5px var(--secondary-black));
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -163,8 +190,8 @@ button:disabled {
 }
 
 .increase, .decrease {
-    width: 2rem;
-    height: 2rem;
+    width: 2.125rem;
+    height: 2.125rem;
     border: none;
     background-image: linear-gradient(147deg, var(--pure-white), var(--silver));
     color: var(--primary-black);
@@ -177,7 +204,6 @@ button:disabled {
 
 .increase:active, .decrease:active {
     transform: translateY(1px);
-    border-color: var(--accent-red);
 }
 
 .increase {
@@ -230,10 +256,6 @@ button:disabled {
         0 0 0 1px rgba(220, 20, 60, 0.3);
 }
 
-.spin:hover, .auto-spin:hover {
-    filter: brightness(1.2);
-}
-
 .spin {
     right: var(--spin-right);
     bottom: var(--spin-bottom);
@@ -252,10 +274,10 @@ button:disabled {
 }
 
 .spin::before{
-    content: "";
+    content: '';
     position: absolute;
     top: 50%;
-    left: 49%;
+    left: 50%;
     transform: translate(-50%, -50%);
     width: var(--spin-ring);
     height: var(--spin-ring);
@@ -300,7 +322,7 @@ button:disabled {
 }
 
 .auto-spin::before{
-    content:"";
+    content: '';
     position:absolute;
     top:50%;
     left:50%;
@@ -353,9 +375,34 @@ button:disabled {
     bottom: -3px;
 }
 
-/* ========================================
-   RESPONSIVE - MOBILE FIRST
-   ======================================== */
+/* ======================
+   MEDIA QUERIES 
+   ====================== */
+
+@media (prefers-reduced-motion: reduce){
+  button{
+    transition: none;
+  }
+  button:hover,
+  button:focus-visible{
+    transform: none;
+  }
+}
+
+@media (max-width: 668px) and (min-height: 432px), 
+       (orientation: landscape) and (max-height: 431px) {
+    .amount-toggle {
+        flex-direction: row;
+        gap: 0.25rem;
+    }
+
+    .increase, .decrease {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: var(--radius-md);
+        font-size: 1.15rem;
+    }
+}
 
 /* Extra Small Phones - Portrait (320px - 360px) */
 @media (max-width: 360px) and (orientation: portrait) {
@@ -369,7 +416,6 @@ button:disabled {
         width: 2.4rem;
         height: 2.4rem;
         font-size: 1rem;
-        border-width: 0.14rem;
     }
     
     .menu::before, .sound::before {
@@ -382,12 +428,12 @@ button:disabled {
         height: 3rem;
         font-size: clamp(0.8rem, 1.15vw, 1.05rem);
         padding: 0.15rem 0.15rem 0 0.28rem;
-        outline-width: 0.16rem;
     }
     
     .bet::before, .win::before, .credit::before {
         width: calc(100% + 0.7rem);
         height: calc(100% + 0.7rem);
+        outline-width: 0.16rem;
     }
     
     .increase, .decrease {
@@ -434,8 +480,8 @@ button:disabled {
     .bottom-panel{
         display: grid;
         align-items: center;
-        gap: clamp(0.25rem, 0.8vw, 0.75rem);
-        padding: var(--spacing-xs) var(--spacing-sm);
+        gap: clamp(0.15rem, 0.8vw, 0.75rem);
+        padding: var(--spacing-xs);
         grid-template-columns:
         auto  /* menu */
         auto  /* sound */
@@ -449,7 +495,6 @@ button:disabled {
     .credit, .bet, .win{
         margin-inline: 0.5rem;
         min-width: 0; 
-        border: 2px solid var(--almost-white);
     }
 
     .menu, .sound {
@@ -465,57 +510,48 @@ button:disabled {
     .credit, .bet, .win {
         flex: 1 1 auto; 
         height: var(--menu-button-sm);
-        padding: 0.12rem 0.35rem 0 0.45rem;
-        border-radius: var(--radius-xs);
-        outline-width: 3px;
-        outline-offset: 3px;
-        font-size: clamp(0.78rem, 2.2vmin, 1rem); 
-        line-height: 1.05;
-    }
-
-        .credit::before, .bet::before, .win::before {
-            height: var(--menu-button-before-sm);
-        }
-
-    .bet{
-        padding: 0.12rem 0.25rem 0 0.25rem;
         display: grid;
         grid-template-columns: 1fr auto;
-        align-items: start;
         column-gap: 0.35rem;
-        }
+        border-radius: var(--radius-md);
+        font-size: clamp(0.85rem, 2.2vmin, 1rem); 
+        line-height: 1.05;
+        padding: 0.12rem 0.25rem 0 0.25rem;
+    }
+
+    .credit::before, .bet::before, .win::before {
+        height: var(--menu-button-before-sm);
+        outline-width: 3px;
+        outline-offset: -0.3rem;
+        border-radius: var(--radius-md);
+    }
 
     .amount-toggle{
         transform: scale(0.9);
         transform-origin: top right;
         position: relative;
-        right: -0.12rem;
-        top: -0.12rem;
+        right: -0.25rem;
     }
 
     .increase, .decrease{
-        width: 1.35rem;
-        height: 1.125rem;
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: var(--radius-md);
         font-size: 1.15rem;
     }
 
-    .increase {
-        border-radius: var(--radius-sm) var(--radius-sm) var(--radius-xs) var(--radius-xs);
+    .amount-toggle {
+        flex-direction: row;
+        gap: 0.25rem;
     }
 
-    .decrease {
-        border-radius: var(--radius-xs) var(--radius-xs) var(--radius-sm) var(--radius-sm);
-    }
-
-     .spin-buttons{
+    .spin-buttons{
         margin-inline: 0.25rem 0;
-        width: 6.15rem;
+        width: 6.25rem;
         height: 4.15rem;
-
         --spin-btn: 3.6rem;
         --spin-ring: 5.4rem;
         --spin-bottom: 0.46rem;
-
         --auto-btn: 2.55rem;
         --auto-ring: calc(var(--auto-btn) * 1.38);
         --auto-right: 3.5rem;
@@ -533,18 +569,16 @@ button:disabled {
     }
 }
 
-/* Extra Small - Landscape (max 568px) */
-@media (max-width: 668px) {
+/* Small */
+@media (max-width: 668px) and (min-height: 432px) {
     .bottom-panel {
-        gap: 0.2rem;
-        border-top-width: 1.5px;
+        border-top-width: 1.75px;
     }
     
     .menu, .sound {
         width: 2.2rem;
         height: 2.2rem;
-        font-size: 0.95rem;
-        border-width: 0.12rem;
+        font-size: 1.1rem;
     }
     
     .menu::before, .sound::before {
@@ -554,21 +588,30 @@ button:disabled {
     
     .bet, .win, .credit {
         min-width: unset;
-        height: 3.15rem;
-        font-size: clamp(0.75rem, 1.08vw, 0.98rem);
-        padding: 0.13rem 0.13rem 0 0.25rem;
-        border-radius: var(--radius-xs);
-        outline-width: 0.14rem;
+        height: unset;
+        font-size: clamp(0.95rem, 1.2vw, 0.98rem);
+        padding: 0.25rem 0.13rem 0 0.25rem;
     }
     
     .bet::before, .win::before, .credit::before {
         width: calc(100% + 0.62rem);
         height: calc(100% + 0.62rem);
+        outline-width: 0.14rem;
     }
-    
-    .increase, .decrease {
-        width: 1.4rem;
-        height: 1.4rem;
-        font-size: 1.22rem;
+
+    .amount-toggle {
+        flex-direction: row;
+        gap: 0.25rem;
+    }
+
+    .increase, .decrease{
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: var(--radius-md);
+        font-size: 1.15rem;
+    }
+
+    .spin-buttons {
+        width: calc(var(--spin-btn) + var(--auto-btn) + 0rem);
     }
 }
