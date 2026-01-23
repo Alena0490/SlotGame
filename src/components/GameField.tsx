@@ -35,7 +35,7 @@ interface LineWinResult {
 }
 
 const GameField = () => {
-    const [isSoundOn, setIsSoundOn] = useLocalStorage('isSoundOn', true);
+    const [isSoundOn, setIsSoundOn] = useLocalStorage('isSoundOn', false);
     const [credit, setCredit] = useLocalStorage('credit', 1000);
     const [bet, setBet] = useLocalStorage('bet', 20);
     const [win, setWin] = useState(0);
@@ -75,8 +75,8 @@ const GameField = () => {
     /*** === SOUND PRELOAD === */
     useEffect(() => {
         const sounds = [
-            '/sounds/button.mp3',
-            '/sounds/whoosh.mp3',
+            '${base}sounds/button.mp3',
+            '${base}sounds/whoosh.mp3',
         ];
         
         sounds.forEach(sound => {
@@ -115,7 +115,7 @@ const GameField = () => {
         console.log('isSoundOn:', isSoundOn, 'newSoundState:', newSoundState);
         
         if (newSoundState) {
-            const audio = new Audio('/sounds/button.mp3');
+            const audio = new Audio('${base}sounds/button.mp3');
             audio.play();
             console.log('Zvuk se HRAJE');
         } else {
@@ -134,19 +134,19 @@ const GameField = () => {
     /*** === MENU BUTTON === */
     const openMenu = () => {
         if (isSoundOn) {
-            playSound('/sounds/button.mp3');
+            playSound('${base}sounds/button.mp3');
         }
         setIsMenuOpen(true);
     };
 
     const closeMenu = () => {
         if (isSoundOn) {
-            playSound('/sounds/button.mp3');
+            playSound('${base}sounds/button.mp3');
         }
         setIsMenuClosing(true);
         setTimeout (() => {
             if (isSoundOn) {
-                playSound('/sounds/whoosh.mp3');
+                playSound('${base}sounds/whoosh.mp3');
             }
         }, 100)
  
@@ -165,7 +165,7 @@ const GameField = () => {
     /*** === BET AMOUNT BUTTONS === */
     const increaseBet = () => {
         if (isSoundOn) {
-            playSound('/sounds/button.mp3');
+            playSound('${base}sounds/button.mp3');
         }
         const currentIndex = BET_OPTIONS.indexOf(bet);
         if (currentIndex < BET_OPTIONS.length - 1) {
@@ -175,7 +175,7 @@ const GameField = () => {
 
     const decreaseBet = () => {
         if (isSoundOn) {
-            playSound('/sounds/button.mp3');
+            playSound('${base}sounds/button.mp3');
         }
         const currentIndex = BET_OPTIONS.indexOf(bet);
         if (currentIndex > 0) {
@@ -189,7 +189,7 @@ const GameField = () => {
         // Check credit with ref (has current value!)
         if (creditRef.current < bet) {
             if (isSoundOn) {
-                playSound('/sounds/error.mp3');
+                playSound('${base}sounds/error.mp3');
             }
             setIsOutOfCredits(true);
             
@@ -214,7 +214,7 @@ const GameField = () => {
         });
 
         if (isSoundOn) {
-            playSound('/sounds/spin2.mp3');
+            playSound('${base}sounds/spin2.mp3');
         }
 
         setIsSpinning(true);
@@ -247,7 +247,7 @@ const GameField = () => {
             });
 
             if (winAmount.amount > 0 && isSoundOn) {
-                playSound('/sounds/win.mp3');
+                playSound('${base}sounds/win.mp3');
             }
 
             // Check credit BEFORE next autospin with ref!
@@ -259,7 +259,7 @@ const GameField = () => {
                 isAutoSpinningRef.current = false;
                 setIsOutOfCredits(true);
                 if (isSoundOn) {
-                    playSound('/sounds/error.mp3');
+                    playSound('${base}sounds/error.mp3');
                 }
             }
         }, 2650); 
@@ -385,7 +385,7 @@ const GameField = () => {
 
              <audio 
                 ref={backgroundAudioRef}
-                src="/sounds/waltz.mp3"
+                src="${base}sounds/waltz.mp3"
                 loop
                 aria-hidden="true"
             />
