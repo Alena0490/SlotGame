@@ -10,15 +10,10 @@
     align-items: center;
     justify-content: flex-end;
     /* Metalic gradient */
-    background: linear-gradient(135deg, 
-        var(--light-grey) 0%, 
-        var(--silver) 25%,
-        var(--almost-white) 50%,
-        var(--silver) 75%,
-        var(--light-grey) 100%
-    );
+    background: var(--metal-gradient);
     margin: 0 auto;
     overflow: hidden;
+    transform: scale(var(--game-scale));
     transform-origin: center center;
 }
 
@@ -53,8 +48,8 @@
   text-align: center;
   color: white;
   padding: 1.25rem 1.5rem;
-  border-radius: 1rem;
-  border: 1px solid rgba(255,255,255,.2);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-2);
 }
 
 .harlequin {
@@ -69,7 +64,7 @@
     height: 80%;
     margin-bottom: 3.01%;
     z-index: 10;
-    filter: drop-shadow(5px 5px 10px rgba(6, 6, 14, 0.5));
+    filter: drop-shadow(5px 5px 10px var(--box-shadow-color));
 }
 
 /* Wink overlay */

@@ -7,22 +7,16 @@
     justify-content: space-between;
     gap: clamp(0.8rem, 1.4vw, 1.2rem);
     flex-wrap: nowrap;
-    background: linear-gradient(to bottom, 
-        var(--secondary-black) 0%,
-        var(--chrome) 4%,
-        var(--silver) 14%,
-        var(--dark-silver) 50%,
-        var(--dark-grey) 99%
-    );
+    background: var(--panel-gradient);
     border-top: 4px solid var(--accent-red);
     padding: var(--spacing-xs) var(--spacing-md);
     font-family: "Rajdhani", system-ui, sans-serif;
     letter-spacing: 0.01em;
     font-variant-numeric: tabular-nums;
     box-shadow: 
-        0 -4px 25px rgba(220, 20, 60, 0.4),
-        inset 0 3px 0 rgba(255, 255, 255, 0.03),
-        inset 0 -1px 5px rgba(0, 0, 0, 0.8);
+        var(--glow-red),
+        var(--inset-1),
+        var(--inset-2);
     z-index: 20;
 }
 
@@ -31,7 +25,7 @@
 }
 
 button {
-    transition: filter 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    transition: filter var(--dur-2) ease, transform var(--dur-2) ease, box-shadow var(--dur-2) ease;
 }
 
 button:hover{
@@ -65,12 +59,12 @@ button:disabled {
     margin-inline: var(--spacing-sm);
     padding: var(--spacing-xs);
     line-height: 1;
-    border-radius: var(--radiuss-pill);
+    border-radius: var(--radius-pill);
     background-color: var(--primary-black);
     color: var(--pure-white);
     font-size: 1.5rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--dur-2) ease;
 }
 
 .menu::before, .sound::before {
@@ -81,14 +75,14 @@ button:disabled {
     transform: translate(-50%, -50%);
     width: var(--menu-button-before);
     height: var(--menu-button-before);
-    border-radius: var(--radiuss-pill);
+    border-radius: var(--radius-pill);
     background-image: url(../img/button1.webp);
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     box-shadow: 0 4px 0.5rem var(--box-shadow-color),
             inset 0 -2px 4px var(--inset-shadow-color),
-            0 0 0 1px rgba(255, 255, 255, 0.2),
+            0 0 0 1px var(--inset-shadow-color),
             0.25rem 0.25rem 0.15rem var(--primary-black);
     pointer-events: none;
     z-index: 0;
@@ -197,7 +191,7 @@ button:disabled {
     color: var(--primary-black);
     font-size: 1.75rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--dur-2) ease;
     line-height: 1;
     z-index: 2;
 }
@@ -262,7 +256,7 @@ button:disabled {
     width: var(--spin-btn);
     height: var(--spin-btn);
     font-size: clamp(2.4rem, 8vw, 4rem);
-    border-radius: var(--radiuss-pill);
+    border-radius: var(--radius-pill);
     filter: drop-shadow(0.25rem 0.15rem 0.15rem var(--primary-black));
     animation: spin-wiggle 12s ease-in-out infinite;
     transform-origin: 50% 50%;
@@ -281,14 +275,9 @@ button:disabled {
     transform: translate(-50%, -50%);
     width: var(--spin-ring);
     height: var(--spin-ring);
-    border-radius: var(--radiuss-pill);
+    border-radius: var(--radius-pill);
     mix-blend-mode: color-dodge;
-    background: radial-gradient(
-        ellipse at 30% 30%,
-        rgba(255, 255, 255, 0.5) 0%,
-        transparent 30%,
-        rgba(0, 0, 0, 0.6) 60%
-    );
+    background: var(--specular-ring);
     pointer-events: none;
     z-index: 2;
     }
@@ -301,7 +290,7 @@ button:disabled {
     transform: translate(-50%, -50%);
     width: var(--spin-ring);
     height: var(--spin-ring);
-    border-radius: var(--radiuss-pill);
+    border-radius: var(--radius-pill);
     background-image: url(../img/button2.webp); 
     background-size: contain;
     background-position: center;
@@ -317,7 +306,7 @@ button:disabled {
     width: var(--auto-btn);
     height: var(--auto-btn);
     font-size: clamp(1.4rem, 5vw, 2rem);
-    border-radius: var(--radiuss-pill);
+    border-radius: var(--radius-pill);
     z-index: 20;
 }
 
@@ -329,14 +318,9 @@ button:disabled {
     transform: translate(-50%,-50%);
     width: var(--auto-ring);
     height: var(--auto-ring);
-    border-radius: var(--radiuss-pill);
+    border-radius: var(--radius-pill);
     mix-blend-mode: color-dodge;
-    background: radial-gradient(
-        ellipse at 30% 30%,
-        rgba(255,255,255,0.5) 0%,
-        transparent 30%,
-        rgba(0,0,0,0.6) 60%
-    );
+    background: var(--specular-ring);
   pointer-events:none;
   z-index: 2;
 }
@@ -349,7 +333,7 @@ button:disabled {
     transform: translate(-50%, -50%);
     width: var(--auto-ring);
     height: var(--auto-ring);
-    border-radius: var(--radiuss-pill);
+    border-radius: var(--radius-pill);
     background-image: url(../img/button2.webp);
     background-size: contain;
     background-position: center;
@@ -476,7 +460,7 @@ button:disabled {
    ======================================== */
 
 
-@media (orientation: landscape) and (max-height: 431px) {
+@media (orientation: landscape) and (max-height: 521px) {
     .bottom-panel{
         display: grid;
         align-items: center;
@@ -489,11 +473,12 @@ button:disabled {
         minmax(0, 1.5fr) /* bet */
         minmax(0, 1fr) /* win */
         auto; /* spin-buttons */
+        z-index: 1;
     }
 
     .menu, .sound,
     .credit, .bet, .win{
-        margin-inline: 0.5rem;
+        margin-inline: var(--spacing-sm);
         min-width: 0; 
     }
 
@@ -516,7 +501,7 @@ button:disabled {
         border-radius: var(--radius-md);
         font-size: clamp(0.85rem, 2.2vmin, 1rem); 
         line-height: 1.05;
-        padding: 0.12rem 0.25rem 0 0.25rem;
+        padding: var(--spacing-xxs) var(--spacing-xs) 0 var(--spacing-xs);
     }
 
     .credit::before, .bet::before, .win::before {
@@ -546,7 +531,7 @@ button:disabled {
     }
 
     .spin-buttons{
-        margin-inline: 0.25rem 0;
+        margin-inline: var(--spacing-sm) 0;
         width: 6.25rem;
         height: 4.15rem;
         --spin-btn: 3.6rem;
@@ -566,6 +551,60 @@ button:disabled {
     .auto-spin{
         font-size: 1.35rem;
         border-width: 6px;
+    }
+}
+
+
+/* Landscape small */
+@media (orientation: landscape) and (max-height: 361px) {
+
+    .bottom-panel {
+        grid-template-columns: 
+            auto 
+            minmax(0, 0.5fr) 
+            minmax(0, 0.8fr) 
+            minmax(0, 0.5fr)
+            auto;
+    }
+
+    .menu {
+        margin-right: var(--spacing-md);
+    }
+
+    .sound{
+        width: 2.75rem;
+        height: 2.75rem;
+        position: fixed;
+        top: var(--spacing-md);
+        right: var(--spacing-md);
+        margin: 0;
+        background: none;
+        border: none;
+        z-index: 30;
+    }
+
+    .sound::before {
+        display: none;
+    }
+
+    .sound:active{
+        top: var(--spacing-md);
+        box-shadow: none;
+        transform: scale(0.92);
+        filter: brightness(1.15);
+    }
+
+    .amount-toggle {
+        top: -0.1rem;
+    }
+
+    .increase, .decrease {
+        width: 2.125rem;
+        height: 2.125rem;
+    }
+
+    .spin-buttons {
+        margin-left: var(--spacing-md);
     }
 }
 
@@ -590,13 +629,16 @@ button:disabled {
         min-width: unset;
         height: unset;
         font-size: clamp(0.95rem, 1.2vw, 0.98rem);
-        padding: 0.25rem 0.13rem 0 0.25rem;
+        padding: var(--spacing-xs) var(--spacing-xxs) 0 var(--spacing-xs);
+        border-radius: var(--radius-md);
     }
     
     .bet::before, .win::before, .credit::before {
         width: calc(100% + 0.62rem);
         height: calc(100% + 0.62rem);
-        outline-width: 0.14rem;
+        border-radius: var(--radius-md);
+
+        outline: none;
     }
 
     .amount-toggle {
