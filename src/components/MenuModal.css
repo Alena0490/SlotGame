@@ -193,7 +193,11 @@ button:focus-visible {
   opacity: 0.92;
 }
 
-.panel.credits .meta{
+.panel.rtp-panel ul {
+    margin-bottom: var(--spacing-xs);
+}
+
+.meta {
   margin-top: var(--spacing-sm);
   opacity: 0.75;
   font-size: 0.95rem;

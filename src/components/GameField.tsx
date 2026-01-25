@@ -8,6 +8,8 @@ import { BET_OPTIONS, getWeightedRandomSymbol, PAYLINES, getSymbolById } from ".
 import { useSound } from "../hooks/useSound";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
+// A smažte ty funkce z GameField - už je nemusíte mít tam
+
 // Import symbol data
 const generateRandomSymbols = (): string[][] => {
   const result: string[][] = [];
@@ -49,7 +51,7 @@ const GameField = () => {
     const autoSpinIntervalRef = useRef<number | null>(null);
 
     const base = import.meta.env.BASE_URL;
-    
+
     // Credit ref for tracking current credit in closures
     const creditRef = useRef(credit);
     
@@ -119,11 +121,7 @@ const GameField = () => {
         if (newSoundState) {
             const audio = new Audio(`${base}sounds/button.mp3`);
             audio.play();
-            console.log('Zvuk se HRAJE');
-        } else {
-            console.log('Zvuk se NEHRAJE');
-        }
-        
+        }      
         setIsSoundOn(newSoundState);
     };
 

@@ -135,7 +135,7 @@ export const SYMBOLS: Symbol[] = [
     className: 'symbol-harlequin',
     type: 'wild',
     payouts: { three: 20, four: 60, five: 300 }, // Wild has the highest payout
-    weight: 10,
+    weight: 12,
 }
 ];
 

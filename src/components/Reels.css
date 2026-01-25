@@ -139,6 +139,7 @@
     justify-content: center;
     gap: clamp(0.28rem, 1.5vw, 0.75rem);
     width: 20%;
+    max-height: 100%;
     margin: 0 0.2rem 1.25rem;
     
     /* Realistic mechanical reel */

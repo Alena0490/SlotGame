@@ -59,7 +59,19 @@ const diamondCardSymbols = SYMBOLS.filter(s =>
                             Year: 2025 • ⚠️ Demo only - No real money involved
                         </p>
                          </article>
-                    {/* ===== Panel 2: Win symbols ===== */}
+
+                    {/* ===== Panel 2: Statistics ===== */}
+                         <article className="panel rtp-panel rules-panel">
+                            <h2>Game Statistics</h2>
+                            <ul className="stats-list">
+                                <li><strong>RTP:</strong> 95.3%</li>
+                                <li><strong>Hit Rate:</strong> 14 %</li>
+                                <li><strong>Volatility:</strong> Medium</li>
+                                <li><strong>Max Win:</strong> 120x bet</li>
+                            </ul>
+                            <p className="stats-note meta">Based on 1M+ spins Monte Carlo simulation</p>
+                        </article>
+                    {/* ===== Panel 3: Win symbols ===== */}
                     <article className="panel win-panel">
                         <h2>Win symbols</h2>
 
@@ -118,7 +130,7 @@ const diamondCardSymbols = SYMBOLS.filter(s =>
                         </div>
                     </article>
 
-                    {/* ===== Panel 3: Rules ===== */}
+                    {/* ===== Panel 4: Rules ===== */}
                     <article className="panel rules-panel">
                         <h2>Game Rules</h2>
 
