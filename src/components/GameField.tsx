@@ -254,7 +254,8 @@ const GameField = () => {
 
             // Check credit BEFORE next autospin with ref!
             if (isAutoSpinningRef.current && creditRef.current >= bet) {
-                autoSpinIntervalRef.current = window.setTimeout(handleSpin, 500);
+                const delay = winAmount.amount > 0 ? 5500 : 500; // 2s for win, 500ms without win
+                autoSpinIntervalRef.current = window.setTimeout(handleSpin, delay);
             } else if (isAutoSpinningRef.current && creditRef.current < bet) {
                 // Stop autospin
                 setIsAutoSpinning(false);
