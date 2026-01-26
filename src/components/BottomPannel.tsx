@@ -72,7 +72,6 @@ const BottomPannel = ({
             <div className="bottom-panel">
                 <button 
                     className="menu" 
-                    role="button"
                     disabled={isSpinning}
                     onClick={openMenu}
                     aria-label="Open menu"
@@ -81,7 +80,6 @@ const BottomPannel = ({
                 </button>
                 <button 
                     className="sound" 
-                    role="button"
                     disabled={isSpinning} 
                        onClick={() => {
                             setIsSoundOn();
@@ -113,7 +111,6 @@ const BottomPannel = ({
                     <div className="amount-toggle">
                         <button 
                             className="increase" 
-                            role="button"
                             disabled={isSpinning} 
                             onClick={increaseBet}
                             aria-label="Increase bet"
@@ -122,7 +119,6 @@ const BottomPannel = ({
                         </button>
                         <button 
                             className="decrease" 
-                            role="button"
                             disabled={isSpinning} 
                             onClick={decreaseBet}
                             aria-label="Decrease bet"
@@ -145,7 +141,6 @@ const BottomPannel = ({
                 >
                     <button 
                         className="auto-spin" 
-                        role="button"
                         disabled={isSpinning && !isAutoSpinning} 
                         aria-label={isAutoSpinning ? "Stop auto spin" : "Start auto spin"} 
                         aria-pressed={isAutoSpinning}
@@ -155,18 +150,22 @@ const BottomPannel = ({
                             }
                             toggleAutoSpin()
                         }}
-                    ><FaArrowsRotate /></button>
+                    >
+                        <FaArrowsRotate />
+                    </button>
                     
                     <button 
                         className="spin" disabled={isSpinning || isAutoSpinning} 
-                        role="button"
                         aria-label="Spin"
                             onClick={() => {
                                 if (isSoundOn) {
                                     playSound('/sounds/button.mp3');
                                 }
                                 handleSpinClick();
-                            }}><FaArrowRotateRight /></button>
+                            }}
+                        >
+                            <FaArrowRotateRight />
+                        </button>
                 </div>
             </div>
         )

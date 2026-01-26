@@ -44,7 +44,10 @@ const Reels = ({ reels, isSpinning, stopStep, spinCount,winningPositions }: Reel
                     <img 
                         src={symbol.image} 
                         alt={isVisible ? symbol.name : ""} 
+                        width={200}
+                        height={200}
                         className={`${symbol.className} ${!isSpinning && isVisible && symbol.id === 'harlequin' ? 'wild-animate' : ''}`}
+                        loading="lazy"
                     />}
                 </div>
               );

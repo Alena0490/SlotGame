@@ -50,7 +50,7 @@ const diamondCardSymbols = SYMBOLS.filter(s =>
                 </button>
                 
                 <section className="menu-modal">
-                      {/* ===== Panel 1: Credits ===== */}
+                      {/** ==== Panel 1: Credits ==== **/}
                     <article className="panel credits">
                         <h2>About</h2>
                         <p>Harlequin's Fortune - Portfolio demo slot game</p>
@@ -60,7 +60,7 @@ const diamondCardSymbols = SYMBOLS.filter(s =>
                         </p>
                         </article>
 
-                    {/* ===== Panel 2: Statistics ===== */}
+                    {/**  ==== Panel 2: Statistics ==== **/}
                          <article className="panel rtp-panel rules-panel">
                             <h2>Game Statistics</h2>
                             <ul className="stats-list">
@@ -71,7 +71,7 @@ const diamondCardSymbols = SYMBOLS.filter(s =>
                             </ul>
                             <p className="stats-note meta">Based on 1M+ spins Monte Carlo simulation</p>
                         </article>
-                    {/* ===== Panel 3: Win symbols ===== */}
+                    {/** ==== Panel 3: Win symbols ==== **/}
                     <article className="panel win-panel">
                         <h2>Win symbols</h2>
 
@@ -130,7 +130,7 @@ const diamondCardSymbols = SYMBOLS.filter(s =>
                         </div>
                     </article>
 
-                    {/* ===== Panel 4: Rules ===== */}
+                    {/** ==== Panel 4: Rules ==== **/}
                     <article className="panel rules-panel">
                         <h2>Game Rules</h2>
 

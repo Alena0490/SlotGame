@@ -74,7 +74,7 @@ const GameField = () => {
         setIsOutOfCredits(false);
     };
 
-    /*** === SOUND PRELOAD === */
+    /*** === SOUND PRELOAD === **/
     useEffect(() => {
         const sounds = [
             `${base}sounds/button.mp3`,
@@ -87,7 +87,7 @@ const GameField = () => {
         });
     }, [base]);
     
-    /*** === SOUNDS === */
+    /*** === SOUNDS === **/
     const { playSound, stopAllSounds } = useSound({ isSoundOn });
     useEffect(() => {
         if (!isSoundOn) {
@@ -101,7 +101,7 @@ const GameField = () => {
 
     useEffect(() => {
         if (backgroundAudioRef.current) {
-            backgroundAudioRef.current.volume = 0.3;  // 30% volume
+            backgroundAudioRef.current.volume = 0.3;  // 30 % volume
             if (isSoundOn) {
                 backgroundAudioRef.current.play();
             } else {
@@ -111,7 +111,7 @@ const GameField = () => {
     }, [isSoundOn]);
 
     
-    /*** === SOUND BUTTON === */
+    /*** === SOUND BUTTON === **/
     const handleSoundToggle = () => {
         const newSoundState = !isSoundOn;
         
@@ -128,7 +128,7 @@ const GameField = () => {
         }
     }, [isSoundOn, stopAllSounds]);
 
-    /*** === MENU BUTTON === */
+    /*** === MENU BUTTON === **/
     const openMenu = () => {
         if (isSoundOn) {
             playSound(`${base}sounds/button.mp3`);
@@ -159,7 +159,7 @@ const GameField = () => {
         });
     };
 
-    /*** === BET AMOUNT BUTTONS === */
+    /*** === BET AMOUNT BUTTONS === **/
     const increaseBet = () => {
         if (isSoundOn) {
             playSound(`${base}sounds/button.mp3`);
@@ -180,8 +180,8 @@ const GameField = () => {
         }
     };
 
-    /*** === SPIN BUTTONS === */
-    /*** Single spin */
+    /*** === SPIN BUTTONS === **/
+    /** Single spin */
     const handleSpin = () => {
         // Check credit with ref (has current value!)
         if (creditRef.current < bet) {
@@ -263,12 +263,12 @@ const GameField = () => {
         }, 2650); 
     };
 
-    /*** Autospin */
+    /** Autospin */
     const isAutoSpinningRef = useRef(false);
     const toggleAutoSpin = () => {
         if (isAutoSpinning) {
             setIsAutoSpinning(false);
-            isAutoSpinningRef.current = false;  // ref actuaization
+            isAutoSpinningRef.current = false;  // ref actualization
 
             // clearTimeout:
             if (autoSpinIntervalRef.current) {
@@ -277,7 +277,7 @@ const GameField = () => {
             }
         } else {
             setIsAutoSpinning(true);
-            isAutoSpinningRef.current = true;  // ref actuaization
+            isAutoSpinningRef.current = true;  // ref actualization
             startAutoSpin();
         }
     };
@@ -286,7 +286,7 @@ const GameField = () => {
         handleSpin();
     };
 
-    //*** === CHECK WIN === */
+    /*** === CHECK WIN === **/
     const checkWin = (reels: string[][], bet: number): WinResult => {
         let totalWin = 0;
         const winningPositions: Array<{col: number, row: number, lineIndex: number}> = [];
@@ -376,7 +376,12 @@ const GameField = () => {
 
     return (
         <main className="game-field">
-            <div className="visually-hidden" role="status" aria-live="assertive" aria-atomic="true">
+            <div 
+                className="visually-hidden" 
+                role="status" 
+                aria-live="assertive" 
+                aria-atomic="true"
+            >
                 {win > 0 && `You won ${win} credits!`}
             </div>
 
@@ -388,7 +393,6 @@ const GameField = () => {
             />
             <div 
                 className="rotate-overlay" 
-                aria-hidden="true"
                 role="alert" 
                 aria-live="assertive"
             >

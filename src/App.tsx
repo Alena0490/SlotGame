@@ -1,12 +1,15 @@
+import { useState } from 'react';
 import GameField from "./components/GameField";
-if (import.meta.env.DEV) {
-    import('./components/Test');
-}
+import LoadingScreen from './components/LoadingScreen';
 
-const App = () => {
-  return <div>
-    <GameField/>
-  </div>;
+function App() {
+    const [isLoading, setIsLoading] = useState(true);
+
+    if (isLoading) {
+        return <LoadingScreen onLoadComplete={() => setIsLoading(false)} />;
+    }
+
+    return <GameField />;
 }
 
 export default App;

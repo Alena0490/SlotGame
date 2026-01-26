@@ -1,0 +1,137 @@
+.loading-screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--secondary-black);
+    z-index: 1000;
+    animation: fade-in var(--dur-3) ease;
+}
+
+.loading-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--chrome);
+    margin-bottom: var(--spacing-lg);
+    font-weight: 700;
+    text-shadow: 
+        0 0 15px var(--accent-red),
+        0 0 40px var(--red-glow-color);
+    font-family: 'Rajdhani', system-ui, sans-serif;
+    letter-spacing: 0.02em;
+}
+
+.loading-bar {
+    width: min(400px, 80%);
+    height: 1rem;
+    background: rgba(255,255,255,0.08);
+    border-radius: var(--radius-xs);
+    overflow: hidden;
+    border: var(--border-thin) solid var(--border-1);
+      box-shadow: 
+        inset 0 2px 4px var(--box-shadow-color),
+        0 2px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+/* Animated shine effect */
+.loading-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--inset-shadow-color),
+        transparent
+    );
+    animation: shine var(--dur-4) infinite;
+}
+
+.loading-progress {
+    height: 100%;
+    background: linear-gradient(
+        90deg, 
+        var(--accent-red), 
+        var(--bright-red),
+        var(--accent-red)
+    );
+    background-size: 200% 100%;
+    border-radius: var(--radius-xs);
+    transition: width var(--dur-2) ease-out;
+    box-shadow: 
+        0 0 10px var(--accent-red),
+        0 0 20px var(--red-glow-color);
+    animation: pulse-glow 1.5s ease-in-out infinite;
+    position: relative;
+}
+
+/* Subtle highlight on progress bar */
+.loading-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    border-radius: var(--radius-xs) var(--radius-xs) 0 0;
+}
+
+.loading-text {
+    margin-top: var(--spacing-md);
+    color: var(--text-2);
+    font-size: var(--font-sm);
+    font-family: 'Rajdhani', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes shine {
+    to { left: 100%; }
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 
+            0 0 10px var(--accent-red),
+            0 0 20px var(--red-glow-color);
+    }
+    50% {
+        box-shadow: 
+            0 0 15px var(--bright-red),
+            0 0 30px rgba(255, 71, 87, 0.7);
+    }
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 480px) {
+    .loading-title {
+        font-size: clamp(1.5rem, 8vw, 2rem);
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .loading-bar {
+        height: 0.875rem;
+    }
+}
