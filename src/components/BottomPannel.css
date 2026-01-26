@@ -1,3 +1,6 @@
+/* ========================================
+   BOTTOM PANEL CONTAINER
+   ======================================== */
 
 .bottom-panel {
     position: relative;
@@ -23,6 +26,10 @@
 .bottom-panel > *{
     min-width: 0;
 }
+
+/* ========================================
+   BUTTONS - MENU & SOUND
+   ======================================== */
 
 button {
     transition: filter var(--dur-2) ease, transform var(--dur-2) ease, box-shadow var(--dur-2) ease;
@@ -57,12 +64,11 @@ button:disabled {
     justify-content: center;
     isolation: isolate;
     margin-inline: var(--spacing-sm);
-    padding: var(--spacing-xs);
     line-height: 1;
     border-radius: var(--radius-pill);
     background-color: var(--primary-black);
     color: var(--pure-white);
-    font-size: 1.5rem;
+    font-size: var(--font-icon);
     cursor: pointer;
     transition: all var(--dur-2) ease;
 }
@@ -99,11 +105,15 @@ button:disabled {
 }
 
 .menu svg, .sound svg { 
+    margin-bottom: var(--spacing-xxs);
     position: relative; 
     z-index: 1; 
 }
 
-/* Bet, Win, Credit panels */
+/* ========================================
+   PANELS - BET, WIN, CREDIT
+   ======================================== */
+
 .bet, .win, .credit {
     position: relative;
     width: auto;  
@@ -113,7 +123,7 @@ button:disabled {
     margin-inline: var(--spacing-sm);
     border-radius: var(--radius-lg);
     isolation: isolate;
-    font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+    font-size: var(--font-controls);
     line-height: 1.2;
     text-align: left;
     font-weight: 700;
@@ -167,6 +177,14 @@ button:disabled {
     z-index: 1;
 }
 
+.win {
+    box-shadow: 0 0 20px var(--almost-white);
+}
+
+/* ========================================
+   BET CONTROLS
+   ======================================== */
+
 .amount {
     flex: 1;
 }
@@ -189,7 +207,7 @@ button:disabled {
     border: none;
     background-image: linear-gradient(147deg, var(--pure-white), var(--silver));
     color: var(--primary-black);
-    font-size: 1.75rem;
+    font-size: var(--font-heading);
     cursor: pointer;
     transition: all var(--dur-2) ease;
     line-height: 1;
@@ -208,11 +226,10 @@ button:disabled {
     border-radius: var(--radius-xs) var(--radius-xs) var(--radius-md) var(--radius-md);
 }
 
-.win {
-    box-shadow: 0 0 20px var(--almost-white);
-}
+/* ========================================
+   SPIN BUTTONS
+   ======================================== */
 
-/* Spin buttons */
 .spin-buttons {
     position: relative;
     flex: 0 0 auto;
@@ -234,20 +251,21 @@ button:disabled {
     --auto-bottom: 0rem;
 }
 
-
 .spin, .auto-spin {
     position: absolute;
     border: var(--btn-border) solid var(--accent-red);
     line-height: 1;
+    padding-top: var(--spacing-xs);
+
     background: var(--primary-black);
     color: var(--pure-white);
     cursor: pointer;
-    transition: transform 0.8s ease, filter 0.8s ease;
+    transition: transform var(--dur-4) ease, filter var(--dur-4) ease;
     isolation: isolate;
     box-shadow: 
         0 6px 12px var(--box-shadow-color),
         inset 0 -3px 6px var(--inset-shadow-color),
-        0 0 0 1px rgba(220, 20, 60, 0.3);
+        0 0 0 1px var(--red-glow-color);
 }
 
 .spin {
@@ -255,7 +273,7 @@ button:disabled {
     bottom: var(--spin-bottom);
     width: var(--spin-btn);
     height: var(--spin-btn);
-    font-size: clamp(2.4rem, 8vw, 4rem);
+    font-size: var(--font-button-spin-lg);
     border-radius: var(--radius-pill);
     filter: drop-shadow(0.25rem 0.15rem 0.15rem var(--primary-black));
     animation: spin-wiggle 12s ease-in-out infinite;
@@ -305,7 +323,7 @@ button:disabled {
     bottom: var(--auto-bottom);
     width: var(--auto-btn);
     height: var(--auto-btn);
-    font-size: clamp(1.4rem, 5vw, 2rem);
+    font-size: var(--font-button-auto-lg);
     border-radius: var(--radius-pill);
     z-index: 20;
 }
@@ -359,9 +377,9 @@ button:disabled {
     bottom: -3px;
 }
 
-/* ======================
-   MEDIA QUERIES 
-   ====================== */
+/* ========================================
+   MEDIA QUERIES
+   ======================================== */
 
 @media (prefers-reduced-motion: reduce){
   button{
@@ -384,7 +402,7 @@ button:disabled {
         width: 2.5rem;
         height: 2.5rem;
         border-radius: var(--radius-md);
-        font-size: 1.15rem;
+        font-size: var(--font-base);
     }
 }
 
@@ -393,13 +411,13 @@ button:disabled {
     .bottom-panel {
         padding: 0.7rem 0.4rem 0.45rem;
         gap: var(--spacing-xs);
-        border-top-width: 2px;
+        border-top-width: var(--border-medium);
     }
     
     .menu, .sound {
         width: 2.4rem;
         height: 2.4rem;
-        font-size: 1rem;
+        font-size: var(--font-sm);
     }
     
     .menu::before, .sound::before {
@@ -410,7 +428,7 @@ button:disabled {
     .bet, .win, .credit {
         min-width: 5rem;
         height: 3rem;
-        font-size: clamp(0.8rem, 1.15vw, 1.05rem);
+        font-size: var(--font-controls);
         padding: 0.15rem 0.15rem 0 0.28rem;
     }
     
@@ -423,7 +441,7 @@ button:disabled {
     .increase, .decrease {
         width: 1.45rem;
         height: 1.45rem;
-        font-size: 1.28rem;
+        font-size: var(--font-base);
     }
     
     .spin-buttons{
@@ -443,22 +461,19 @@ button:disabled {
   .spin{
     width: var(--spin-btn);
     height: var(--spin-btn);
-    font-size: 2.4rem;
+    font-size: var(--font-button-spin-md);
     border-width: 4px;
   }
 
   .auto-spin{
     width: var(--auto-btn);
     height: var(--auto-btn);
-    font-size: 1.4rem;
+    font-size: var(--font-button-auto-md);
     border-width: 4px;
   }  
 }
 
-/* ========================================
-   LANDSCAPE MODE
-   ======================================== */
-
+/* LANDSCAPE MODE */
 
 @media (orientation: landscape) and (max-height: 521px) {
     .bottom-panel{
@@ -499,7 +514,7 @@ button:disabled {
         grid-template-columns: 1fr auto;
         column-gap: 0.35rem;
         border-radius: var(--radius-md);
-        font-size: clamp(0.85rem, 2.2vmin, 1rem); 
+        font-size: var(--font-controls); 
         line-height: 1.05;
         padding: var(--spacing-xxs) var(--spacing-xs) 0 var(--spacing-xs);
     }
@@ -522,7 +537,7 @@ button:disabled {
         width: 2.25rem;
         height: 2.25rem;
         border-radius: var(--radius-md);
-        font-size: 1.15rem;
+        font-size: var(--font-base);
     }
 
     .amount-toggle {
@@ -574,6 +589,7 @@ button:disabled {
     .sound{
         width: 2.75rem;
         height: 2.75rem;
+        font-size: var(--font-icon-standalone);
         position: fixed;
         top: var(--spacing-md);
         right: var(--spacing-md);
@@ -615,9 +631,9 @@ button:disabled {
     }
     
     .menu, .sound {
-        width: 2.2rem;
-        height: 2.2rem;
-        font-size: 1.1rem;
+        width: 2.25rem;
+        height: 2.25rem;
+        font-size: var(--font-base);
     }
     
     .menu::before, .sound::before {
@@ -628,7 +644,6 @@ button:disabled {
     .bet, .win, .credit {
         min-width: unset;
         height: unset;
-        font-size: clamp(0.95rem, 1.2vw, 0.98rem);
         padding: var(--spacing-xs) var(--spacing-xxs) 0 var(--spacing-xs);
         border-radius: var(--radius-md);
     }
@@ -642,15 +657,16 @@ button:disabled {
     }
 
     .amount-toggle {
+        top: -0.125rem;
         flex-direction: row;
         gap: 0.25rem;
     }
 
     .increase, .decrease{
-        width: 2.25rem;
-        height: 2.25rem;
+        width: 2.125rem;
+        height: 2.125rem;
         border-radius: var(--radius-md);
-        font-size: 1.15rem;
+        font-size: var(--font-base);
     }
 
     .spin-buttons {

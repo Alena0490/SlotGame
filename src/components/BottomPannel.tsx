@@ -40,9 +40,9 @@ const BottomPannel = ({
 
     useEffect(() => {
         const checkLayout = () => {
-            const isMobile = window.innerWidth <= 668;
-            const isLandscape = window.matchMedia('(orientation: landscape) and (max-height: 431px)').matches;
-            setShowPlusMinus(isMobile || isLandscape);
+            const isMobilePortrait = window.innerWidth <= 668 && window.innerHeight >= 432;
+            const isLandscapeSmall = window.matchMedia('(orientation: landscape)').matches && window.innerHeight <= 521;
+            setShowPlusMinus(isMobilePortrait || isLandscapeSmall);
         };
         
         checkLayout();

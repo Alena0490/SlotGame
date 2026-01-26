@@ -7,15 +7,15 @@
     justify-content: center;
     padding: var(--spacing-md);
     z-index: 1000;
-    animation: fade-in 0.6s ease;
+    animation: fade-in var(--dur-3) ease;
 }
 
 .modal-overlay.modal-overlay--confirm{ /* Out of credits modal*/
-    animation: fade-in 0.35s ease;
+    animation: fade-in var(--dur-2) ease;
 }
 
 .modal-overlay.closing {
-    animation: fade-out 0.3s ease forwards;
+    animation: fade-out var(--dur-2) ease forwards;
 }
 
 .modal-content {
@@ -23,16 +23,16 @@
   width: min(600px, 100%);
   max-height: 78vh;
   overflow: hidden;
-  border: 2px solid var(--dark-grey);
+  border: var(--border-medium) solid var(--dark-grey);
   border-radius: var(--radius-md);
   background-color: var(--box-shadow-color);
   color: var(--text-1);
   backdrop-filter: blur(0.5rem);
-  animation: slide-up 0.6s var(--ease-bounce);
+  animation: slide-up var(--dur-3) var(--ease-bounce);
 }
 
 .modal-content.closing {
-  animation: slide-down 0.3s ease forwards;
+  animation: slide-down var(--dur-2) ease forwards;
 }
 
 .modal.modal--confirm.closing {
@@ -44,7 +44,7 @@
     max-height: none;
     padding: clamp(1rem, 3vw, 1.4rem);
     text-align: center;
-    border: 2px solid var(--border-2);
+    border: var(--border-medium) solid var(--border-2);
     border-radius: var(--radius-md);
     background: var(--surface-1);
     box-shadow: var(--shadow-3);
@@ -63,24 +63,28 @@ button:focus-visible {
 
 .modal.modal--confirm h2{
   margin: 0 0 var(--spacing-sm);
-  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  font-size: var(--font-heading);
+}
+
+.panel.credits p,
+.rules-panel li,
+.modal.modal--confirm .modal-text {
+    color: var(--text-2);
 }
 
 .modal.modal--confirm .modal-text{
   margin: 0;
-  opacity: 0.92;
-  line-height: 1.4;
-  font-size: 1.05rem;
+  font-size: var(--font-sm);
 }
 
 .modal.modal--confirm .modal-note{
   margin: var(--spacing-sm) 0 0;
   opacity: 0.72;
-  font-size: 0.95rem;
+  font-size: var(--font-xs);
 }
 
 .modal.modal--confirm .modal-buttons{
-  margin-top: 1.125rem;
+  margin-top: var(--spacing-md);
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--spacing-sm);
@@ -104,7 +108,7 @@ button:focus-visible {
 .modal.modal--confirm .btn-primary{
   background: var(--silver);
   color: var(--primary-black);
-  border: 2px solid var(--border-3);
+  border: var(--border-medium) solid var(--border-3);
 }
 
 .modal.modal--confirm .btn-primary:hover{
@@ -114,7 +118,7 @@ button:focus-visible {
 .modal.modal--confirm .btn-ghost{
   background: transparent;
   color: var(--text-2);
-  border: 2px solid var(--border-2);
+  border: var(--border-medium) solid var(--border-2);
 }
 
 .modal.modal--confirm .btn-ghost:hover{
@@ -130,15 +134,15 @@ button:focus-visible {
 /* Close */
 .modal-close {
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 2.75rem;
     height: 2.75rem;
     color: var(--silver);
-    font-size: 2.2rem;
+    font-size: var(--font-xl);
     line-height: 1;
     background: none;
     border: none;
@@ -179,7 +183,7 @@ button:focus-visible {
 /* Panels */
 .panel {
     background: var(--surface-2);
-    border: 1px solid var(--border-1);
+    border: var(--border-thin) solid var(--border-1);
     border-radius: var(--radius-md);
     padding: var(--spacing-md);
 }
@@ -190,7 +194,6 @@ button:focus-visible {
 
 .panel.credits p{
   margin: 0.35rem 0;
-  opacity: 0.92;
 }
 
 .panel.rtp-panel ul {
@@ -200,19 +203,19 @@ button:focus-visible {
 .meta {
   margin-top: var(--spacing-sm);
   opacity: 0.75;
-  font-size: 0.95rem;
+  font-size: var(--font-xs);
 }
 
 /* Headings */
 .panel h2 {
     margin: 0 0 var(--spacing-md);
     text-align: center;
-    font-size: clamp(1.3rem, 2vw, 1.75rem);
+    font-size: var(--font-heading);
 }
 
 .win-table h3 {
     margin: var(--spacing-md) 0 var(--spacing-sm);
-    font-size: 1.1rem;
+    font-size: var(--font-base);
 }
 
 /* Win table layout */
@@ -223,10 +226,10 @@ button:focus-visible {
 }
 
 .symbol-group {
-    border: 1px solid var(--border-1);
+    border: var(--border-thin) solid var(--border-1);
     padding: var(--spacing-md);
     border-radius: var(--radius-md);
-    background: rgba(94, 94, 112, 0.1); 
+    background: var(--surface-3); 
 }
 
 /* Cards grid */
@@ -249,11 +252,10 @@ button:focus-visible {
     display: block;
     padding: var(--spacing-md);
     border-radius: var(--radius-md);
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px dashed var(--border-2);
+    background: var(--surface-subtle);
+    border: var(--border-thin) dashed var(--border-2);
     margin-top: var(--spacing-md);
-    font-size: 0.95rem;
-  line-height: 1.35;
+    font-size: var(--font-xs);
 }
 
 /* Special symbols row */
@@ -265,8 +267,8 @@ button:focus-visible {
 
     padding: var(--spacing-md);
     border-radius: var(--radius-md);
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-1);
+    background: var(--surface-subtle);
+    border: var(--border-thin) solid var(--border-1);
 }
 
 .symbol-row img {
@@ -286,12 +288,7 @@ button:focus-visible {
   margin: 0;
   padding-left: 1.2rem;
   display: grid;
-  gap: 0.55rem;
-}
-
-.rules-panel li{
-  line-height: 1.45;
-  opacity: 0.92;
+  gap: var(--spacing-sm);
 }
 
 .rules-panel li::marker{
@@ -302,7 +299,10 @@ button:focus-visible {
   font-variant-numeric: tabular-nums;
 }
 
-/* Mobile */
+/* ========================================
+   MEDIA QUEARIES
+   ======================================== */
+
 @media (min-width: 520px){
   .modal.modal--confirm .modal-buttons{
     grid-template-columns: 1fr 1fr;
@@ -315,7 +315,10 @@ button:focus-visible {
   }
 }
 
-/* Keyframes */
+/* ========================================
+   KEYFRAMES
+   ======================================== */
+
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }

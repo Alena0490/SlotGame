@@ -1,4 +1,7 @@
-
+/* ========================================
+   MAIN CONTAINER
+   ======================================== */
+   
 .game-field {
     position: relative;
     width: 100%;
@@ -17,6 +20,10 @@
     transform-origin: center center;
 }
 
+/* ========================================
+   DECORATIVE ELEMENTS
+   ======================================== */
+
 /* Metalic texture */
 .game-field::before {
     content: '';
@@ -30,26 +37,6 @@
     background-position: left top;
     pointer-events: none;
     z-index: 1;
-}
-
-
-.rotate-overlay{
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: rgba(0,0,0,.85);
-    backdrop-filter: blur(6px);
-    align-items: center;
-    justify-content: center;
-}
-
-.rotate-card{
-  text-align: center;
-  color: white;
-  padding: 1.25rem 1.5rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-2);
 }
 
 .harlequin {
@@ -81,6 +68,10 @@
   animation: wink 10.8s infinite;
 }
 
+/* ========================================
+   LAYOUT CONTAINERS
+   ======================================== */
+   
 .main-game {
     width: 75%;
     margin:  0 1.5% 1.8% auto;
@@ -91,15 +82,39 @@
     z-index: 2;
 }
 
-/* ===================
-   MEDIA QUERIES
-   =================== */
+/* ========================================
+   ROTATE OVERLAY
+   ======================================== */
+   
+.rotate-overlay{
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--surface-overlay);;
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+}
 
-/* Accessibility */
+.rotate-card{
+  text-align: center;
+  color: var(--pure-white);
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-lg);
+  border: var(--border-thin) solid var(--border-2);
+}
+
+/* ========================================
+   MEDIA QUERIES
+   ======================================== */
+
+/* Prefers reduced motion */
 @media (prefers-reduced-motion: reduce){
     .harlequin::after{ animation: none; }
 }
 
+/* Tablet */
 @media (max-width: 949px) {
     .game-field {
         transform: scale(calc(100vw / 950px));
@@ -120,6 +135,10 @@
     display: flex;
   }
 }
+
+/* ========================================
+   KEYFRAMES
+   ======================================== */
 
 @keyframes wink{
   0%, 94%, 100% { opacity: 0; }
