@@ -2,15 +2,15 @@
 
 ## Úvod a koncept
 
-S nápadem na **Harlequin's Fortune** slot machine hru jsem přišla již před více než rokem a půl, kdy jsem pracovala ve firmě z oboru hazardních her. Zaujalo mě, kolik existuje Joker her, ale žádná není věnovaná postavě Harley Quinn. Jelikož je Harley pod copyrightem DC Comics, rozhodla jsem se pro hru ve stylu **Harlequin** – klasické postavy z commedia dell'arte, která využívá stejné barevné schéma a estetiku.
+S nápadem na **Harlequin's Fortune** slot machine hru jsem přišla již před více než rokem a půl, kdy jsem pracovala v oboru hazardních her. Zaujalo mě, kolik existuje Joker her, ale žádná není věnovaná postavě Harley Quinn. Jelikož je Harley pod copyrightem DC Comics, rozhodla jsem se pro hru ve stylu **Harlequin** – klasické postavy z commedia dell'arte, která využívá stejné barevné schéma a estetiku.
 
-V té době jsem nevěděla absolutně nic o programování a neznala ani základy HTML, takže jsem si na realizaci hry musela počkat.
+Jelikož jsem ale v té době jsem nevěděla absolutně nic o programování a neznala ani základy HTML, tak jsem si na realizaci hry musela nějakou dobu počkat.
 
 ---
 
 ## Původní návrh a vize
 
-Prvotní návrh jsem vytvořila ve **Figmě** s využitím výhradně AI generovaných obrázků. Design není úplně striktně sladěný co se odstínů týče – kromě červené se tam místy objevuje i zlatá.
+Prvotní návrh jsem vytvořila ve **Figmě** s využitím výhradně AI generovaných obrázků. Design není úplně striktně sladěný co se odstínů týče, kromě červené se tam tam místy objevuje i zlatá.
 
 ### Původní koncept
 
@@ -18,7 +18,7 @@ Prvotní návrh jsem vytvořila ve **Figmě** s využitím výhradně AI generov
 - Opulentní prvky (sloupy v popředí, zdobené rámy)
 - Barevné schéma: černá, bílá, červená (+ lehké akcenty zlaté)
 - 5 válců × 3 řady
-- Tradiční retro feeling, ale s originálním provedením
+- Tradiční retro design, ale s originálním provedením
 
 ### Problémy původního návrhu
 
@@ -35,14 +35,14 @@ Prvotní návrh jsem vytvořila ve **Figmě** s využitím výhradně AI generov
 
 Samotnému vytvoření hry předcházelo **více než rok učení** a praxe na menších projektech. Po vytvoření Figma návrhu jsem začala studovat webový vývoj od základů:
 
-- **HTML, CSS, JavaScript** - fundamenty
-- **React a TypeScript** - moderní frameworky
+- **HTML, CSS, JavaScript** - tvorba prvních projektů
+- **React a TypeScript** - moderní vývoj aplikací
 - **Responzivní design** - mobile-first přístup
-- **Git verzování** - profesionální workflow
+- **Git verzování** - pro lepší práci a zálohování projektů
 - **Accessibility standardy** (WCAG)
-- **Testování a optimalizace** webových aplikací
+- **Testování a optimalizace** webových aplikací (Google Lighthouse, Browserstack atd.)
 
-Teprve s těmito znalostmi jsem mohla začít přetvářet původní Figma návrh do funkční hry.
+Teprve s těmito znalostmi jsem mohla začít přetvářet původní Figma návrh do reálné hry.
 
 ---
 
@@ -50,13 +50,13 @@ Teprve s těmito znalostmi jsem mohla začít přetvářet původní Figma návr
 
 Pro realizaci hry jsem zvolila moderní technologický stack:
 
-- **React 19** – nejnovější verze pro tvorbu uživatelského rozhraní
-- **TypeScript** – type-safe vývoj a lepší developer experience
+- **React 19** –  pro tvorbu moderního a funčního uživatelského rozhraní
+- **TypeScript** – minimalizace chyb, rychlejší zpětná vazba
 - **Vite** – rychlý build tool a dev server
-- **CSS3** – styling, animace, responzivní design
+- **CSS3** – tvorba vlastních proměnných, animace, responzivní design
 - **Git & GitHub** – verzování a hosting (GitHub Pages)
 
-Kombinace **React 19 + TypeScript + Vite** poskytuje rychlý development, type safety a optimalizovaný production build, což je ideální pro interaktivní aplikace jako jsou hry.
+Tato kombinace technologií mi umožnila vytvořit rychlou a responzivní aplikaci s bezpečným kódem díky TypeScriptu. Vite výrazně urychlil development proces a **React 19** poskytl dostatečnou flexibilitu pro implementaci komplexní herní logiky.
 
 ---
 
@@ -64,20 +64,20 @@ Kombinace **React 19 + TypeScript + Vite** poskytuje rychlý development, type s
 
 ### Úpravy oproti originálnímu návrhu
 
-Při vlastním navrhování v CSS jsem odstíny sjednotila a používám pouze **jeden odstín červené** (`#dc143c`), podle kterého jsem upravila i obrázky ve hře. Symboly se nyní skládají z AI obrázků i obrázků z fotobanky **Freepik**.
+Při vlastním navrhování v CSS jsem odstíny sjednotila a používám pouze **jeden odstín červené** (`#dc143c`), podle kterého jsem upravila i obrázky ve hře. Symboly se nyní skládají jak z AI obrázků, tak i obrázků z fotobanky **Freepik**.
 
 **Klíčové změny:**
 
-- Upustila jsem od sloupů v popředí
-- **Výrazně tmavší pozadí** (`#06060e`) pro lepší kontrast
-- Minimalistický, ale elegantní design
-- Důraz na čitelnost a použitelnost
+- Upustila jsem od sloupů v popředí,
+- zvolila **výrazně tmavší pozadí** (`#06060e`) pro lepší kontrast,
+- minimalistický, ale elegantní design,
+- důraz na čitelnost a použitelnost.
 
 ![Finální design - Desktop](screenshots/desktop-view.png)
 
 ### CSS architektura
 
-Pro styling aplikace jsem vytvořila robustní systém založený na **CSS custom properties (proměnných)**:
+Pro stylování aplikace jsem vytvořila robustní systém založený na **CSS custom properties (proměnných)**:
 
 ```css
 :root {
@@ -109,11 +109,11 @@ Pro dosažení realistického vzhledu menu a okrajů používám komplexní CSS 
 
 Snažila jsem se co nejvíce přiblížit reálným 3D válcům:
 
-- Bílý povrch válců s jemným gradientem – světlejší uprostřed, tmavší na okrajích
-- Dva dodatečné gradienty nahoře a dole zajišťují stínování na povrchu i symbolech
-- Symboly se pohybují na transparentním pozadí
+- bílý povrch válců s jemným gradientem – světlejší uprostřed, tmavší na okrajích,
+- dva dodatečné gradienty nahoře a dole zajišťují stínování na povrchu i symbolech,
+- symboly se pohybují na transparentním pozadí,
 - **9 symbolů na válec** pro plynulou animaci (`[...reel, ...reel, ...reel]`)
-- Viditelné jsou vždy prostřední 3 symboly
+- viditelné jsou vždy prostřední 3 symboly.
 
 ![Detail herních válců](screenshots/reels-detail.png)
 
@@ -168,7 +168,7 @@ Vůbec poprvé jsem v projektu implementovala fullscreen overlay s výzvou k oto
 }
 ```
 
-Když uživatel drží telefon v portrait režimu, zobrazí se overlay s ikonou a textem "Turn your device". Toto řešení výrazně zlepšuje uživatelský zážitek na mobilních zařízeních.
+Když uživatel drží telefon v režimu portrétu, zobrazí se overlay s ikonou a textem "Turn your device". Toto řešení výrazně usnadňuje návrch celého layoutu a zlepšuje uživatelský zážitek na mobilních zařízeních.
 
 ![Rotate overlay](screenshots/rotate-overlay.png)
 
@@ -188,9 +188,9 @@ Během vývoje jsem byla nucena **dvakrát upravit layout** kvůli použitelnost
 
 **Řešení:**
 
-- Přemístění tlačítek **vedle sebe** místo nad sebe
-- Změna ikon ze šipek na **+ a –** symboly
-- Dynamická změna ikon podle breakpointu pomocí React hooks:
+- přemístění tlačítek **vedle sebe** místo nad sebe,
+- změna ikon ze šipek na **+ a –** symboly pro lepší UX,
+- dynamická změna ikon podle breakpointu pomocí React hooks:
 
 ```typescript
 const [showPlusMinus, setShowPlusMinus] = useState(false);
@@ -228,7 +228,7 @@ Zvažovala jsem vliv změny vizuálního umístění na **DOM pořadí a accessi
 ### HTML meta tagy
 
 **Viewport a škálování:**  
-Navzdory obecnému doporučení WCAG jsem **záměrně zakázala škálování** (`user-scalable=no`). Toto rozhodnutí je u slot machine her standardní praxe – zabráním tak nežádoucímu zoomu během hraní.
+Navzdory obecnému doporučení WCAG jsem **záměrně zakázala škálování** (`user-scalable=no`). Toto nastavení jsem provedla proto, abych zabránila nežádoucímu zoomu během hraní.
 
 **Favicons:**  
 Implementovala jsem **kompletní sadu favicon** pro různá zařízení a platformy, které jsem generovala pomocí nástroje **Favicon.io**.
@@ -255,45 +255,45 @@ Aplikace je postavena na třech hlavních komponentách:
 
 #### 1. GameField.tsx – Hlavní herní komponenta
 
-- Kompletní herní logika (spin, checkWin, checkLineForWin, checkScatterWin)
-- Správa game state (credit, bet, win, isSpinning)
-- Přijímá data ze `data.tsx`
-- Předává funkce do child komponent pomocí props
+- kompletní herní logika (spin, checkWin, checkLineForWin, checkScatterWin),
+- správa game state (credit, bet, win, isSpinning),
+- přijímá data ze `data.tsx`,
+- předává funkce do child komponent pomocí props.
 
 #### 2. BottomPanel.tsx – Ovládací panel
 
-- Zpracovává interakce ze strany hráče
-- Implementuje responzivní změnu ikon
-- Rotační animace spin tlačítka
+- Zpracovává interakce ze strany hráče.
+- Implementuje responzivní změnu ikon.
+- Rotační animace spin tlačítka.
 
 #### 3. Reels.tsx – Zobrazení symbolů
 
-- Renderuje herní válce a symboly
-- Triplikace symbolů pro plynulou animaci
-- Dynamicky přidává třídy pro animace (spinning, winning, wild-animate)
+- Renderuje herní válce a symboly.
+- Pro plynulost animace obsahuje každý reel celkem 9 symbolů, z nichž jsou součástí hracího pole vždy prostřední tři ikony.
+- Dynamicky přidává třídy pro animace (spinning, winning, wild-animate).
 
 **Modální komponenty:**
 
 **MenuModal.tsx:**
 
-- Zobrazuje pravidla hry, paytable, RTP statistiky
-- Data načítá dynamicky ze `data.tsx`
-- Minimalizuje riziko chyb při změně dat
+- Zobrazuje pravidla hry, paytable, RTP statistiky.
+- Data načítá dynamicky ze `data.tsx`.
+- Minimalizuje riziko chyb při změně dat.
 
 ![Menu modal](screenshots/menu-modal.png)
 
 **NoCreditModal.tsx:**
 
-- Minimalistický design se dvěma tlačítky
-- Implementuje focus management pro accessibility
+- minimalistický design se dvěma tlačítky,
+- implementuje focus management pro accessibility.
 
 **LoadingScreen.tsx:**
 
-- Zobrazuje se při inicializaci aplikace
-- "Fake" progress bar s plynulou animací (1.2s)
-- Maskuje initial React render
-- Konzistentní design s herním stylem
-- Fade-in/fade-out animace
+- zobrazuje se při inicializaci aplikace,
+- "fake" progress bar s plynulou animací (1.2s),
+- maskuje initial React render,
+- konzistentní design s herním stylem,
+- fade-in/fade-out animace.
 
 Implementace využívá simulovaný progress místo skutečného načítání assetů, což je standardní praxe pro malé React hry, kde jsou assety zabaleny v bundle a načítají se velmi rychle. Tento přístup zajišťuje konzistentní UX na všech zařízeních.
 
@@ -311,15 +311,15 @@ Hook pro persistenci dat v prohlížeči (credit, bet, isSoundOn).
 
 Hook pro správu zvukových efektů:
 
-- Background music (waltz.mp3) – přehrává se ve smyčce
-- Zvukové efekty – jednorázové přehrání při akcích
-- Všechny zvuky z royalty-free databáze **Pixabay**
+- background music (waltz.mp3) – přehrává se ve smyčce,
+- zvukové efekty – jednorázové přehrání při akcích,
+- všechny zvuky z royalty-free databáze **Pixabay**.
 
 ### Optimalizace assetů
 
-- Všechny obrázky zmenšeny pomocí **TinyPNG**
-- MP3 soubory optimalizovány online nástrojem
-- **Preload zvuků tlačítek** – okamžité přehrání bez zpoždění
+- všechny obrázky zmenšeny pomocí **TinyPNG**,
+- MP3 soubory optimalizovány online nástrojem,
+- **preload zvuků tlačítek** – okamžité přehrání bez zpoždění.
 
 ```typescript
 useEffect(() => {
@@ -345,21 +345,21 @@ Pro zajištění přístupnosti používám ARIA atributy na všech interaktivn�
 
 **BottomPanel.tsx:**
 
-- Všechna tlačítka: `aria-label`, `role="button"`, ikony s `aria-hidden="true"`
-- Sound button: `aria-pressed={isSoundOn}`
-- Live regions: `role="status"`, `aria-live="polite"/"assertive"`
-- Skupiny: `role="group"`, `aria-labelledby`
+- všechna tlačítka: `aria-label`, `role="button"`, ikony s `aria-hidden="true"`,
+- sound button: `aria-pressed={isSoundOn}`,
+- live regions: `role="status"`, `aria-live="polite"/"assertive"`,
+- skupiny: `role="group"`, `aria-labelledby`.
 
 **GameField.tsx:**
 
-- Visually hidden H1
-- Win announcement s `aria-live="assertive"`
-- Rotate overlay: `role="alert"`
+- visually hidden H1,
+- win announcement s `aria-live="assertive"`,
+- rotate overlay: `role="alert"`.
 
 **Reels.tsx:**
 
-- Container: `role="region"`, `aria-busy={isSpinning}`
-- Neviditelné symboly: `aria-hidden={!isVisible}`
+- container: `role="region"`, `aria-busy={isSpinning}`,
+- neviditelné symboly: `aria-hidden={!isVisible}`.
 
 ### Color accessibility
 
@@ -371,9 +371,9 @@ Barevné schéma (černá, bílá, červená) je ověřeno jako bezpečné pro v
 
 ### React Hooks
 
-- **useState** – správa stavu (credit, bet, win, isSpinning)
-- **useEffect** – side effects (preload zvuků, kontrola kreditu)
-- **useRef** – práce s DOM elementy a uchování aktuálních hodnot v closures
+- **useState** – správa stavu (credit, bet, win, isSpinning),
+- **useEffect** – side effects (preload zvuků, kontrola kreditu),
+- **useRef** – práce s DOM elementy a uchování aktuálních hodnot v closures.
 
 ### Generování symbolů
 
@@ -430,12 +430,12 @@ Původně jsem kontrolovala kredit pomocí `<=`, což ale znemožňovalo hru i k
 
 **Struktura:**
 
-- **5 válců × 3 řady** = 15 pozic
-- **10 paylines** (výherních linií)
-- **11 symbolů** rozdělených do 4 kategorií
-- **Minimální výhra:** 3 stejné symboly v řadě (zleva doprava)
-- **Wild symbol** (Harlequin) – nahrazuje všechny symboly kromě Scatter
-- **Scatter symbol** (Diamond) – vyplácí kdekoli na válcích
+- **5 válců × 3 řady** = 15 pozic,
+- **10 paylines** (výherních linií),
+- **11 symbolů** rozdělených do 4 kategorií,
+- **minimální výhra:** 3 stejné symboly v řadě (zleva doprava),
+- **Wild symbol** (Harlequin) – nahrazuje všechny symboly kromě Scatter,
+- **Scatter symbol** (Diamond) – vyplácí kdekoli na válcích.
 
 ### Návrh symbolů a jejich hodnot
 
@@ -460,11 +460,11 @@ Pro každý symbol:
 
 **Příklady:**
 
-- P(Low value karta) = 90 / 687 ≈ **13.10%**
-- P(Medium value) = 65 / 687 ≈ **9.46%**
-- P(Hyena) = 40 / 687 ≈ **5.82%**
-- P(Scatter) = 15 / 687 ≈ **2.18%**
-- P(Wild) = 12 / 687 ≈ **1.75%**
+- P(Low value karta) = 90 / 687 ≈ **13.10 %**,
+- P(Medium value) = 65 / 687 ≈ **9.46 %**,
+- P(Hyena) = 40 / 687 ≈ **5.82 %**,
+- P(Scatter) = 15 / 687 ≈ **2.18 %**,
+- P(Wild) = 12 / 687 ≈ **1.75 %**.
 
 ---
 
@@ -472,7 +472,7 @@ Pro každý symbol:
 
 ### Iterativní proces
 
-Výherní hodnoty (payouts) i váhy symbolů jsem během vývoje **několikrát upravovala**, abych se přiblížila RTP reálných slot machine her (obvykle 94-96%).
+Výherní hodnoty (payouts) i váhy symbolů jsem během vývoje **několikrát upravovala**, abych se přiblížila RTP reálných slot machine her (obvykle 94-96 %).
 
 **Klíčové zjištění:**  
 Při změně vah je nutné si uvědomit, že měním **celkovou sumu**, což ovlivňuje pravděpodobnosti **všech symbolů**, ne jen těch které upravuji.
@@ -480,9 +480,9 @@ Při změně vah je nutné si uvědomit, že měním **celkovou sumu**, což ovl
 **Finální úprava:**  
 Zvýšení wild symbolu z weight 10 na **12** mělo dramatický efekt na RTP:
 
-- Wild má nejvyšší payouts (20/60/**300**!)
+- Wild má nejvyšší payouts (20/60/**300**!),,
 - Wild substituce vytváří mnohem více výher
-- Zvýšení o 20% více wild symbolů = výrazný nárůst RTP
+- zvýšení o 20 % více wild symbolů = výrazný nárůst RTP.
 
 ---
 
@@ -495,27 +495,27 @@ Monte Carlo metoda je statistická technika, která používá náhodné vzorkov
 
 **Proč ji používat:**
 
-- **Přesnost** – při 1M+ spinů se výsledek blíží teoretické hodnotě
-- **Komplexita** – zahrnuje všechny herní mechaniky (wild substituce, scatter, paylines)
-- **Ověření** – potvrdí, že implementace RNG a výher funguje správně
+- **přesnost** – při 1M+ spinů se výsledek blíží teoretické hodnotě,
+- **komplexita** – zahrnuje všechny herní mechaniky (wild substituce, scatter, paylines),
+- **ověření** – potvrdí, že implementace RNG a výher funguje správně.
 
 ### Implementace testu
 
 Vytvořila jsem samostatnou komponentu **Test.ts**, která simuluje 1 milion spinů a měří:
 
-- RTP (Return to Player)
-- Hit Rate (frekvence výher)
-- Volatilitu
-- Distribuci výher
-- Symbol frequency
+- RTP (Return to Player),
+- Hit Rate (frekvence výher),
+- volatilitu,
+- distribuci výher,
+- symbol frequency.
 
 ### Výsledky testování
 
 **Manuální testování:**
 
-- Počáteční kredit: 1000
-- Testovaná sázka: 20-200 bodů
-- Autospin: pozorování rychlosti vyčerpání kreditu
+- počáteční kredit: 1000,
+- testovaná sázka: 20-200 bodů,
+- autospin: pozorování rychlosti vyčerpání kreditu.
 
 **Monte Carlo simulace (1M spinů):**
 
@@ -523,8 +523,8 @@ Vytvořila jsem samostatnou komponentu **Test.ts**, která simuluje 1 milion spi
 
 | Metrika | Hodnota |
 | --------- | --------- |
-| **RTP** | 95.3% |
-| **Hit Rate** | ~14% |
+| **RTP** | 95.3 % |
+| **Hit Rate** | ~14 % |
 | **Volatilita** | Medium |
 | **Max Win** | 2400 (120x bet) |
 | **Průměrná výhra** | 130.48 |
@@ -534,54 +534,54 @@ Vytvořila jsem samostatnou komponentu **Test.ts**, která simuluje 1 milion spi
 
 | Kategorie | Procento |
 | ----------- | ---------- |
-| Malé výhry (1-10x) | 85.5% |
-| Střední výhry (10-50x) | 14.4% |
-| Velké výhry (50-100x) | 0.0% |
-| Mega výhry (100x+) | 0.0% |
+| Malé výhry (1-10x) | 85.5 % |
+| Střední výhry (10-50x) | 14.4 % |
+| Velké výhry (50-100x) | 0.0 % |
+| Mega výhry (100x+) | 0.0 % |
 
 #### Ověření RTP napříč bet hodnotami
 
 | Bet | Test 1 | Test 2 | Průměr |
 | ----- | -------- | -------- | -------- |
-| 10 | 95.06% | - | 95.06% |
-| 20 | 95.62% | 95.33% | 95.48% |
-| 50 | 95.08% | - | 95.08% |
-| 100 | 96.03% | 95.13% | 95.58% |
-| 200 | 95.18% | 95.35% | 95.27% |
+| 10 | 95.06% | - | 95.06 % |
+| 20 | 95.62% | 95.3 % | 95.48 % |
+| 50 | 95.08% | - | 95.08 % |
+| 100 | 96.03% | 95.13 % | 95.58 % |
+| 200 | 95.18% | 95.35 % | 95.27 % |
 
-**Celkový průměr: 95.29%** ✅
+**Celkový průměr: 95.29 %** ✅
 
 #### Symbol Frequency
 
 | Symbol | Skutečnost | Očekávání | Rozdíl |
 | -------- | ----------- | ----------- | -------- |
-| Spades | 13.14% | 13.10% | +0.04% |
-| Clubs | 13.13% | 13.10% | +0.03% |
-| Diamonds | 13.13% | 13.10% | +0.03% |
-| Hearts | 13.12% | 13.10% | +0.02% |
-| Diamond Spades | 9.50% | 9.46% | +0.04% |
-| Diamond Clubs | 9.50% | 9.46% | +0.04% |
-| Diamond Diamonds | 9.51% | 9.46% | +0.05% |
-| Diamond Hearts | 9.48% | 9.46% | +0.02% |
-| Hyena | 5.84% | 5.82% | +0.02% |
-| Diamond Scatter | 2.19% | 2.18% | +0.01% |
-| Harlequin Wild | 1.46% | 1.75% | -0.29% |
+| Spades | 13.14 % | 13.10 % | +0.04 % |
+| Clubs | 13.13 % | 13.10 % | +0.03 % |
+| Diamonds | 13.13 % | 13.10 % | +0.03 % |
+| Hearts | 13.12 % | 13.10 % | +0.02 % |
+| Diamond Spades | 9.50 % | 9.46 % | +0.04 % |
+| Diamond Clubs | 9.50 % | 9.46 % | +0.04 % |
+| Diamond Diamonds | 9.51 % | 9.46 % | +0.05 % |
+| Diamond Hearts | 9.48 % | 9.46 % | +0.02 % |
+| Hyena | 5.84 % | 5.82 % | +0.02 % |
+| Diamond Scatter | 2.19 % | 2.18 % | +0.01 % |
+| Harlequin Wild | 1.46 % | 1.75 % | -0.29 % |
 
 **Symbol frequency prakticky perfektně odpovídá očekávání** – RNG funguje správně!
 
 ### Závěry z testování
 
-✅ **RTP je stabilní ~95.3% napříč všemi bet hodnotami**  
-✅ **Variance ±0.5-1%** je normální pro Monte Carlo simulace  
-✅ **Férová hra** – žádné preference pro vysoké/nízké sázky  
-✅ **Profesionální úroveň** – ideální pro komerční slot games (94-96%)
+✅ **RTP je stabilní ~95.3 % napříč všemi bet hodnotami**.  
+✅ **Variance ±0.5-1 %** je normální pro Monte Carlo simulace.  
+✅ **Férová hra** – žádné preference pro vysoké/nízké sázky.  
+✅ **Profesionální úroveň** – ideální pro komerční slot games (94-96 %).
 
 **Proč komerční hry používají vyšší RTP:**
 
-- **Konkurence** – hráči si RTP kontrolují
-- **Player retention** – vyšší RTP = hráč prohrává pomaleji = hraje déle
-- **Casino vydělává na objemu**, ne na jednotlivých spinech
-- **Regulace** – některé jurisdikce vyžadují minimální RTP 92-94%
+- **Konkurence** – hráči si RTP kontrolují.
+- **Player retention** – vyšší RTP = hráč prohrává pomaleji = hraje déle.
+- **Casino vydělává na objemu**, ne na jednotlivých spinech.
+- **Regulace** – některé jurisdikce vyžadují minimální RTP 92-94 %.
 
 ---
 
@@ -628,10 +628,10 @@ Tím se automaticky přidá správný prefix (`/SlotGame/`) v produkci, zatímco
 
 ### Deployment proces
 
-1. `npm run deploy` spustí `predeploy` script
-2. Vytvoří production build
-3. Obsah složky `dist` se nahraje na GitHub Pages
-4. Aplikace dostupná na `https://alena0490.github.io/SlotGame/`
+1. `npm run deploy` spustí `predeploy` script.
+2. Vytvoří production build.
+3. Obsah složky `dist` se nahraje na GitHub Pages.
+4. Aplikace dostupná na `https://alena0490.github.io/SlotGame/`.
 
 ---
 
@@ -639,59 +639,59 @@ Tím se automaticky přidá správný prefix (`/SlotGame/`) v produkci, zatímco
 
 ### Co se povedlo
 
-✅ **Profesionální RTP 95.3%** – na úrovni komerčních her  
-✅ **Kompletní WCAG accessibility** – použitelné pro všechny uživatele  
-✅ **Plně responzivní** – funguje na všech zařízeních  
-✅ **Optimalizovaný výkon** – rychlé načítání, plynulé animace  
-✅ **Loading screen** – profesionální první dojem  
-✅ **Čistý, maintainovatelný kód** – TypeScript, modularita  
-✅ **Ověřená spravedlivost hry** – Monte Carlo testování
+✅ **Profesionální RTP 95.3 %** – na úrovni komerčních her.  
+✅ **Kompletní WCAG accessibility** – použitelné pro všechny uživatele.  
+✅ **Plně responzivní** – funguje na všech zařízeních.  
+✅ **Optimalizovaný výkon** – rychlé načítání, plynulé animace.  
+✅ **Loading screen** – profesionální první dojem.  
+✅ **Čistý, maintainovatelný kód** – TypeScript, modularita.  
+✅ **Ověřená spravedlivost hry** – Monte Carlo testování.
 
 ### Technické achievementy
 
-- **Realistické 3D válce** s CSS gradienty
-- **Dynamická responzivita** s orientací a škálováním
-- **Komplexní herní logika** s wild substitucí a scatter mechanikou
-- **Custom hooks** pro sound management a localStorage
-- **Accessibility first** přístup
-- **Automatizované testování** s Monte Carlo simulací
+- **Realistické 3D válce** s CSS gradienty.
+- **Dynamická responzivita** s orientací a škálováním.
+- **Komplexní herní logika** s wild substitucí a scatter mechanikou.
+- **Custom hooks** pro sound management a localStorage.
+- **Accessibility first** přístup.
+- **Automatizované testování** s Monte Carlo simulací.
 
 ### Lessons learned
 
-**1. Důležitost matematického modelu:**  
-RTP není náhoda – každá změna vah ovlivňuje celou hru. Pochopení pravděpodobností je klíčové.
+**1. Důležitost pečlivé přípravy dat:**  
+Oproti běžným hrám, které jsem v minulosti tvořila, klade vývoj slotových důraz především na práci s daty. Je tedy nutné si veškerá data pečlivě připravit ještě před  zahájením vývoje samotné hry.
 
-**2. Testing je nezbytný:**  
-Monte Carlo simulace odhalila, jak malé změny (wild 10→12) mohou mít velký dopad (+4.5% RTP).
+**2. I malé změny je třeba důkladně otestovat:**  
+Monte Carlo simulace odhalila, jak malé změny (např. wild 10→12) mohou mít velký dopad (+4.5 % RTP).
 
 **3. Accessibility není volitelná:**  
 WCAG standardy dělají hru lepší pro všechny, nejen pro uživatele se zdravotním postižením.
 
 **4. Responzivita vyžaduje testování:**  
-Různé breakpointy, orientace a zařízení vyžadují pečlivé testování na reálných zařízeních.
+Různé breakpoints, orientace a zařízení vyžadují pečlivé testování na reálných zařízeních.
 
 **5. useRef pro async problém:**  
 React state updates jsou asynchronní – useRef zachraňuje situaci při práci s closures.
 
 ### Budoucí vylepšení
 
-- **Další herní mechaniky** (free spins, multipliers)
-- **Animace výher** s particles efekty
-- **Leaderboard** s localStorage
+- **další herní mechaniky** (free spins, multipliers),
+- **animace výher** s particles efekty,
+- **leaderboard** s localStorage.
 
 ---
 
 ## Závěr
 
-**Harlequin's Fortune** je plně funkční slot machine hra, která kombinuje profesionální design s technickou excelencí. Projekt prokázal mé schopnosti v:
+**Harlequin's Fortune** je plně funkční slotová hra, která kombinuje originální design s technical features moderních her. Díky tomuto menšímu projektu jsem si procvičila převážně:
 
-- **Full-stack vývoji** (React, TypeScript, CSS)
-- **Matematickém modelování** (pravděpodobnosti, RTP)
-- **Testování a QA** (Monte Carlo simulace)
-- **UI/UX designu** (responzivita, accessibility)
-- **Deployment a DevOps** (GitHub Pages, Vite)
+- **moderní front end vývoj** (React, TypeScript, CSS),
+- **práci s daty** (payouts,weights, RTP),
+- **testování a QA** (Monte Carlo simulace),
+- **UI/UX design** (responzivita, accessibility),
+- **deployment a DevOps** (GitHub Pages, Vite).
 
-Hra dosahuje **RTP 95.3%**, což je na úrovni profesionálních casino her, a splňuje všechny **WCAG accessibility** standardy. Celý projekt je důkazem, že komplexní interaktivní aplikace lze vytvořit s moderními web technologiemi a důkladným přístupem k testování.
+Hra dosahuje **RTP 95.3 %**, což je na úrovni běžných casino her, a splňuje základní **WCAG accessibility** standardy. Celý projekt klade důraz nejen originální design a přesnou práci s daty, ale také accessibility standarty a optimalizaci.
 
 ---
 
