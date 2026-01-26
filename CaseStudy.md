@@ -287,6 +287,18 @@ Aplikace je postavena na třech hlavních komponentách:
 - Minimalistický design se dvěma tlačítky
 - Implementuje focus management pro accessibility
 
+**LoadingScreen.tsx:**
+
+- Zobrazuje se při inicializaci aplikace
+- "Fake" progress bar s plynulou animací (1.2s)
+- Maskuje initial React render
+- Konzistentní design s herním stylem
+- Fade-in/fade-out animace
+
+Implementace využívá simulovaný progress místo skutečného načítání assetů, což je standardní praxe pro malé React hry, kde jsou assety zabaleny v bundle a načítají se velmi rychle. Tento přístup zajišťuje konzistentní UX na všech zařízeních.
+
+![Loading screen](screenshots/loading-screen.png)
+
 **Ikony:**  
 Pro herní ikony využívám knihovnu **React Icons** s kolekcemi Font Awesome 5 a 6.
 
@@ -637,8 +649,9 @@ Tím se automaticky přidá správný prefix (`/SlotGame/`) v produkci, zatímco
 ✅ **Kompletní WCAG accessibility** – použitelné pro všechny uživatele  
 ✅ **Plně responzivní** – funguje na všech zařízeních  
 ✅ **Optimalizovaný výkon** – rychlé načítání, plynulé animace  
+✅ **Loading screen** – profesionální první dojem  
 ✅ **Čistý, maintainovatelný kód** – TypeScript, modularita  
-✅ **Ověřená spravedlnost** – Monte Carlo testování  
+✅ **Ověřená spravedlivost hry** – Monte Carlo testování
 
 ### Technické achievementy
 
@@ -668,8 +681,6 @@ React state updates jsou asynchronní – useRef zachraňuje situaci při práci
 
 ### Budoucí vylepšení
 
-- **Loading screen** s progress barem
-- **Sound settings** (volume slider)
 - **Další herní mechaniky** (free spins, multipliers)
 - **Animace výher** s particles efekty
 - **Leaderboard** s localStorage
@@ -690,8 +701,8 @@ Hra dosahuje **RTP 95.3%**, což je na úrovni profesionálních casino her, a s
 
 ---
 
-**Live Demo:** https://alena0490.github.io/SlotGame/  
-**GitHub Repository:** https://github.com/alena0490/SlotGame
+**Live Demo:** [https://alena0490.github.io/SlotGame/](https://alena0490.github.io/SlotGame/)  
+**GitHub Repository:** [https://github.com/alena0490/SlotGame](https://github.com/alena0490/SlotGame)
 
 **Design & Development:** Alena Pumprová  
 **Rok:** 2025  
