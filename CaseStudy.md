@@ -442,9 +442,7 @@ Původně jsem kontrolovala kredit pomocí `<=`, což ale znemožňovalo hru i k
 Tvorbě samotné hry předcházela pečlivá příprava herních dat. Symboly jsem rozdělila do kategorií podle hodnoty:
 
 | Kategorie | Symboly | Payouts (3×/4×/5×) | Weight |
-
-|-----------|---------|-------------------|--------|
-
+| ----------- | --------- | ------------------- | -------- |
 | **Low value** | Spades, Clubs, Diamonds, Hearts | 4 / 8 / 16 | 90 |
 | **Medium value** | Diamond-Spades, Diamond-Clubs, Diamond-Diamonds, Diamond-Hearts | 6 / 14 / 35 | 65 |
 | **High value** | Hyena | 12 / 30 / 90 | 40 |
