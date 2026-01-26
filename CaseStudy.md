@@ -520,10 +520,11 @@ Vytvořila jsem samostatnou komponentu **Test.ts**, která simuluje 1 milion spi
 - Autospin: pozorování rychlosti vyčerpání kreditu
 
 **Monte Carlo simulace (1M spinů):**
+
 #### Základní metriky
 
 | Metrika | Hodnota |
-|---------|---------|
+| --------- | --------- |
 | **RTP** | 95.3% |
 | **Hit Rate** | ~14% |
 | **Volatilita** | Medium |
@@ -534,7 +535,7 @@ Vytvořila jsem samostatnou komponentu **Test.ts**, která simuluje 1 milion spi
 #### Distribuce výher
 
 | Kategorie | Procento |
-|-----------|----------|
+| ----------- | ---------- |
 | Malé výhry (1-10x) | 85.5% |
 | Střední výhry (10-50x) | 14.4% |
 | Velké výhry (50-100x) | 0.0% |
@@ -543,7 +544,7 @@ Vytvořila jsem samostatnou komponentu **Test.ts**, která simuluje 1 milion spi
 #### Ověření RTP napříč bet hodnotami
 
 | Bet | Test 1 | Test 2 | Průměr |
-|-----|--------|--------|--------|
+| ----- | -------- | -------- | -------- |
 | 10 | 95.06% | - | 95.06% |
 | 20 | 95.62% | 95.33% | 95.48% |
 | 50 | 95.08% | - | 95.08% |
@@ -555,7 +556,7 @@ Vytvořila jsem samostatnou komponentu **Test.ts**, která simuluje 1 milion spi
 #### Symbol Frequency
 
 | Symbol | Skutečnost | Očekávání | Rozdíl |
-|--------|-----------|-----------|--------|
+| -------- | ----------- | ----------- | -------- |
 | Spades | 13.14% | 13.10% | +0.04% |
 | Clubs | 13.13% | 13.10% | +0.03% |
 | Diamonds | 13.13% | 13.10% | +0.03% |
