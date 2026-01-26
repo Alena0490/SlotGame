@@ -25,8 +25,7 @@ const NoCreditModal = ({ isOpen, onClose, onRefill, isSoundOn, playSound }: NoCr
             playSound('/sounds/button.mp3');
         }
         setIsClosing(true);
-        console.log("is closing")
-        
+     
         setTimeout(() => {
             if (isSoundOn) {
                 playSound('/sounds/whoosh.mp3');

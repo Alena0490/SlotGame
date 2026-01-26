@@ -1,3 +1,7 @@
+/* ========================================
+   REELS CONTAINER
+   ======================================== */
+
 .reels {
     position: relative;
     width: 97%;
@@ -10,7 +14,7 @@
     justify-content: center;
     gap: var(--spacing-xs);
     margin: 0 var(--spacing-xs);
-    padding: 3rem 1.5rem 1.5rem;
+    padding: 2.75rem 1.5rem 1.5rem;
     /* Darker mechanical frame with contrast */
     background: linear-gradient(to bottom, 
         var(--box-shadow-color) 0%,
@@ -25,7 +29,7 @@
     transition: transform var(--dur-3) ease;
 }
 
-/* Top mechanical bar */
+/* TOP BAR */
 .reels::before {
     content: '';
     position: absolute;
@@ -50,7 +54,7 @@
     z-index: 5;
 }
 
-/* Bottom mechanical bar */
+/* BOTTOM BAR */
 .reels::after {
     content: '';
     position: absolute;
@@ -73,6 +77,10 @@
     z-index: 5;
 }
 
+/* ========================================
+   REEL MECHANICS
+   ======================================== */
+   
 .reel-window {
     position: relative;
     height: 100%;
@@ -90,42 +98,6 @@
     gap: 1.5rem; 
     will-change: transform, filter;
 }
-
-.reels.spinning .reel { 
-    filter: 
-        drop-shadow(0.25rem -0.25rem 0.5rem var(--secondary-black)) 
-        blur(0.6px);
-}
-
-/* Track spinning animation */
-.reels.spinning .reel-track {
-    animation: continuous-spin 0.3s linear infinite;
-}
-
-/* Gradual stopping of reels */
-.reels.spinning .reel:nth-child(1) .reel-track {
-    animation: continuous-spin 0.15s linear infinite;
-}
-.reels.spinning .reel:nth-child(2) .reel-track {
-    animation: continuous-spin 0.18s linear infinite;
-}
-.reels.spinning .reel:nth-child(3) .reel-track {
-    animation: continuous-spin 0.21s linear infinite;
-}
-.reels.spinning .reel:nth-child(4) .reel-track {
-    animation: continuous-spin 0.24s linear infinite;
-}
-.reels.spinning .reel:nth-child(5) .reel-track {
-    animation: continuous-spin 0.27s linear infinite;
-}
-
-/* Gradual stopping */
-/* nth-child(-n+X) */
-.reels.stopping-1 .reel:nth-child(-n+1) .reel-track { animation-play-state: paused; }
-.reels.stopping-2 .reel:nth-child(-n+2) .reel-track { animation-play-state: paused; }
-.reels.stopping-3 .reel:nth-child(-n+3) .reel-track { animation-play-state: paused; }
-.reels.stopping-4 .reel:nth-child(-n+4) .reel-track { animation-play-state: paused; }
-.reels.stopping-5 .reel .reel-track { animation-play-state: paused; }
 
 .reel {
     display: flex;
@@ -146,7 +118,7 @@
         #8e8e9e 95%,
         #4f4f5e 100%  
     );
-    border: var(--border-thick) var(--primary-black);
+    border: var(--border-thick) solid var(--primary-black);
     border-radius: var(--radius-md);
     box-shadow: 
         inset 0 30px 40px -20px var(--box-shadow-color),
@@ -194,6 +166,10 @@
     z-index: 10;
 }
 
+/* ========================================
+   SYMBOLS
+   ======================================== */
+
 .symbol {
     width: 84%;
     height: calc(100% / 3 - 0.5rem);
@@ -238,7 +214,48 @@
 }
 
 /* ========================================
-   MEDIA QUEARIES
+   ANIMATIONS
+   ======================================== */
+
+.reels.spinning .reel { 
+    filter: 
+        drop-shadow(0.25rem -0.25rem 0.5rem var(--secondary-black)) 
+        blur(0.6px);
+}
+
+/* Track spinning animation */
+.reels.spinning .reel-track {
+    animation: continuous-spin 0.3s linear infinite;
+}
+
+/* Gradual stopping of reels */
+/* Mírně pomalejší točení - lépe využívá 2.7s timing */
+.reels.spinning .reel:nth-child(1) .reel-track {
+    animation: continuous-spin 0.20s linear infinite;
+}
+.reels.spinning .reel:nth-child(2) .reel-track {
+    animation: continuous-spin 0.23s linear infinite;
+}
+.reels.spinning .reel:nth-child(3) .reel-track {
+    animation: continuous-spin 0.26s linear infinite;
+}
+.reels.spinning .reel:nth-child(4) .reel-track {
+    animation: continuous-spin 0.29s linear infinite;
+}
+.reels.spinning .reel:nth-child(5) .reel-track {
+    animation: continuous-spin 0.32s linear infinite;
+}
+
+/* Gradual stopping */
+/* nth-child(-n+X) */
+.reels.stopping-1 .reel:nth-child(-n+1) .reel-track { animation-play-state: paused; }
+.reels.stopping-2 .reel:nth-child(-n+2) .reel-track { animation-play-state: paused; }
+.reels.stopping-3 .reel:nth-child(-n+3) .reel-track { animation-play-state: paused; }
+.reels.stopping-4 .reel:nth-child(-n+4) .reel-track { animation-play-state: paused; }
+.reels.stopping-5 .reel .reel-track { animation-play-state: paused; }
+
+/* ========================================
+   MEDIA QUERIES
    ======================================== */
 
 /* Prefers reduced motion */

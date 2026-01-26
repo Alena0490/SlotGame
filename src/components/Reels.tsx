@@ -13,7 +13,9 @@ const Reels = ({ reels, isSpinning, stopStep, spinCount,winningPositions }: Reel
 
   return (
     <div 
-        className={`reels ${isSpinning ? 'spinning' : ''} ${stopStep ? `stopping-${stopStep}` : ''}`}
+        className={`reels 
+        ${isSpinning ? 'spinning' : ''} 
+        ${stopStep && stopStep > 0 ? `stopping-${stopStep}` : ''}`}
         role="region"
         aria-label="Slot machine reels"
         aria-live="polite"
@@ -38,10 +40,12 @@ const Reels = ({ reels, isSpinning, stopStep, spinCount,winningPositions }: Reel
                     className={`symbol ${isWinning && !isSpinning ? 'winning' : ''}`} 
                     aria-hidden={!isVisible}
                 >
-                  {symbol && <img 
-                    src={symbol.image} 
-                    alt={isVisible ? symbol.name : ""} 
-                    className={`${symbol.className} ${!isSpinning && isVisible && symbol.id === 'harlequin' ? 'wild-animate' : ''}`} />}
+                  {symbol && 
+                    <img 
+                        src={symbol.image} 
+                        alt={isVisible ? symbol.name : ""} 
+                        className={`${symbol.className} ${!isSpinning && isVisible && symbol.id === 'harlequin' ? 'wild-animate' : ''}`}
+                    />}
                 </div>
               );
             })}

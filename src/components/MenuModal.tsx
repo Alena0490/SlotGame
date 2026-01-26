@@ -35,7 +35,7 @@ const diamondCardSymbols = SYMBOLS.filter(s =>
             onClick={onClose}
             role="dialog"
             aria-modal="true"
-            aria-labelledby="menu-title"
+            aria-label="Game information and rules"
         >
             <div 
                 className={`modal-content ${isClosing ? 'closing' : ''}`}  
@@ -58,13 +58,13 @@ const diamondCardSymbols = SYMBOLS.filter(s =>
                         <p className="meta">
                             Year: 2025 • ⚠️ Demo only - No real money involved
                         </p>
-                         </article>
+                        </article>
 
                     {/* ===== Panel 2: Statistics ===== */}
                          <article className="panel rtp-panel rules-panel">
                             <h2>Game Statistics</h2>
                             <ul className="stats-list">
-                                <li><strong>RTP:</strong> 95.3%</li>
+                                <li><strong>RTP:</strong> 95.3 %</li>
                                 <li><strong>Hit Rate:</strong> 14 %</li>
                                 <li><strong>Volatility:</strong> Medium</li>
                                 <li><strong>Max Win:</strong> 120x bet</li>

@@ -1,3 +1,7 @@
+/* ========================================
+   MODAL OVERLAY
+   ======================================== */
+
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -17,6 +21,10 @@
 .modal-overlay.closing {
     animation: fade-out var(--dur-2) ease forwards;
 }
+
+/* ========================================
+   MODAL CONTENT
+   ======================================== */
 
 .modal-content {
   position: relative;
@@ -52,6 +60,10 @@
     color: var(--text-1);
 }
 
+/* ========================================
+   MODAL ELEMENTS
+   ======================================== */
+
 h2, h3 {
   color: var(--chrome);
 }
@@ -79,7 +91,7 @@ button:focus-visible {
 
 .modal.modal--confirm .modal-note{
   margin: var(--spacing-sm) 0 0;
-  opacity: 0.72;
+  color: var(--text-3);
   font-size: var(--font-xs);
 }
 
@@ -88,47 +100,6 @@ button:focus-visible {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--spacing-sm);
-}
-
-/* Buttons – silver default, hover to white; secondary subtle */
-.modal.modal--confirm .btn-primary,
-.modal.modal--confirm .btn-ghost{
-  height: 3rem;
-  border-radius: var(--radius-md);
-  font-weight: 800;
-  letter-spacing: 0.01em;
-  cursor: pointer;
-  transition: 
-    transform var(--dur-1) ease, 
-    background-color var(--dur-1) ease, 
-    color var(--dur-1) ease, 
-    border-color var(--dur-1) ease;
-}
-
-.modal.modal--confirm .btn-primary{
-  background: var(--silver);
-  color: var(--primary-black);
-  border: var(--border-medium) solid var(--border-3);
-}
-
-.modal.modal--confirm .btn-primary:hover{
-  background: var(--pure-white);
-}
-
-.modal.modal--confirm .btn-ghost{
-  background: transparent;
-  color: var(--text-2);
-  border: var(--border-medium) solid var(--border-2);
-}
-
-.modal.modal--confirm .btn-ghost:hover{
-  color: var(--pure-white);
-  border-color: var(--border-3)
-}
-
-.modal.modal--confirm .btn-primary:active,
-.modal.modal--confirm .btn-ghost:active{
-  transform: translateY(1px);
 }
 
 /* Close */
@@ -156,6 +127,10 @@ button:focus-visible {
     transform: scale(1.04);
 }
 
+/* ========================================
+   MENU MODAL (SCROLL CONTAINER)
+   ======================================== */
+
 /* Scroll container */
 .menu-modal {
     max-height: 78vh;
@@ -180,6 +155,10 @@ button:focus-visible {
   z-index: 1;
 }
 
+/* ========================================
+   PANELS
+   ======================================== */
+
 /* Panels */
 .panel {
     background: var(--surface-2);
@@ -202,7 +181,7 @@ button:focus-visible {
 
 .meta {
   margin-top: var(--spacing-sm);
-  opacity: 0.75;
+  color: var(--text-3);
   font-size: var(--font-xs);
 }
 
@@ -300,7 +279,52 @@ button:focus-visible {
 }
 
 /* ========================================
-   MEDIA QUEARIES
+   BUTTONS
+   ======================================== */
+   
+/* Buttons – silver default, hover to white; secondary subtle */
+.modal.modal--confirm .btn-primary,
+.modal.modal--confirm .btn-ghost{
+  height: 3rem;
+  border-radius: var(--radius-md);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: 
+    transform var(--dur-1) ease, 
+    background-color var(--dur-1) ease, 
+    color var(--dur-1) ease, 
+    border-color var(--dur-1) ease;
+}
+
+.modal.modal--confirm .btn-primary{
+  background: var(--silver);
+  color: var(--primary-black);
+  border: var(--border-medium) solid var(--border-3);
+}
+
+.modal.modal--confirm .btn-primary:hover{
+  background: var(--pure-white);
+}
+
+.modal.modal--confirm .btn-ghost{
+  background: transparent;
+  color: var(--text-2);
+  border: var(--border-medium) solid var(--border-2);
+}
+
+.modal.modal--confirm .btn-ghost:hover{
+  color: var(--pure-white);
+  border-color: var(--border-3)
+}
+
+.modal.modal--confirm .btn-primary:active,
+.modal.modal--confirm .btn-ghost:active{
+  transform: translateY(1px);
+}
+
+/* ========================================
+   MEDIA QUERIES
    ======================================== */
 
 @media (min-width: 520px){

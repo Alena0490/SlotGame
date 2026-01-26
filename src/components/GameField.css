@@ -71,7 +71,7 @@
 /* ========================================
    LAYOUT CONTAINERS
    ======================================== */
-   
+
 .main-game {
     width: 75%;
     margin:  0 1.5% 1.8% auto;
@@ -91,7 +91,7 @@
     position: fixed;
     inset: 0;
     z-index: 9999;
-    background: var(--surface-overlay);;
+    background: var(--surface-overlay);
     backdrop-filter: blur(6px);
     align-items: center;
     justify-content: center;

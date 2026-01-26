@@ -8,8 +8,6 @@ import { BET_OPTIONS, getWeightedRandomSymbol, PAYLINES, getSymbolById } from ".
 import { useSound } from "../hooks/useSound";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
-// A smažte ty funkce z GameField - už je nemusíte mít tam
-
 // Import symbol data
 const generateRandomSymbols = (): string[][] => {
   const result: string[][] = [];
@@ -116,7 +114,6 @@ const GameField = () => {
     /*** === SOUND BUTTON === */
     const handleSoundToggle = () => {
         const newSoundState = !isSoundOn;
-        console.log('isSoundOn:', isSoundOn, 'newSoundState:', newSoundState);
         
         if (newSoundState) {
             const audio = new Audio(`${base}sounds/button.mp3`);
@@ -333,7 +330,6 @@ const GameField = () => {
         
         if (count >= 3) {  // needs 3 same symbols in a row
             const symbol = getSymbolById(firstSymbol);
-            console.log('symbol:', symbol); 
             if (!symbol) return { win: 0, positions: [], lineIndex }; 
             
             // Payout
