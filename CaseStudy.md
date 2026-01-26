@@ -27,7 +27,7 @@ Prvotní návrh jsem vytvořila ve **Figmě** s využitím výhradně AI generov
 - Světlé pozadí špatně kontrastovalo s herními válci
 - Obtížná realizace responzivního layoutu
 
-![Originální Figma návrh](screenshots/figma-original.png)
+![Originální Figma návrh](figma-original.png)
 
 ---
 
@@ -73,7 +73,7 @@ Při vlastním navrhování v CSS jsem odstíny sjednotila a používám pouze *
 - Minimalistický, ale elegantní design
 - Důraz na čitelnost a použitelnost
 
-![Finální design - Desktop](screenshots/desktop-view.png)
+![Finální design - Desktop](desktop-view.png)
 
 ### CSS architektura
 
@@ -115,7 +115,7 @@ Snažila jsem se co nejvíce přiblížit reálným 3D válcům:
 - **9 symbolů na válec** pro plynulou animaci (`[...reel, ...reel, ...reel]`)
 - Viditelné jsou vždy prostřední 3 symboly
 
-![Detail herních válců](screenshots/reels-detail.png)
+![Detail herních válců](reels-detail.png)
 
 ### Responzivita
 
@@ -170,7 +170,7 @@ Vůbec poprvé jsem v projektu implementovala fullscreen overlay s výzvou k oto
 
 Když uživatel drží telefon v portrait režimu, zobrazí se overlay s ikonou a textem "Turn your device". Toto řešení výrazně zlepšuje uživatelský zážitek na mobilních zařízeních.
 
-![Rotate overlay](screenshots/rotate-overlay.png)
+![Rotate overlay](rotate-overlay.png)
 
 ### Škálování aplikace
 
@@ -213,7 +213,7 @@ useEffect(() => {
 }, []);
 ```
 
-![Mobile bet controls](screenshots/mobile-bet-controls.png)
+![Mobile bet controls](mobile-bet-controls.png)
 
 ### 2. Úprava pro velmi malá zařízení
 
@@ -280,7 +280,7 @@ Aplikace je postavena na třech hlavních komponentách:
 - Data načítá dynamicky ze `data.tsx`
 - Minimalizuje riziko chyb při změně dat
 
-![Menu modal](screenshots/menu-modal.png)
+![Menu modal](menu-modal.png)
 
 **NoCreditModal.tsx:**
 
@@ -297,7 +297,7 @@ Aplikace je postavena na třech hlavních komponentách:
 
 Implementace využívá simulovaný progress místo skutečného načítání assetů, což je standardní praxe pro malé React hry, kde jsou assety zabaleny v bundle a načítají se velmi rychle. Tento přístup zajišťuje konzistentní UX na všech zařízeních.
 
-![Loading screen](screenshots/loading-screen.png)
+![Loading screen](loading-screen.png)
 
 **Ikony:**  
 Pro herní ikony využívám knihovnu **React Icons** s kolekcemi Font Awesome 5 a 6.
