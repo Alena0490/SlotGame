@@ -305,7 +305,7 @@ Pro herní ikony využívám knihovnu **React Icons** s kolekcemi Font Awesome 5
 ### Custom hooks
 
 **useLocalStorage:**  
-Hook pro persistenci dat v prohlížeči (credit, bet, isSoundOn).
+Hook pro persistenci dat v prohlížeči (credit, bet).
 
 **useSound:**  
 

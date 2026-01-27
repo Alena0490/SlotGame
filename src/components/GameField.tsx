@@ -35,7 +35,7 @@ interface LineWinResult {
 }
 
 const GameField = () => {
-    const [isSoundOn, setIsSoundOn] = useLocalStorage('isSoundOn', false);
+    const [isSoundOn, setIsSoundOn] = useState(false);
     const [credit, setCredit] = useLocalStorage('credit', 1000);
     const [bet, setBet] = useLocalStorage('bet', 20);
     const [win, setWin] = useState(0);
@@ -119,7 +119,7 @@ const GameField = () => {
             const audio = new Audio(`${base}sounds/button.mp3`);
             audio.play();
         }      
-        setIsSoundOn(newSoundState);
+        setIsSoundOn(false);
     };
 
     useEffect(() => {
@@ -375,7 +375,7 @@ const GameField = () => {
     }
 
     return (
-        <main className="game-field">
+        <main className="game-field" >
             <div 
                 className="visually-hidden" 
                 role="status" 
@@ -387,10 +387,9 @@ const GameField = () => {
 
              <audio 
                 ref={backgroundAudioRef}
-                src={isSoundOn ? `${base}sounds/waltz.mp3` : undefined}
+                src={`${base}sounds/waltz.mp3`} 
                 loop
                 aria-hidden="true"
-                preload="none"
             />
             <div 
                 className="rotate-overlay" 
