@@ -407,6 +407,23 @@ button:disabled {
 }
 
 /* Extra Small Phones - Portrait (320px - 360px) */
+/* The overlay is visible */
+@media (orientation: portrait) and (max-width: 480px) {
+    .menu::before,
+    .sound::before, 
+    .bet::before, 
+    .credit::before, 
+    .win::before, 
+    .spin::before, 
+    .auto-spin::before {
+        display: none;
+    }
+
+    .spin, .auto-spin, .amount-toggle {
+        filter: none;
+    }
+}
+
 @media (max-width: 360px) and (orientation: portrait) {
     .bottom-panel {
         padding: 0.7rem 0.4rem 0.45rem;
