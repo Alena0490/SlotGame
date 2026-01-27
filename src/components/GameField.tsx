@@ -387,9 +387,10 @@ const GameField = () => {
 
              <audio 
                 ref={backgroundAudioRef}
-                src={`${base}sounds/waltz.mp3`} 
+                src={isSoundOn ? `${base}sounds/waltz.mp3` : undefined}
                 loop
                 aria-hidden="true"
+                preload="none"
             />
             <div 
                 className="rotate-overlay" 
