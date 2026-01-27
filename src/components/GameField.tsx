@@ -375,7 +375,7 @@ const GameField = () => {
     }
 
     return (
-        <main className="game-field" fetchPriority="high">
+        <main className="game-field">
             <div 
                 className="visually-hidden" 
                 role="status" 
