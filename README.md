@@ -1,8 +1,8 @@
 # 🎰 Harlequin's Fortune
 
-Professional portfolio demo slot machine game inspired by commedia dell'arte aesthetics. Features authentic casino mechanics, Monte Carlo tested RTP, and full WCAG accessibility compliance.
+Professional portfolio demo slot machine game inspired by the aesthetics of commedia dell'arte. Features authentic casino mechanics, Monte Carlo tested RTP, and full WCAG accessibility compliance.
 
-![Game Preview](screenshots/desktop-view.png)
+![Game Preview](screenshots/mockup.webp)
 
 ## 🎮 Live Demo
 
@@ -72,7 +72,7 @@ npm run deploy
 
 ## 📖 Documentation
 
-For detailed case study including design process, RTP calculations, Monte Carlo testing, and technical implementation:
+For a detailed case study including design process, RTP calculations, Monte Carlo testing, and technical implementation:
 
 **[Read Full Case Study →](CaseStudy.md)**
 
