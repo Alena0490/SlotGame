@@ -119,7 +119,7 @@ const GameField = () => {
             const audio = new Audio(`${base}sounds/button.mp3`);
             audio.play();
         }      
-        setIsSoundOn(false);
+        setIsSoundOn(newSoundState);  // ✅ SPRÁVNĚ!
     };
 
     useEffect(() => {
