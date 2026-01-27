@@ -2,7 +2,7 @@
 
 Professional portfolio demo slot machine game inspired by commedia dell'arte aesthetics. Features authentic casino mechanics, Monte Carlo tested RTP, and full WCAG accessibility compliance.
 
-![Game Preview](screenshots/desktop-view.png)
+![Game Preview](screenshots/mockup.webp)
 
 ## 🎮 Live Demo
 
