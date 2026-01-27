@@ -1,73 +1,133 @@
-# React + TypeScript + Vite
+# 🎰 Harlequin's Fortune
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Professional portfolio demo slot machine game inspired by commedia dell'arte aesthetics. Features authentic casino mechanics, Monte Carlo tested RTP, and full WCAG accessibility compliance.
 
-Currently, two official plugins are available:
+![Game Preview](screenshots/desktop-view.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎮 Live Demo
 
-## React Compiler
+**Play now:** [alena0490.github.io/SlotGame](https://alena0490.github.io/SlotGame/)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Features
 
-## Expanding the ESLint configuration
+- **Professional RTP:** 95.3% (verified by 1M+ spin Monte Carlo simulation)
+- **10 Paylines** with wild substitution and scatter wins
+- **11 Unique Symbols** across 4 value tiers
+- **Responsive Design** - optimized for all devices
+- **WCAG Accessibility** - full keyboard navigation and screen reader support
+- **Sound Effects** - immersive audio with user control
+- **Auto-spin Mode** - automated gameplay
+- **LocalStorage** - persistent credit and bet values
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Technologies
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **React 19** - Modern UI framework
+- **TypeScript** - Type-safe development
+- **Vite** - Fast build tool
+- **CSS3** - Custom properties, animations, responsive design
+- **GitHub Pages** - Hosting and deployment
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📊 Performance
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **Lighthouse Score:** 92/100 (Performance)
+- **RTP:** 95.3%
+- **Hit Rate:** ~14%
+- **Volatility:** Medium
+- **Max Win:** 120x bet
+
+## 🎨 Design
+
+- **Color Palette:** Black (#06060e), White (#ffffff), Red (#dc143c)
+- **Metallic Effects:** CSS gradients for chrome and silver surfaces
+- **Typography:** Rajdhani font family
+- **Accessibility:** WCAG 2.1 AA compliant
+
+## 📸 Screenshots
+
+| Desktop | Mobile |
+| --------- | -------- |
+| ![Desktop](screenshots/desktop-view.png) | ![Mobile](screenshots/mobile-bet-controls.png) |
+
+## 🚀 Installation
+
+```bash
+# Clone repository
+git clone https://github.com/Alena0490/SlotGame.git
+
+# Navigate to project
+cd SlotGame
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Deploy to GitHub Pages
+npm run deploy
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📖 Documentation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+For detailed case study including design process, RTP calculations, Monte Carlo testing, and technical implementation:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+**[Read Full Case Study →](CaseStudy.md)**
+
+## 🎯 Game Rules
+
+- Match **3 or more** identical symbols from left to right
+- **Wild** (Harlequin) substitutes all symbols except Scatter
+- **Scatter** (Diamond) pays anywhere on reels (3+ symbols)
+- **10 active paylines**
+- **Bet range:** 10 - 200 credits
+- **Starting credit:** 1000
+
+## 🧪 Testing
+
+Monte Carlo simulation (1M+ spins) validates:
+
+- Fair RNG distribution
+- Accurate RTP calculation
+- Symbol frequency matches expected values
+- No bias across bet levels
+
+## 📋 Project Structure
+
+```slot-game/
+├── src/
+│   ├── components/        # React components
+│   ├── data/             # Game data and configuration
+│   ├── hooks/            # Custom hooks
+│   └── img/              # Images and assets
+├── public/               # Static assets
+├── screenshots/          # Documentation images
+└── CaseStudy.md         # Detailed documentation
 ```
+
+## 👩‍💻 Author
+
+**Alena Pumprová**
+
+- Portfolio: [Your Portfolio URL]
+- GitHub: [@Alena0490](https://github.com/Alena0490)
+- LinkedIn: [Your LinkedIn]
+
+## 📄 License
+
+This is a portfolio project for demonstration purposes only.
+
+**⚠️ Demo Only** - No real money involved. This is not a gambling application.
+
+## 🙏 Acknowledgments
+
+- **Design:** Original concept and implementation
+- **Assets:** Freepik, AI-generated imagery
+- **Sounds:** Pixabay royalty-free library
+- **Testing:** Monte Carlo simulation methodology
+
+---
+
+**Built with ❤️ using modern web technologies**
