@@ -521,8 +521,7 @@ Tvorbě samotné hry předcházela pečlivá příprava herních dat. Symboly js
 
 Pro každý symbol:
 
-```P(symbol) = weight / total_weight
-```
+P(symbol) = weight / total_weight
 
 **Příklady:**
 

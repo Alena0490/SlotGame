@@ -109,7 +109,7 @@ Monte Carlo simulation (1M+ spins) validates:
 
 ## 👩‍💻 Author
 
-**Alena Pumprová**
+Alena Pumprová
 
 - Portfolio: [Your Portfolio URL]
 - GitHub: [@Alena0490](https://github.com/Alena0490)
@@ -130,4 +130,4 @@ This is a portfolio project for demonstration purposes only.
 
 ---
 
-**Built with ❤️ using modern web technologies**
+Built with ❤️ using modern web technologies

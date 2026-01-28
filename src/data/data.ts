@@ -1,4 +1,3 @@
-// data/gameData.ts
 import Diamonds from '../img/symbols/diamondsCard.webp';
 import Clubs from '../img/symbols/clubsCard.webp';
 import Hearts from '../img/symbols/heartsCard.webp';
@@ -11,7 +10,6 @@ import Hyena from '../img/symbols/Hyena.webp';
 import Diamond from '../img/symbols/Diamond.webp';
 import Harlequin from '../img/symbols/Harlequin.webp';    
 
-// V gameData.ts
 export const getWeightedRandomSymbol = (): string => {
   const totalWeight = SYMBOLS.reduce((sum, symbol) => sum + symbol.weight, 0);
   let random = Math.random() * totalWeight;
