@@ -53,14 +53,6 @@
     margin-top: calc(var(--spacing-xxs) * -1);
 }
 
-/* Label text - base */
-.win-toast__label {
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    line-height: 1;
-}
-
 /* Small win label */
 .win-toast--small .win-toast__label {
     font-size: clamp(1rem, 2vw, 1.5rem);
@@ -202,6 +194,24 @@
     to {
         transform: translateX(-50%) translateY(0);
         opacity: 1;
+    }
+}
+
+/* Pulse text for medium wins */
+@keyframes pulseMediumText {
+    0%, 100% {
+        text-shadow: 
+            0 0 25px rgba(255, 255, 255, 1),
+            0 0 50px rgba(255, 255, 255, 0.9),
+            0 0 75px rgba(218, 218, 238, 0.8),
+            0 4px 15px var(--box-shadow-color);
+    }
+    50% {
+        text-shadow: 
+            0 0 35px rgba(255, 255, 255, 1),
+            0 0 70px rgba(255, 255, 255, 1),
+            0 0 105px rgba(218, 218, 238, 0.9),
+            0 6px 20px var(--box-shadow-color);
     }
 }
 

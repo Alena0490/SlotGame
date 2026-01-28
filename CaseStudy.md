@@ -726,10 +726,9 @@ Různé breakpoints, orientace a zařízení vyžadují pečlivé testování na
 **5. useRef pro async problém:**  
 React state updates jsou asynchronní – useRef zachraňuje situaci při práci s closures.
 
-### Budoucí vylepšení
+### Možná budoucí vylepšení
 
 - **další herní mechaniky** (free spins, multipliers),
-- **animace výher** s particles efekty,
 - **leaderboard** s localStorage.
 
 ---
