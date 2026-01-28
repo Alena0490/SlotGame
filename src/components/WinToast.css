@@ -1,0 +1,225 @@
+/* ========================================
+   WIN TOAST NOTIFICATION
+   ======================================== */
+
+/* Base toast container */
+.win-toast {
+    position: absolute;
+    bottom: var(--spacing-lg);  
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    animation: slideInBottom var(--dur-3) var(--ease-out);  
+    font-family: "Rajdhani", system-ui, sans-serif;
+    text-align: center;
+    pointer-events: none;
+}
+
+/* ========================================
+   TOAST ELEMENTS
+   ======================================== */
+
+/* Details container */
+.win-toast__details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+/* Label text */
+.win-toast__label {
+    font-size: var(--font-base);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+/* Win amount */
+.win-toast__amount {
+    font-weight: 900;
+    line-height: 0.9;
+    margin-top: calc(var(--spacing-xs) * -1);
+}
+
+/* Multiplier badge */
+.win-toast__multiplier {
+    font-size: var(--font-xs);
+    font-weight: 600;
+    font-style: italic;
+    opacity: 0.9;
+    margin-top: calc(var(--spacing-xxs) * -1);
+}
+
+/* Label text - base */
+.win-toast__label {
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+/* Small win label */
+.win-toast--small .win-toast__label {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: var(--pure-white);
+    text-shadow: 
+        0 0 15px rgba(255, 255, 255, 1),
+        0 0 30px rgba(255, 255, 255, 0.9),
+        0 3px 10px var(--box-shadow-color);
+}
+
+/* Medium win label */
+.win-toast--medium .win-toast__label {
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    color: var(--pure-white);
+    text-shadow: 
+        0 0 20px rgba(255, 255, 255, 1),
+        0 0 40px rgba(255, 255, 255, 0.9),
+        0 0 60px rgba(218, 218, 238, 0.7),
+        0 4px 12px var(--box-shadow-color);
+}
+
+/* Big win label */
+.win-toast--big .win-toast__label {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: var(--pure-white);
+    text-shadow: 
+        0 0 15px var(--bright-red),
+        0 0 30px var(--accent-red),
+        0 2px 8px var(--box-shadow-color);
+}
+
+/* ========================================
+   TIER VARIANTS - SIZE & COLOR
+   ======================================== */
+
+/* Small win label */
+.win-toast--small .win-toast__label {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: var(--pure-white);
+    text-shadow: 
+        0 0 15px rgba(255, 255, 255, 1),
+        0 0 30px rgba(255, 255, 255, 0.9),
+        0 3px 10px var(--box-shadow-color);
+}
+
+.win-toast--small .win-toast__amount {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--pure-white);
+    text-shadow: 
+        0 0 15px rgba(255, 255, 255, 1),
+        0 0 30px rgba(255, 255, 255, 0.9),
+        0 3px 10px var(--box-shadow-color);
+}
+
+/* Medium win label */
+.win-toast--medium .win-toast__label {
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    color: var(--pure-white);
+    text-shadow: 
+        0 0 25px rgba(255, 255, 255, 1),
+        0 0 50px rgba(255, 255, 255, 0.9),
+        0 0 75px rgba(218, 218, 238, 0.8),
+        0 4px 15px var(--box-shadow-color);
+    animation: pulseMediumText 1.5s ease-in-out infinite;
+}
+
+.win-toast--medium .win-toast__amount {
+    font-size: clamp(3rem, 6vw, 5rem);
+    color: var(--pure-white);
+    text-shadow: 
+        0 0 20px rgba(255, 255, 255, 1),
+        0 0 40px rgba(255, 255, 255, 0.9),
+        0 0 60px rgba(218, 218, 238, 0.7),
+        0 4px 12px var(--box-shadow-color);
+    animation: pulseMediumText 1.5s ease-in-out infinite;
+}
+
+/* Big win label */
+.win-toast--big .win-toast__label {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: var(--pure-white);
+    text-shadow: 
+        0 0 15px var(--bright-red),
+        0 0 30px var(--accent-red),
+        0 2px 8px var(--box-shadow-color);
+}
+
+.win-toast--big .win-toast__amount {
+    font-size: clamp(4rem, 8vw, 6.5rem);
+    color: var(--pure-white);
+    text-shadow: 
+        0 0 25px var(--bright-red),
+        0 0 50px var(--bright-red),
+        0 0 75px var(--accent-red),
+        0 0 30px rgba(255, 255, 255, 1),
+        0 5px 15px var(--box-shadow-color);
+    animation: pulseBigText 1.5s ease-in-out infinite;
+}
+
+/* ========================================
+   MEDIA QUERIES
+   ======================================== */
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .win-toast {
+        animation: slideInBottom var(--dur-3) var(--ease-out);
+    }
+    
+    .win-toast--big .win-toast__amount {
+        animation: none;
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+    .win-toast {
+        bottom: var(--spacing-sm);
+    }
+}
+
+/* Landscape mobile */
+@media (max-width: 568px) and (max-height: 320px) and (orientation: landscape) {
+    .win-toast {
+        bottom: var(--spacing-xs);
+    }
+}
+
+/* ========================================
+   KEYFRAMES
+   ======================================== */
+
+/* Slide in from bottom */
+@keyframes slideInBottom {
+    from {
+        transform: translateX(-50%) translateY(150%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Pulse text for big wins */
+@keyframes pulseBigText {
+    0%, 100% {
+        text-shadow: 
+            0 0 25px var(--bright-red),
+            0 0 50px var(--bright-red),
+            0 0 75px var(--accent-red),
+            0 0 30px rgba(255, 255, 255, 1),
+            0 5px 15px var(--box-shadow-color);
+    }
+    50% {
+        text-shadow: 
+            0 0 35px var(--bright-red),
+            0 0 70px var(--bright-red),
+            0 0 105px var(--accent-red),
+            0 0 50px rgba(255, 255, 255, 1),
+            0 7px 20px var(--box-shadow-color);
+    }
+}

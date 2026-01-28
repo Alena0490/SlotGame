@@ -47,6 +47,11 @@ const GameField = () => {
     const [isMenuClosing, setIsMenuClosing] = useState(false);
     const [isAutoSpinning, setIsAutoSpinning] = useState(false);
     const autoSpinIntervalRef = useRef<number | null>(null);
+    const [winToast, setWinToast] = useState<{
+        amount: number;
+        multiplier: number;
+        id: number;
+    } | null>(null);
 
     const base = import.meta.env.BASE_URL;
 
@@ -243,6 +248,26 @@ const GameField = () => {
                 return newCredit;
             });
 
+            // WIN TOAST
+            if (winAmount.amount > 0) {
+                const multiplier = winAmount.amount / bet;
+                
+                setWinToast({
+                    amount: winAmount.amount,
+                    multiplier: multiplier,
+                    id: Date.now()
+                });
+                
+                // Auto-dismiss after 2 seconds
+                setTimeout(() => {
+                    setWinToast(null);
+                }, 2000);
+                
+                if (isSoundOn) {
+                    playSound(`${base}sounds/win.mp3`);
+                }
+            }
+
             if (winAmount.amount > 0 && isSoundOn) {
                 playSound(`${base}sounds/win.mp3`);
             }
@@ -423,6 +448,7 @@ const GameField = () => {
                     stopStep={stopStep}
                     spinCount={spinCount} 
                     winningPositions={winningPositions}
+                    winToast={winToast}
                 />
             </div>
             <BottomPannel 
@@ -439,7 +465,7 @@ const GameField = () => {
                 decreaseBet={decreaseBet} 
                 toggleAutoSpin={toggleAutoSpin}
                 openMenu={openMenu}
-            />
+            />        
         </main>
     )
 }

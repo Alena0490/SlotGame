@@ -1,5 +1,6 @@
 import { getSymbolById } from '../data/data';
 import "./Reels.css"
+import WinToast from './WinToast';
 
 interface ReelsProps {
   reels: string[][];
@@ -7,9 +8,10 @@ interface ReelsProps {
   stopStep?: 0 | 1 | 2 | 3 | 4 | 5;
   spinCount: number;
   winningPositions: {col: number, row: number, lineIndex: number}[]
+  winToast: {amount: number, multiplier: number, id: number} | null
 }
 
-const Reels = ({ reels, isSpinning, stopStep, spinCount,winningPositions }: ReelsProps) => {
+const Reels = ({ reels, isSpinning, stopStep, spinCount,winningPositions,winToast }: ReelsProps) => {
 
   return (
     <div 
@@ -55,6 +57,12 @@ const Reels = ({ reels, isSpinning, stopStep, spinCount,winningPositions }: Reel
           </div> 
         </div>
       ))}
+          {winToast && (
+        <WinToast 
+            amount={winToast.amount}
+            multiplier={winToast.multiplier}
+        />
+    )}
     </div>
   );
 };
