@@ -172,6 +172,59 @@ Když uživatel drží telefon v režimu portrétu, zobrazí se overlay s ikonou
 
 ![Rotate overlay](screenshots/rotate-overlay.png)
 
+### Win Toast Notifications
+
+Pro okamžitou zpětnou vazbu při výhře jsem dále přidala **toast notifications** s vlastním stylováním podle výše výhry.
+
+**Návrh designu:**
+
+Toast notifikace jsou záměrně **subtilní** – primární feedback poskytuje animace zvýrazňující jednotlivé výherní symboly. Tato notifikace slouží pouze jako **sekundární informace** o výši výhry.
+
+**Implementace:**
+
+Samostatná komponenta `WinToast.tsx` s třemi úrovněmi:
+
+```typescript
+type WinTier = 'small' | 'medium' | 'big'
+
+const getWinTier = (): WinTier => {
+  if (multiplier >= 10) return 'big'      // 10x+ bet
+  if (multiplier >= 5) return 'medium'    // 5-10x bet
+  return 'small'                          // 1-5x bet
+}
+```
+
+**Styling approach:**
+
+Místo background a border používám **pouze text styling** s glow efekty, což půbobí nenásilným dojmem a lépe zapadá do celkového designu hry:
+
+- **Small win:** bílý text s jemným glow
+- **Medium win:** intenzivnější bílý glow + pulsing animace
+- **Big win:** červený neon efekt s dramatickým pulsing
+
+```css
+.win-toast--big .win-toast__amount {
+    color: var(--pure-white);
+    font-size: clamp(4rem, 8vw, 6.5rem);
+    text-shadow: 
+        0 0 25px var(--bright-red),
+        0 0 50px var(--bright-red),
+        0 0 75px var(--accent-red),
+        0 0 30px rgba(255, 255, 255, 1);
+    animation: pulseBigText 1.5s ease-in-out infinite;
+}
+```
+
+**Positioning:**
+
+Toast je renderován v `Reels.tsx` komponentě s `position: absolute`, což zajišťuje správné vycentrování relativně k herním válcům (ne k celé obrazovce, kde by byl offset kvůli Harlequin postavě vlevo).
+
+**Auto-dismiss:**
+
+Toast se automaticky skrývá po **2 sekundách**, což je dostatečně dlouhé pro přečtení, ale nekomplikuje to flow hry při autospinu.
+
+![Win toast notification](screenshots/big-win.png)
+
 ### Škálování aplikace
 
 Pro konzistentní vzhled napříč různými velikostmi displejů používám vlastní škálovací systém pomocí CSS proměnné `--game-scale`, která dynamicky přepočítává velikost celé aplikace.
