@@ -343,12 +343,25 @@ Aplikace je postavena na třech hlavních komponentách:
 **LoadingScreen.tsx:**
 
 - zobrazuje se při inicializaci aplikace,
-- "fake" progress bar s plynulou animací (1.2s),
-- maskuje initial React render,
-- konzistentní design s herním stylem,
+- progress bar s plynulou animací (1.2s),
+- preload **kritických assetů** - všechny herní symboly a background obrázek,
+- minimalistický design sladěný se stylem hry,
 - fade-in/fade-out animace.
 
-Implementace využívá simulovaný progress místo skutečného načítání assetů, což je standardní praxe pro malé React hry, kde jsou assety zabaleny v bundle a načítají se velmi rychle. Tento přístup zajišťuje konzistentní UX na všech zařízeních.
+Implementace kombinuje **vizuální progress bar** s **reálným preloadem obrázků**. Loading screen čeká současně na dokončení obou procesů - animace progress baru i načtení všech symbol images a background. Tento hybridní přístup zajišťuje:
+
+1. **Plynulost UX** - progress bar se animuje konzistentně (1.2s minimum).
+2. **Žádný flash of unstyled content** - všechny obrázky jsou načtené před zobrazením hry.
+3. **Flexibilitu** - zobrazení loading screen se prodlouží v případě, že načtení trvá déle.
+
+```typescript
+const images = [
+    CircusBg,
+    Spades, Clubs, Diamonds, Hearts,
+    DiamondSpades, DiamondClubs, DiamondDiamonds, DiamondHearts,
+    Hyena, Diamond, Harlequin
+];
+```
 
 ![Loading screen](screenshots/loading-screen.png)
 
