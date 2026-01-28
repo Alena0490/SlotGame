@@ -45,6 +45,7 @@
 
 /* Multiplier badge */
 .win-toast__multiplier {
+    display: none;  /* Comment to show multiplier */
     font-size: var(--font-xs);
     font-weight: 600;
     font-style: italic;
