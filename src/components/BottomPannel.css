@@ -36,7 +36,7 @@ button {
 }
 
 button:hover{
-  transform: scale(1.04);
+  transform: scale(1.01);
   filter: brightness(1.2);
 }
 
@@ -393,6 +393,12 @@ button:disabled {
 
 @media (max-width: 668px) and (min-height: 432px), 
        (orientation: landscape) and (max-height: 431px) {
+
+    button:hover{
+        transform: scale(1.02);
+        filter: brightness(1.2);
+    }
+
     .amount-toggle {
         flex-direction: row;
         gap: 0.25rem;
@@ -424,72 +430,6 @@ button:disabled {
     }
 }
 
-@media (max-width: 360px) and (orientation: portrait) {
-    .bottom-panel {
-        padding: 0.7rem 0.4rem 0.45rem;
-        gap: var(--spacing-xs);
-        border-top-width: var(--border-medium);
-    }
-    
-    .menu, .sound {
-        width: 2.4rem;
-        height: 2.4rem;
-        font-size: var(--font-sm);
-    }
-    
-    .menu::before, .sound::before {
-        width: 3rem;
-        height: 3rem;
-    }
-    
-    .bet, .win, .credit {
-        min-width: 5rem;
-        height: 3rem;
-        font-size: var(--font-controls);
-        padding: 0.15rem 0.15rem 0 0.28rem;
-    }
-    
-    .bet::before, .win::before, .credit::before {
-        width: calc(100% + 0.7rem);
-        height: calc(100% + 0.7rem);
-        outline-width: 0.16rem;
-    }
-    
-    .increase, .decrease {
-        width: 1.45rem;
-        height: 1.45rem;
-        font-size: var(--font-base);
-    }
-    
-    .spin-buttons{
-        width: 6.5rem;
-        height: 4.3rem;
-
-        --spin-btn: 3.8rem;
-        --spin-ring: 5.7rem;
-        --spin-bottom: 0.48rem;
-
-        --auto-btn: 2.6rem;
-        --auto-ring: 3.6rem;
-        --auto-right: 3.8rem;
-        --auto-bottom: 0rem;
-    }
-
-  .spin{
-    width: var(--spin-btn);
-    height: var(--spin-btn);
-    font-size: var(--font-button-spin-md);
-    border-width: 4px;
-  }
-
-  .auto-spin{
-    width: var(--auto-btn);
-    height: var(--auto-btn);
-    font-size: var(--font-button-auto-md);
-    border-width: 4px;
-  }  
-}
-
 /* LANDSCAPE MODE */
 
 @media (orientation: landscape) and (max-height: 521px) {
@@ -506,6 +446,11 @@ button:disabled {
         minmax(0, 1fr) /* win */
         auto; /* spin-buttons */
         z-index: 2;
+    }
+
+    button:hover{
+        transform: scale(1.02);
+        filter: brightness(1.2);
     }
 
     .menu, .sound,
@@ -586,7 +531,6 @@ button:disabled {
     }
 }
 
-
 /* Landscape small */
 @media (orientation: landscape) and (max-height: 361px) {
 
@@ -597,6 +541,11 @@ button:disabled {
             minmax(0, 0.8fr) 
             minmax(0, 0.5fr)
             auto;
+    }
+
+    button:hover{
+        transform: scale(1.02);
+        filter: brightness(1.2);
     }
 
     .menu {
@@ -645,6 +594,11 @@ button:disabled {
 @media (max-width: 668px) and (min-height: 432px) {
     .bottom-panel {
         border-top-width: 1.75px;
+    }
+
+    button:hover{
+        transform: scale(1.02);
+        filter: brightness(1.2);
     }
     
     .menu, .sound {
