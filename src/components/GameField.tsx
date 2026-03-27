@@ -440,6 +440,7 @@ const GameField = () => {
                     onRefill={handleRefillCredits}
                     isSoundOn={isSoundOn} 
                     playSound={playSound}  
+                    base={base}
                 />
                 <span className="harlequin" aria-hidden="true"></span>
                 <Reels 
