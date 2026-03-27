@@ -42,12 +42,24 @@ const NoCreditModal = ({ isOpen, onClose, onRefill, isSoundOn, playSound }: NoCr
         if (isSoundOn) {
             playSound('/sounds/button.mp3');
         }
+        
+        setIsClosing(true); 
         setTimeout(() => {
             if (isSoundOn) {
                 playSound('/sounds/cash.mp3');
             }
-            onRefill(); // ← přesunuto sem, spustí se až po zahájení přehrávání zvuku
         }, 100);
+    
+        setTimeout(() => {
+            if (isSoundOn) {
+                playSound('/sounds/whoosh.mp3');
+            }
+        }, 200);
+
+        setTimeout(() => {
+            onRefill();
+            setIsClosing(false);
+        }, 400);
     };
 
     return (
