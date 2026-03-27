@@ -46,9 +46,8 @@ const NoCreditModal = ({ isOpen, onClose, onRefill, isSoundOn, playSound }: NoCr
             if (isSoundOn) {
                 playSound('/sounds/cash.mp3');
             }
+            onRefill(); // ← přesunuto sem, spustí se až po zahájení přehrávání zvuku
         }, 100);
-        
-        onRefill();
     };
 
     return (
