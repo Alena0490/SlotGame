@@ -4,12 +4,13 @@ import "./MenuModal.css"
 interface NoCreditModalProps {
     isOpen: boolean;
     isSoundOn: boolean;
+    base: string;
     onClose: () => void;
     onRefill: () => void;
     playSound: (sound: string) => void;
 }
 
-const NoCreditModal = ({ isOpen, onClose, onRefill, isSoundOn, playSound }: NoCreditModalProps) => {
+const NoCreditModal = ({ isOpen, onClose, onRefill, isSoundOn, playSound, base }: NoCreditModalProps) => {
     const [isClosing, setIsClosing] = useState(false);
     const refillButtonRef = useRef<HTMLButtonElement>(null);
     // Focus first button when modal opens
@@ -20,16 +21,11 @@ const NoCreditModal = ({ isOpen, onClose, onRefill, isSoundOn, playSound }: NoCr
     }, [isOpen]);
     if (!isOpen) return null;
 
-    const handleClose = () => {
-        if (isSoundOn) {
-            playSound('/sounds/button.mp3');
-        }
-        setIsClosing(true);
-     
+      const handleClose = () => {
+        if (isSoundOn) playSound(`${base}sounds/button.mp3`);
+        // ...
         setTimeout(() => {
-            if (isSoundOn) {
-                playSound('/sounds/whoosh.mp3');
-            }
+            if (isSoundOn) playSound(`${base}sounds/whoosh.mp3`);
         }, 100);
         
         setTimeout(() => {
@@ -39,23 +35,14 @@ const NoCreditModal = ({ isOpen, onClose, onRefill, isSoundOn, playSound }: NoCr
     };
 
     const handleRefill = () => {
-        if (isSoundOn) {
-            playSound('/sounds/button.mp3');
-        }
-        
-        setIsClosing(true); 
+        if (isSoundOn) playSound(`${base}sounds/button.mp3`);
+        setIsClosing(true);
         setTimeout(() => {
-            if (isSoundOn) {
-                playSound('/sounds/cash.mp3');
-            }
+            if (isSoundOn) playSound(`${base}sounds/cash.mp3`);
         }, 100);
-    
         setTimeout(() => {
-            if (isSoundOn) {
-                playSound('/sounds/whoosh.mp3');
-            }
+            if (isSoundOn) playSound(`${base}sounds/whoosh.mp3`);
         }, 200);
-
         setTimeout(() => {
             onRefill();
             setIsClosing(false);
