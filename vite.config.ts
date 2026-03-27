@@ -5,13 +5,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [react()],
   base: mode === 'production' ? '/SlotGame/' : '/',
   build: {
-    cssCodeSplit: false, 
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true, // ← Delete console.logs
-      }
-    },
+    cssCodeSplit: false,
     rollupOptions: {
       output: {
         manualChunks: {
@@ -19,5 +13,8 @@ export default defineConfig(({ mode }) => ({
         }
       }
     }
+  },
+  esbuild: {
+    drop: ['console'],  // ← odstraní console.logy, bez Terseru
   }
 }))
