@@ -84,6 +84,7 @@ const GameField = () => {
         const sounds = [
             `${base}sounds/button.mp3`,
             `${base}sounds/whoosh.mp3`,
+            `${base}sounds/cash.mp3`,
         ];
         
         sounds.forEach(sound => {
