@@ -35,19 +35,23 @@ const NoCreditModal = ({ isOpen, onClose, onRefill, isSoundOn, playSound, base }
     };
 
     const handleRefill = () => {
-        if (isSoundOn) playSound(`${base}sounds/button.mp3`);
-        setIsClosing(true);
-        setTimeout(() => {
-            if (isSoundOn) playSound(`${base}sounds/cash.mp3`);
-        }, 100);
-        setTimeout(() => {
-            if (isSoundOn) playSound(`${base}sounds/whoosh.mp3`);
-        }, 200);
-        setTimeout(() => {
-            onRefill();
-            setIsClosing(false);
-        }, 400);
-    };
+    console.log('handleRefill fired, isSoundOn:', isSoundOn, 'base:', base);
+    
+    if (isSoundOn) playSound(`${base}sounds/button.mp3`);
+    
+    setIsClosing(true);
+    setTimeout(() => {
+        console.log('cash timeout — isSoundOn:', isSoundOn);
+        if (isSoundOn) playSound(`${base}sounds/cash.mp3`);
+    }, 100);
+    setTimeout(() => {
+        if (isSoundOn) playSound(`${base}sounds/whoosh.mp3`);
+    }, 200);
+    setTimeout(() => {
+        onRefill();
+        setIsClosing(false);
+    }, 400);
+};
 
     return (
         <div 
